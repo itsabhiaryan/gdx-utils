@@ -1,0 +1,35 @@
+group 'com.aryan9234.github'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: "nebula.provided-base"
+apply plugin: 'maven'
+//apply from: '../publish.gradle'
+
+sourceCompatibility = 1.6
+sourceSets.main.java.srcDirs = [ "src/" ]
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+    compile project(":gdx-utils")
+    provided "com.underwaterapps.overlap2druntime:overlap2d-runtime-libgdx:0.1.2-SNAPSHOT"
+
+}
+
+/*
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            pom.project {
+                name POM_NAME
+                artifactId POM_ARTIFACT_ID
+                packaging POM_PACKAGING
+                description POM_DESCRIPTION
+            }
+        }
+    }
+}*/

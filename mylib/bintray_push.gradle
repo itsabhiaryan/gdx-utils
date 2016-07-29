@@ -1,0 +1,40 @@
+
+
+ext {
+    // Where you will see your artifact in Bintray's web interface
+    // The "bintrayName" should match the name of the Bintray repro.
+    bintrayRepo = BINTRAY_REPO_TYPE
+    bintrayName = BINTRAY_PACKAGE
+
+
+    siteUrl = 'https://github.com/aryan9234/utils'
+    gitUrl = 'https://github.com/aryan9234/utils.git'
+
+
+
+    // Maven metadata
+    publishedGroupId = GROUP
+    artifact = POM_ARTIFACT_ID
+
+    libraryName = 'canvasutils'
+    libraryVersion = VERSION_NAME
+    libraryDescription= 'This is new Version'
+    // Save yourself a head ache, and set this equal to the name of the Android Studio library
+    // module. The artifact name needs to match the name of the library.
+
+
+    libraryDescription = POM_DESCRIPTION
+
+
+    developerId = POM_DEVELOPER_ID
+    developerName = POM_DEVELOPER_NAME
+    developerEmail = POM_DEVELOPER_EMAIL
+
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+
+}
+apply from: 'https://raw.githubusercontent.com/attwellBrian/JCenter/master/installv1.gradle'
+apply from: 'https://raw.githubusercontent.com/attwellBrian/JCenter/master/bintrayv1.gradle'
