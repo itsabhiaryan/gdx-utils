@@ -8,7 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.utils.Array;
 
-import com.nayragames.gdxutils.Position;
+import com.nayragames.gdxutils.model.Position;
 
 /**
  * (c) 2016 Abhishek Aryan

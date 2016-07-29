@@ -12,9 +12,10 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.CircleShape;
+import com.nayragames.gdxutils._Main;
 import com.nayragames.gdxutils.b2d.PhysicsHelper;
 
-public class Main extends Game implements InputProcessor {
+public class Main extends _Main implements InputProcessor {
 
 
 	OrthographicCamera camera;
@@ -44,13 +45,13 @@ public class Main extends Game implements InputProcessor {
 	@Override
 	public void render() {
 		super.render();
-		Gdx.gl.glClearColor(0, 0, 0, 1);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT );
 
 		PhysicsHelper.update();
 
 
 	}
+
+
 
 	@Override
 	public void resize(int width, int height) {

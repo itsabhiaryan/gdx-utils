@@ -1,5 +1,6 @@
 package com.nayragames.o2d.shaperenderer;
 
+import box2dLight.RayHandler;
 import com.badlogic.ashley.systems.IteratingSystem;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -9,7 +10,11 @@ import com.uwsoft.editor.renderer.resources.IResourceRetriever;
 import com.uwsoft.editor.renderer.systems.render.logic.Drawable;
 
 /**
- * Created by ARYAN on 27-01-2016.
+ * (c) 2016 Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 27-01-2016.
+ *
  */
 public class ShapeRendererType implements IExternalItemType {
 

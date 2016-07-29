@@ -1,4 +1,4 @@
-package com.nayragames.gdxutils;
+package com.nayragames.gdxutils.model;
 
 /**
  * (c) 2016 Abhishek Aryan
@@ -9,12 +9,12 @@ package com.nayragames.gdxutils;
  */
 public class Comment {
 
-    //important line		//final AObject localCandy1 = AObject.getAnimation(objectGroup, Position.makePosition(Cube.getCube(i, j).getPosition().x, Main.startY + Main.COLUMN * Main.cellSide + Main.cellSide / 2f + fillCubeStack[j] * Main.cellSide), color, 0, 1.0F);
-    //pool.origin=Position.makePosition(Cube.getCube(i, j).getPosition().x, Main.startY + Main.COLUMN * Main.cellSide + Main.cellSide / 2f + fillCubeStack[j] * Main.cellSide);
+    //important line		//final AObject localCandy1 = AObject.getAnimation(objectGroup, Position.makePosition(Cube.getCube(i, j).getPosition().x, _Main.startY + _Main.COLUMN * _Main.cellSide + _Main.cellSide / 2f + fillCubeStack[j] * _Main.cellSide), color, 0, 1.0F);
+    //pool.origin=Position.makePosition(Cube.getCube(i, j).getPosition().x, _Main.startY + _Main.COLUMN * _Main.cellSide + _Main.cellSide / 2f + fillCubeStack[j] * _Main.cellSide);
     //final AObject localCandy=pool.obtain();
 
-    //int color = Main.random.nextInt(Main.OBJECT_COLOR);
-    //final AObject localCandy = AObject.make(objectGroup, Position.makePosition(Cube.getCube(i, j).getPosition().x, Main.startY + Main.COLUMN * Main.cellSide + Main.cellSide / 2f + fillCubeStack[j] * Main.cellSide), color, 0, 1.0F);
+    //int color = _Main.random.nextInt(_Main.OBJECT_COLOR);
+    //final AObject localCandy = AObject.make(objectGroup, Position.makePosition(Cube.getCube(i, j).getPosition().x, _Main.startY + _Main.COLUMN * _Main.cellSide + _Main.cellSide / 2f + fillCubeStack[j] * _Main.cellSide), color, 0, 1.0F);
 
     					/*for (Cube localCube : localList) {
 
@@ -59,7 +59,7 @@ public class Comment {
 											localtarget.isBucketMove = false;
 											GameScreen.objectArrayList.remove(localCandy);
 
-											double theta = Math.atan2(Main.height - (localtarget.bucket.getY() + localtarget.bucket.getHeight() / 2f) - (Main.height - localCube.getPosition().y), localtarget.bucket.getX() - localCube.getPosition().x);
+											double theta = Math.atan2(_Main.height - (localtarget.bucket.getY() + localtarget.bucket.getHeight() / 2f) - (_Main.height - localCube.getPosition().y), localtarget.bucket.getX() - localCube.getPosition().x);
 											double angle = Math.toDegrees(theta);
 											if (angle < 0) {
 												angle += 360;
@@ -81,7 +81,7 @@ public class Comment {
 												localtarget.currentCount++;
 												Bezier<Vector2> bezier=new Bezier<Vector2>(cp);
 
-												float time=(bezier.approxLength(30)/Main.cellSide)*.15f;
+												float time=(bezier.approxLength(30)/_Main.cellSide)*.15f;
 												MoveAlongAction action1 = MoveAlongAction.obtain(bezier, time);
 												action1.setRotate(true);
 
@@ -176,8 +176,8 @@ public class Comment {
 	}*/
 
 	/*public static int getLastBlank(Cube cube) {
-		int row=Main.COLUMN-1;
-		for (int i=Main.COLUMN-1;i>=cube.row;i--)
+		int row=_Main.COLUMN-1;
+		for (int i=_Main.COLUMN-1;i>=cube.row;i--)
 			if(Cube.getCube(i,cube.column).isVisible()) {
 				row = i;
 				//System.out.println("return by getLast blank"+row);
@@ -191,10 +191,10 @@ public class Comment {
 		boolean b=true;
 		int currentCount=0;
 		int no=0;
-		for (int i = Main.COLUMN-1; i >=cube.row; i--) {
-			for (int j = Main.COLUMN-1; j >=0; j--) {
+		for (int i = _Main.COLUMN-1; i >=cube.row; i--) {
+			for (int j = _Main.COLUMN-1; j >=0; j--) {
 				currentCount++;
-				if(currentCount<=((Main.COLUMN-cube.row)*Main.COLUMN)-cube.column) {
+				if(currentCount<=((_Main.COLUMN-cube.row)*_Main.COLUMN)-cube.column) {
 					System.out.println(i + "AND" + j);
 					if (Cube.getCube(i, j).isVisible() && Cube.getCube(i, j).hasWhat == Cube.HAS_NOTHING) {
 						b = false;
@@ -224,9 +224,9 @@ public class Comment {
 	}*/
 
 	/*private static int getLastBlankCubeVertical() {
-		int row=Main.COLUMN-1;
-		for (int i = Main.COLUMN-1; i >=0 ; i--) {
-			for (int j = 0; j < Main.COLUMN; j++) {
+		int row=_Main.COLUMN-1;
+		for (int i = _Main.COLUMN-1; i >=0 ; i--) {
+			for (int j = 0; j < _Main.COLUMN; j++) {
 				if (Cube.getCube(i, j).isVisible()) {
 					row = i;
 					return row;
@@ -406,9 +406,9 @@ public class Comment {
 
     final double distance = cube1.getPosition().dst(cube2.getPosition());
 
-    System.out.println("Distance is" + distance / (Main.cellSide * 1.5f));
+    System.out.println("Distance is" + distance / (_Main.cellSide * 1.5f));
 
-    float di = (float) (distance / (6 * Main.cellSide));
+    float di = (float) (distance / (6 * _Main.cellSide));
 
 
     double theta = Math.atan2(((cube2.getPosition().y)) - (cube1.getPosition().y), cube2.getPosition().x - cube1.getPosition().x);

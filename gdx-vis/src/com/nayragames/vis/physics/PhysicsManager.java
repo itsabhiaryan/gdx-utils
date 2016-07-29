@@ -6,7 +6,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.kotcrab.vis.runtime.component.PhysicsBody;
 import com.kotcrab.vis.runtime.system.physics.PhysicsSystem;
-import com.nayragames.gdxutils.Calc;
+import com.nayragames.gdxutils.model.Calc;
 import com.nayragames.gdxutils.b2d.BodyEditorLoader;
 import com.nayragames.gdxutils.b2d.PhysicsHelper;
 

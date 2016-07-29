@@ -1,4 +1,4 @@
-package com.nayragames.gdxutils;
+package com.nayragames.gdxutils.model;
 
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.Stage;

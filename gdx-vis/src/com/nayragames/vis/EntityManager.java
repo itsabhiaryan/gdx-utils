@@ -15,9 +15,9 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.ObjectMap;
 import com.kotcrab.vis.runtime.component.*;
-import com.nayragames.gdxutils.Position;
-import com.nayragames.gdxutils.Scale;
-import com.nayragames.gdxutils.Size;
+import com.nayragames.gdxutils.model.Position;
+import com.nayragames.gdxutils.model.Scale;
+import com.nayragames.gdxutils.model.Size;
 import com.nayragames.vis.component.*;
 
 /**

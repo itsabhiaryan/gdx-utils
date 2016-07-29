@@ -3,7 +3,7 @@
 <module>
     <source path="gdxutils"/>
 
-    <extend-configuration-property name="gdx.reflect.include" value="com.nayragames.gdxutils.MoveAlongPath" />
-    <extend-configuration-property name="gdx.reflect.include" value="com.nayragames.gdxutils.MoveAlongAction" />
+    <extend-configuration-property name="gdx.reflect.include" value="com.nayragames.gdxutils.model.MoveAlongPath" />
+    <extend-configuration-property name="gdx.reflect.include" value="com.nayragames.gdxutils.model.MoveAlongAction" />
 
 </module>

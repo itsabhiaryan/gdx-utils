@@ -1,38 +1,29 @@
-package com.nayragames.vis.physics;
+package com.nayragames.o2d;
 
-import com.artemis.Entity;
-import com.artemis.World;
+import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.physics.box2d.joints.*;
 import com.badlogic.gdx.utils.Array;
-import com.kotcrab.vis.runtime.component.PhysicsBody;
-import com.kotcrab.vis.runtime.system.physics.PhysicsSystem;
+import com.nayragames.gdxutils.b2d.BodyEditorLoader;
 import com.nayragames.gdxutils.model.Position;
 import com.nayragames.gdxutils.model.Size;
-import com.nayragames.gdxutils.b2d.BodyEditorLoader;
-import com.nayragames.gdxutils.b2d.PhysicsHelper;
-import com.nayragames.vis.EntityManager;
-import com.nayragames.vis.GenericEntityBuilder;
-import com.nayragames.vis.component.CircularMotion;
+import com.nayragames.o2d.component.CircularMotion;
+import com.uwsoft.editor.renderer.SceneLoader;
+import com.uwsoft.editor.renderer.components.physics.PhysicsBodyComponent;
+
 
 /**
- * Created by Personal on 7/27/2016.
+ * Created by ARYAN on 1/1/2016.
  */
-public class Helper {
+
+
+public class PhysicsHelper {
 
     private static final String TAG = "[" + PhysicsHelper.class.getSimpleName() + "]";
-
-
-    public static com.badlogic.gdx.physics.box2d.World getPhysicsWorld(World world){
-        PhysicsSystem physicsSystem=world.getSystem(PhysicsSystem.class);
-        if (physicsSystem == null) throw new IllegalStateException("World has not physics settings");
-        return physicsSystem.getPhysicsWorld();
-    }
 
     public enum BodyLoaderData {
 
@@ -49,55 +40,122 @@ public class Helper {
 
     static {
         try {
-          //  loader=new BodyEditorLoader(Gdx.files.internal(Resource.Jsons.GEAR.value));
-           // heliLoader=new BodyEditorLoader(Gdx.files.internal(Resource.Jsons.HELICOPTER.value));
-        }
-        catch (Exception e){
-            Gdx.app.log(TAG,"Exception in static block loading",e);
-        }
+                //loader=new BodyEditorLoader(Gdx.files.internal(Resource.Jsons.GEAR.value));
+                //heliLoader=new BodyEditorLoader(Gdx.files.internal(Resource.Jsons.HELICOPTER.value));
+            }
+            catch (Exception e){
+                Gdx.app.log(TAG,"Exception in static block loading",e);
+            }
     }
 
-    public static MouseJoint createMouseJoint(World world, Body ground, Body hitBody, Vector3 unProjectVec){
+    public static BodyDef createBodyDef(BodyDef.BodyType type, float x, float y){
+        BodyDef bodyDef=new BodyDef();
+        bodyDef.type=type;
+        bodyDef.position.set(x,y);
+        return bodyDef;
+    }
+
+    public static FixtureDef createFixtureDef(Shape shape, float density, float restitution, float friction){
+        FixtureDef fixtureDef=new FixtureDef();
+        fixtureDef.shape=shape;
+        fixtureDef.density=density;
+        fixtureDef.restitution=restitution;
+        fixtureDef.friction=friction;
+
+        return fixtureDef;
+    }
+
+    public static MouseJointDef createMouseJointDef(Body body1 , Body body2, Vector3 target){
+
+        MouseJointDef mouseJointDef=new MouseJointDef();
+        mouseJointDef.bodyA=body1;
+        mouseJointDef.bodyB=body2;
+
+        mouseJointDef.collideConnected = true;
+        mouseJointDef.target.set(target.x, target.y);
+        mouseJointDef.maxForce = 1000.0f * body2.getMass();
+        mouseJointDef.frequencyHz=5;
+
+        return mouseJointDef;
+    }
+
+    public static RopeJointDef createRopeJointDef(Body body1 , Body body2, Vector2 firstAnchor, Vector2 secondAnchor, float length){
+
+        RopeJointDef ropeJointDef = new RopeJointDef();
+        ropeJointDef.bodyA = body1;
+        ropeJointDef.bodyB = body2;
+        ropeJointDef.localAnchorA.set(firstAnchor);
+        ropeJointDef.localAnchorB.set(secondAnchor);
+        ropeJointDef.maxLength = length;
+
+        return ropeJointDef;
+    }
+
+    public static RevoluteJointDef createRevoluteJointDef(Body body1 , Body body2, Vector2 firstAnchor, Vector2 secondAnchor){
+
+        RevoluteJointDef revoluteJointDef=new RevoluteJointDef();
+        revoluteJointDef.bodyA=body1;
+        revoluteJointDef.bodyB=body2;
+        revoluteJointDef.localAnchorA.set(firstAnchor);
+        revoluteJointDef.localAnchorB.set(secondAnchor);
+
+        return revoluteJointDef;
+    }
+
+    public static DistanceJointDef createDistanceJointDef(){
+
+        DistanceJointDef def=new DistanceJointDef();
+        def.collideConnected=true;
+        return def;
+    }
+
+    public static WeldJointDef createWeldJointDef(){
+
+        WeldJointDef jd = new WeldJointDef();
+        jd.collideConnected=true;
+
+        return jd;
+    }
+
+    public static MouseJoint createMouseJoint(SceneLoader world, Body ground, Body hitBody, Vector3 unProjectVec){
         MouseJointDef mouseJointDef= PhysicsHelper.createMouseJointDef(ground,hitBody,unProjectVec);
         return (MouseJoint)getPhysicsWorld(world).createJoint(mouseJointDef);
     }
 
-
-
-    public static void destroyJoint(World world,Joint joint){
+    public static void destroyJoint(SceneLoader world, Joint joint){
         getPhysicsWorld(world).destroyJoint(joint);
     }
 
-    public static void QueryAABB(World world, QueryCallback callback, float x1, float y1, float x2, float y2){
+    public static void QueryAABB(SceneLoader world, QueryCallback callback, float x1, float y1, float x2, float y2){
 
         getPhysicsWorld(world).QueryAABB(callback,x1, y1,x2, y2);
     }
 
-    public static Array<Entity> addObject(World world, int type){
+    public static Array<Entity> addObject(SceneLoader sceneLoader, int type){
 
         //PhysicsHelper.addFirstObject(world,new Vector2(5.5f,4f),2);
         //PhysicsHelper.addSecondObject(world,new Vector2(37f,4),new Vector2(39,4),1.5f);
-        // PhysicsHelper.addSecondObject1(world,new Vector2(25,4),new Vector2(27f,4),1f);
+       // PhysicsHelper.addSecondObject1(world,new Vector2(25,4),new Vector2(27f,4),1f);
         //PhysicsHelper.createHangingChain(world,new Vector2(10f,4),1);
         //PhysicsHelper.createBridge(world,new Vector2(3.5f,4),new Vector2(4.5f,4),1f);
 
         switch (type){
 
             case 0:
-                //    return PhysicsHelper.createBridge(world,new Vector2(61f,4),new Vector2(62f,4f),1.25f);
-                return Helper.createHangingChain(world,new Vector2(61.5f,4.1f),1.2f);
+            //    return PhysicsHelper.createBridge(world,new Vector2(61f,4),new Vector2(62f,4f),1.25f);
+                return PhysicsHelper.createHangingChain(sceneLoader,new Vector2(61.5f,4.1f),1.2f);
 
             case 1:
-                return Helper.createHangingChain(world,new Vector2(10f,4.1f),1.1f);
+                return PhysicsHelper.createHangingChain(sceneLoader,new Vector2(10f,4.1f),1.1f);
 
 
             case 2:
-                return Helper.addSecondObject1(world,new Vector2(25,4.4f),new Vector2(27f,4.3f),1.3f);
+                return PhysicsHelper.addSecondObject1(sceneLoader,new Vector2(25,4.4f),new Vector2(27f,4.3f),1.3f);
 
 
             case 3:
-                // return PhysicsHelper.addSecondObject(world,new Vector2(37,4),new Vector2(39,4),1.5f);
-                return  Helper.addFirstObject(world,new Vector2(38,4.3f),1.3f);
+               // return PhysicsHelper.addSecondObject(world,new Vector2(37,4),new Vector2(39,4),1.5f);
+            return  PhysicsHelper.addFirstObject(sceneLoader,new Vector2(38,4.3f),1.3f);
 
             default:
                 return  null;
@@ -105,28 +163,28 @@ public class Helper {
         }
     }
 
-    public static Array<Entity> addFirstObject(World world, Vector2 firstPoint,float rope_length){
+    public static Array<Entity> addFirstObject(SceneLoader sceneLoader, Vector2 firstPoint, float rope_length){
 
         Array<Entity> entities=new Array<Entity>();
 
         float pivot_width=.05f;
         float pivot_height=.05f;
 
-        com.badlogic.gdx.physics.box2d.World world1=getPhysicsWorld(world);
-        Entity pivot = GenericEntityBuilder.createPhysicsShape(world, 1, Color.BLACK, Size.makeSize(pivot_width, pivot_height), Position.makePosition(firstPoint.x, firstPoint.y), 0, BodyDef.BodyType.StaticBody, 1);
+        World world1=getPhysicsWorld(sceneLoader);
+        Entity pivot = GenericEntityBuilder.createPhysicsShape(sceneLoader, 1, Color.BLACK, Size.makeSize(pivot_width, pivot_height), Position.makePosition(firstPoint.x, firstPoint.y), 0, BodyDef.BodyType.StaticBody, 1);
         entities.add(pivot);
-        Body pivotBody = pivot.getComponent(PhysicsBody.class).body;
+        Body pivotBody = pivot.getComponent(PhysicsBodyComponent.class).body;
 
         float hangBlock_width=.5f;
         float hangBlock_height=.25f;
 
-        Entity entity2 = GenericEntityBuilder.createPhysicsShape(world, 1, Color.BLACK, Size.makeSize(hangBlock_width, hangBlock_height), Position.makePosition(firstPoint.x, firstPoint.y), 0, BodyDef.BodyType.DynamicBody, 1);
-        Body body2 = entity2.getComponent(PhysicsBody.class).body;
+        Entity entity2 = GenericEntityBuilder.createPhysicsShape(sceneLoader, 1, Color.BLACK, Size.makeSize(hangBlock_width, hangBlock_height), Position.makePosition(firstPoint.x, firstPoint.y), 0, BodyDef.BodyType.DynamicBody, 1);
+        Body body2 = entity2.getComponent(PhysicsBodyComponent.class).body;
 
         body2.applyForceToCenter(new Vector2(50,0),true);
         entities.add(entity2);
 
-        world1.createJoint(PhysicsHelper.createRopeJointDef(pivotBody,body2,new Vector2(0,0),new Vector2(0,hangBlock_height/2f),rope_length));
+        world1.createJoint(createRopeJointDef(pivotBody,body2,new Vector2(0,0),new Vector2(0,hangBlock_height/2f),rope_length));
 
         Vector2 point1=firstPoint;
         Vector2 point2=new Vector2(firstPoint.x,firstPoint.y-rope_length);
@@ -154,8 +212,8 @@ public class Helper {
 
         for (int i = 0; i < e_count; i++) {
 
-            Entity e=GenericEntityBuilder.createPhysicsShape(world,0 ,Color.BLACK, Size.makeSize(2*rope_width,2*rope_height), Position.makePosition(firstPoint.x,firstPoint.y),0, BodyDef.BodyType.DynamicBody,1);
-            Body body=e.getComponent(PhysicsBody.class).body;
+            Entity e= GenericEntityBuilder.createPhysicsShape(sceneLoader,0 , Color.BLACK, Size.makeSize(2*rope_width,2*rope_height), Position.makePosition(firstPoint.x,firstPoint.y),0, BodyDef.BodyType.DynamicBody,1);
+            Body body=e.getComponent(PhysicsBodyComponent.class).body;
             entities.add(e);
 
             jd.bodyA=prevBody;
@@ -173,27 +231,27 @@ public class Helper {
             prevBody = body;
         }
 
-        world1.createJoint(PhysicsHelper.createRevoluteJointDef(prevBody,body2,new Vector2(rope_width,0),new Vector2(0, hangBlock_height/2f)));
-        world1.createJoint(PhysicsHelper.createRopeJointDef(prevBody,body2,new Vector2(rope_width,0),new Vector2(0, hangBlock_height/2f),0));
+        world1.createJoint(createRevoluteJointDef(prevBody,body2,new Vector2(rope_width,0),new Vector2(0, hangBlock_height/2f)));
+        world1.createJoint(createRopeJointDef(prevBody,body2,new Vector2(rope_width,0),new Vector2(0, hangBlock_height/2f),0));
         return entities;
     }
 
-    public static Array<Entity> addSecondObject(World world, Vector2 firstPoint,Vector2 secondPoint,float rope_length) {
+    public static Array<Entity> addSecondObject(SceneLoader sceneLoader, Vector2 firstPoint, Vector2 secondPoint, float rope_length) {
 
         Array<Entity> entities=new Array<Entity>();
 
         float pivot_width=.05f;
         float pivot_height=.05f;
 
-        com.badlogic.gdx.physics.box2d.World world1 = world.getSystem(PhysicsSystem.class).getPhysicsWorld();
+        World world1 = getPhysicsWorld(sceneLoader);
 
-        Entity pivotEntity1 = GenericEntityBuilder.createPhysicsShape(world, 1, Color.BLACK, Size.makeSize(pivot_width, pivot_height), Position.makePosition(firstPoint.x, firstPoint.y), 0, BodyDef.BodyType.StaticBody, 1);
-        Body pivotBody1 = pivotEntity1.getComponent(PhysicsBody.class).body;
+        Entity pivotEntity1 = GenericEntityBuilder.createPhysicsShape(sceneLoader, 1, Color.BLACK, Size.makeSize(pivot_width, pivot_height), Position.makePosition(firstPoint.x, firstPoint.y), 0, BodyDef.BodyType.StaticBody, 1);
+        Body pivotBody1 = pivotEntity1.getComponent(PhysicsBodyComponent.class).body;
 
         entities.add(pivotEntity1);
 
-        Entity pivotEntity2 = GenericEntityBuilder.createPhysicsShape(world, 1, Color.BLACK, Size.makeSize(pivot_width, pivot_height), Position.makePosition(secondPoint.x, secondPoint.y), 0, BodyDef.BodyType.StaticBody, 1);
-        Body pivotBody2 = pivotEntity2.getComponent(PhysicsBody.class).body;
+        Entity pivotEntity2 = GenericEntityBuilder.createPhysicsShape(sceneLoader, 1, Color.BLACK, Size.makeSize(pivot_width, pivot_height), Position.makePosition(secondPoint.x, secondPoint.y), 0, BodyDef.BodyType.StaticBody, 1);
+        Body pivotBody2 = pivotEntity2.getComponent(PhysicsBodyComponent.class).body;
 
         entities.add(pivotEntity2);
         float dst = firstPoint.dst(secondPoint);
@@ -201,15 +259,15 @@ public class Helper {
         float hangBlock_width=.5f;
         float hangBlock_height=.25f;
 
-        Entity entity2 = GenericEntityBuilder.createPhysicsShape(world, 1, Color.BLACK, Size.makeSize(hangBlock_width, hangBlock_height), Position.makePosition(firstPoint.x + dst / 2f, firstPoint.y-rope_length/2), 0, BodyDef.BodyType.DynamicBody, 1);
-        Body body2 = entity2.getComponent(PhysicsBody.class).body;
+        Entity entity2 = GenericEntityBuilder.createPhysicsShape(sceneLoader, 1, Color.BLACK, Size.makeSize(hangBlock_width, hangBlock_height), Position.makePosition(firstPoint.x + dst / 2f, firstPoint.y-rope_length/2), 0, BodyDef.BodyType.DynamicBody, 1);
+        Body body2 = entity2.getComponent(PhysicsBodyComponent.class).body;
 
         entities.add(entity2);
 
-        world1.createJoint(PhysicsHelper.createRopeJointDef(pivotBody1, body2, new Vector2(0, 0), new Vector2(0, hangBlock_height/2f), rope_length));
-        world1.createJoint(PhysicsHelper.createRopeJointDef(pivotBody2, body2, new Vector2(0, 0), new Vector2(0, hangBlock_height/2f), rope_length));
+        world1.createJoint(createRopeJointDef(pivotBody1, body2, new Vector2(0, 0), new Vector2(0, hangBlock_height/2f), rope_length));
+        world1.createJoint(createRopeJointDef(pivotBody2, body2, new Vector2(0, 0), new Vector2(0, hangBlock_height/2f), rope_length));
 
-        {
+       {
             Vector2 point1 = firstPoint;
             Vector2 point2 = new Vector2(firstPoint.x, firstPoint.y - rope_length);
 
@@ -234,10 +292,10 @@ public class Helper {
             float e_count = (rope_length - pivot_height/2-hangBlock_height/2) / (2 * rope_width);
             for (int i = 0; i < e_count; i++) {
 
-                Entity e=GenericEntityBuilder.createPhysicsShape(world, 0, Color.BLACK, Size.makeSize(2 * rope_width, 2 * rope_height), Position.makePosition(firstPoint.x+i*rope_width, firstPoint.y), 0, BodyDef.BodyType.DynamicBody, 1);
+                Entity e= GenericEntityBuilder.createPhysicsShape(sceneLoader, 0, Color.BLACK, Size.makeSize(2 * rope_width, 2 * rope_height), Position.makePosition(firstPoint.x+i*rope_width, firstPoint.y), 0, BodyDef.BodyType.DynamicBody, 1);
                 entities.add(e);
 
-                Body body=e.getComponent(PhysicsBody.class).body;
+                Body body=e.getComponent(PhysicsBodyComponent.class).body;
 
                 jd.bodyA = prevBody;
                 jd.bodyB = body;
@@ -254,11 +312,11 @@ public class Helper {
                 jd1.localAnchorB.set(-rope_width, 0);
                 prevBody = body;
             }
-            world1.createJoint(PhysicsHelper.createRevoluteJointDef(prevBody, body2, new Vector2(rope_width, 0), new Vector2(0, hangBlock_height/2)));
-            world1.createJoint(PhysicsHelper.createRopeJointDef(prevBody, body2, new Vector2(rope_width, 0), new Vector2(0, hangBlock_height/2), 0));
-        }
+            world1.createJoint(createRevoluteJointDef(prevBody, body2, new Vector2(rope_width, 0), new Vector2(0, hangBlock_height/2)));
+            world1.createJoint(createRopeJointDef(prevBody, body2, new Vector2(rope_width, 0), new Vector2(0, hangBlock_height/2), 0));
+       }
 
-        {
+       {
             Vector2 point1 = secondPoint;
             Vector2 point2 = new Vector2(firstPoint.x, firstPoint.y - rope_length);
 
@@ -285,10 +343,10 @@ public class Helper {
 
             for (int i = 0; i < e_count; i++) {
 
-                Entity e= GenericEntityBuilder.createPhysicsShape(world, 0, Color.BLACK, Size.makeSize(2 * rope_width, 2 * rope_height), Position.makePosition(secondPoint.x-i*rope_width, secondPoint.y), 0, BodyDef.BodyType.DynamicBody, 1);
+                Entity e= GenericEntityBuilder.createPhysicsShape(sceneLoader, 0, Color.BLACK, Size.makeSize(2 * rope_width, 2 * rope_height), Position.makePosition(secondPoint.x-i*rope_width, secondPoint.y), 0, BodyDef.BodyType.DynamicBody, 1);
                 entities.add(e);
 
-                Body body=e.getComponent(PhysicsBody.class).body;
+                Body body=e.getComponent(PhysicsBodyComponent.class).body;
 
                 jd.bodyA = prevBody;
                 jd.bodyB = body;
@@ -306,28 +364,28 @@ public class Helper {
                 prevBody = body;
 
             }
-            world1.createJoint(PhysicsHelper.createRevoluteJointDef(prevBody, body2, new Vector2(rope_width, 0), new Vector2(0, hangBlock_height/2f)));
-            world1.createJoint(PhysicsHelper.createRopeJointDef(prevBody, body2, new Vector2(rope_width, 0), new Vector2(0, hangBlock_height/2f), 0));
-        }
-        return entities;
+            world1.createJoint(createRevoluteJointDef(prevBody, body2, new Vector2(rope_width, 0), new Vector2(0, hangBlock_height/2f)));
+            world1.createJoint(createRopeJointDef(prevBody, body2, new Vector2(rope_width, 0), new Vector2(0, hangBlock_height/2f), 0));
+       }
+       return entities;
     }
 
-    public static Array<Entity> addSecondObject1(World world, Vector2 firstPoint,Vector2 secondPoint,float rope_length){
+    public static Array<Entity> addSecondObject1(SceneLoader sceneLoader, Vector2 firstPoint, Vector2 secondPoint, float rope_length){
 
         Array<Entity> entities=new Array<Entity>();
 
         float pivot_width=.05f;
         float pivot_height=.05f;
 
-        com.badlogic.gdx.physics.box2d.World world1=world.getSystem(PhysicsSystem.class).getPhysicsWorld();
+        World world1=getPhysicsWorld(sceneLoader);
 
-        Entity pivotEntity1 = GenericEntityBuilder.createPhysicsShape(world, 1, Color.BLACK, Size.makeSize(pivot_width, pivot_height), Position.makePosition(firstPoint.x, firstPoint.y), 0, BodyDef.BodyType.StaticBody, 1);
-        Body pivotBody1 = pivotEntity1.getComponent(PhysicsBody.class).body;
+        Entity pivotEntity1 = GenericEntityBuilder.createPhysicsShape(sceneLoader, 1, Color.BLACK, Size.makeSize(pivot_width, pivot_height), Position.makePosition(firstPoint.x, firstPoint.y), 0, BodyDef.BodyType.StaticBody, 1);
+        Body pivotBody1 = pivotEntity1.getComponent(PhysicsBodyComponent.class).body;
 
         entities.add(pivotEntity1);
 
-        Entity pivotEntity2 = GenericEntityBuilder.createPhysicsShape(world, 1, Color.BLACK, Size.makeSize(pivot_width, pivot_height), Position.makePosition(secondPoint.x, secondPoint.y), 0, BodyDef.BodyType.StaticBody, 1);
-        Body pivotBody2 = pivotEntity2.getComponent(PhysicsBody.class).body;
+        Entity pivotEntity2 = GenericEntityBuilder.createPhysicsShape(sceneLoader, 1, Color.BLACK, Size.makeSize(pivot_width, pivot_height), Position.makePosition(secondPoint.x, secondPoint.y), 0, BodyDef.BodyType.StaticBody, 1);
+        Body pivotBody2 = pivotEntity2.getComponent(PhysicsBodyComponent.class).body;
 
         entities.add(pivotEntity2);
 
@@ -336,13 +394,13 @@ public class Helper {
         float hangBlock_height=.25f;
         float hingOffset=.25f;
 
-        Entity entity2 = GenericEntityBuilder.createPhysicsShape(world, 1, Color.BLACK, Size.makeSize(dst+hingOffset, hangBlock_height), Position.makePosition(firstPoint.x, firstPoint.y-rope_length), 0, BodyDef.BodyType.DynamicBody, 1);
-        Body body2 = entity2.getComponent(PhysicsBody.class).body;
+        Entity entity2 = GenericEntityBuilder.createPhysicsShape(sceneLoader, 1, Color.BLACK, Size.makeSize(dst+hingOffset, hangBlock_height), Position.makePosition(firstPoint.x, firstPoint.y-rope_length), 0, BodyDef.BodyType.DynamicBody, 1);
+        Body body2 = entity2.getComponent(PhysicsBodyComponent.class).body;
 
         entities.add(entity2);
 
-        world1.createJoint(PhysicsHelper.createRopeJointDef(pivotBody1,body2,new Vector2(0,0),new Vector2(-dst/2,hangBlock_height/2f),rope_length));
-        world1.createJoint(PhysicsHelper.createRopeJointDef(pivotBody2,body2,new Vector2(0,0),new Vector2(dst/2,hangBlock_height/2f),rope_length));
+        world1.createJoint(createRopeJointDef(pivotBody1,body2,new Vector2(0,0),new Vector2(-dst/2,hangBlock_height/2f),rope_length));
+        world1.createJoint(createRopeJointDef(pivotBody2,body2,new Vector2(0,0),new Vector2(dst/2,hangBlock_height/2f),rope_length));
 
         {
             Vector2 point1 = firstPoint;
@@ -370,9 +428,9 @@ public class Helper {
 
             for (int i = 0; i < e_count; i++) {
 
-                Entity e = GenericEntityBuilder.createPhysicsShape(world, 0, Color.BLACK, Size.makeSize(2 * rope_width, 2 * rope_height), Position.makePosition(firstPoint.x, firstPoint.y), 0, BodyDef.BodyType.DynamicBody, 1);
+                Entity e = GenericEntityBuilder.createPhysicsShape(sceneLoader, 0, Color.BLACK, Size.makeSize(2 * rope_width, 2 * rope_height), Position.makePosition(firstPoint.x, firstPoint.y), 0, BodyDef.BodyType.DynamicBody, 1);
                 entities.add(e);
-                Body body=e.getComponent(PhysicsBody.class).body;
+                Body body=e.getComponent(PhysicsBodyComponent.class).body;
 
                 jd.bodyA = prevBody;
                 jd.bodyB = body;
@@ -389,8 +447,8 @@ public class Helper {
                 jd1.localAnchorB.set(-rope_width, 0);
                 prevBody = body;
             }
-            world1.createJoint(PhysicsHelper.createRevoluteJointDef(prevBody, body2, new Vector2(rope_width , 0), new Vector2(-dst/2, hangBlock_height/2f)));
-            world1.createJoint(PhysicsHelper.createRopeJointDef(prevBody, body2, new Vector2(rope_width , 0), new Vector2(-dst/2, hangBlock_height/2f), 0));
+            world1.createJoint(createRevoluteJointDef(prevBody, body2, new Vector2(rope_width , 0), new Vector2(-dst/2, hangBlock_height/2f)));
+            world1.createJoint(createRopeJointDef(prevBody, body2, new Vector2(rope_width , 0), new Vector2(-dst/2, hangBlock_height/2f), 0));
         }
 
         {
@@ -417,9 +475,9 @@ public class Helper {
 
             float e_count = (rope_length - pivot_height/2-hangBlock_height/2) / (2 * rope_width);
             for (int i = 0; i < e_count; i++) {
-                Entity e=GenericEntityBuilder.createPhysicsShape(world, 0, Color.BLACK, Size.makeSize(2 * rope_width, 2 * rope_height), Position.makePosition(secondPoint.x, secondPoint.y), 0, BodyDef.BodyType.DynamicBody, 1);
+                Entity e= GenericEntityBuilder.createPhysicsShape(sceneLoader, 0, Color.BLACK, Size.makeSize(2 * rope_width, 2 * rope_height), Position.makePosition(secondPoint.x, secondPoint.y), 0, BodyDef.BodyType.DynamicBody, 1);
                 entities.add(e);
-                Body body=e.getComponent(PhysicsBody.class).body;
+                Body body=e.getComponent(PhysicsBodyComponent.class).body;
 
                 jd.bodyA = prevBody;
                 jd.bodyB = body;
@@ -437,27 +495,27 @@ public class Helper {
                 prevBody = body;
             }
 
-            world1.createJoint(PhysicsHelper.createRevoluteJointDef(prevBody, body2, new Vector2(rope_width, 0), new Vector2(dst/2, hangBlock_height/2)));
-            world1.createJoint(PhysicsHelper.createRopeJointDef(prevBody, body2, new Vector2(rope_width , 0), new Vector2(dst/2, hangBlock_height/2), 0));
+            world1.createJoint(createRevoluteJointDef(prevBody, body2, new Vector2(rope_width, 0), new Vector2(dst/2, hangBlock_height/2)));
+            world1.createJoint(createRopeJointDef(prevBody, body2, new Vector2(rope_width , 0), new Vector2(dst/2, hangBlock_height/2), 0));
         }
         return entities;
     }
 
-    public static Array<Entity> createBridge(World world,Vector2 firstPoint,Vector2 secondPoint,float length){
+    public static Array<Entity> createBridge(SceneLoader sceneLoader, Vector2 firstPoint, Vector2 secondPoint, float length){
 
         Array<Entity> array=new Array<Entity>();
-        com.badlogic.gdx.physics.box2d.World world1=world.getSystem(PhysicsSystem.class).getPhysicsWorld();
+        World world1=getPhysicsWorld(sceneLoader);
 
         float pivot_width=.05f;
         float pivot_height=.05f;
 
-        Entity entity1 = GenericEntityBuilder.createPhysicsShape(world, 1, Color.BLACK, Size.makeSize(pivot_width, pivot_height), Position.makePosition(firstPoint.x, firstPoint.y), 0, BodyDef.BodyType.StaticBody, 1);
-        Body pivotBody1 = entity1.getComponent(PhysicsBody.class).body;
+        Entity entity1 = GenericEntityBuilder.createPhysicsShape(sceneLoader, 1, Color.BLACK, Size.makeSize(pivot_width, pivot_height), Position.makePosition(firstPoint.x, firstPoint.y), 0, BodyDef.BodyType.StaticBody, 1);
+        Body pivotBody1 = entity1.getComponent(PhysicsBodyComponent.class).body;
 
         array.add(entity1);
 
-        Entity entity2 = GenericEntityBuilder.createPhysicsShape(world, 1, Color.BLACK, Size.makeSize(pivot_width,pivot_height), Position.makePosition(secondPoint.x, secondPoint.y), 0, BodyDef.BodyType.StaticBody, 1);
-        Body pivotBody2 = entity2.getComponent(PhysicsBody.class).body;
+        Entity entity2 = GenericEntityBuilder.createPhysicsShape(sceneLoader, 1, Color.BLACK, Size.makeSize(pivot_width,pivot_height), Position.makePosition(secondPoint.x, secondPoint.y), 0, BodyDef.BodyType.StaticBody, 1);
+        Body pivotBody2 = entity2.getComponent(PhysicsBodyComponent.class).body;
 
         array.add(entity2);
 
@@ -487,9 +545,9 @@ public class Helper {
         float e_count=(dst>length)?dst/(2*rope_width):length/(2*rope_width);
 
         for (int i = 0; i < e_count; i++) {
-            Entity e=GenericEntityBuilder.createPhysicsShape(world,0 ,Color.BLACK, Size.makeSize(2*rope_width,2*rope_height), Position.makePosition(point1.x + i*rope_width,point1.y) ,0, BodyDef.BodyType.DynamicBody,1);
+            Entity e= GenericEntityBuilder.createPhysicsShape(sceneLoader,0 , Color.BLACK, Size.makeSize(2*rope_width,2*rope_height), Position.makePosition(point1.x + i*rope_width,point1.y) ,0, BodyDef.BodyType.DynamicBody,1);
             array.add(e);
-            Body body=e.getComponent(PhysicsBody.class).body;
+            Body body=e.getComponent(PhysicsBodyComponent.class).body;
 
             jd.bodyA=prevBody;
             jd.bodyB=body;
@@ -508,21 +566,21 @@ public class Helper {
             prevBody = body;
         }
 
-        world1.createJoint(PhysicsHelper.createRevoluteJointDef(prevBody, pivotBody2, new Vector2(rope_width, 0), new Vector2(0,- pivot_height/2f)));
-        world1.createJoint(PhysicsHelper.createRopeJointDef(prevBody, pivotBody2, new Vector2(rope_width, 0), new Vector2(0, -pivot_height/2f), 0));
+        world1.createJoint(createRevoluteJointDef(prevBody, pivotBody2, new Vector2(rope_width, 0), new Vector2(0,- pivot_height/2f)));
+        world1.createJoint(createRopeJointDef(prevBody, pivotBody2, new Vector2(rope_width, 0), new Vector2(0, -pivot_height/2f), 0));
 
         return array;
     }
 
-    public static Array<Entity> createHangingChain(World world,Vector2 firstPoint,float length){
+    public static Array<Entity> createHangingChain(SceneLoader sceneLoader, Vector2 firstPoint, float length){
 
         Array<Entity> entities=new Array<Entity>();
         float pivot_width=.05f;
         float pivot_height=.05f;
 
-        com.badlogic.gdx.physics.box2d.World world1=world.getSystem(PhysicsSystem.class).getPhysicsWorld();
-        Entity entity1 = GenericEntityBuilder.createPhysicsShape(world, 1, Color.BLACK, Size.makeSize(pivot_width, pivot_height), Position.makePosition(firstPoint.x, firstPoint.y), 0, BodyDef.BodyType.StaticBody, 1);
-        Body body1 = entity1.getComponent(PhysicsBody.class).body;
+        World world1=getPhysicsWorld(sceneLoader);
+        Entity entity1 = GenericEntityBuilder.createPhysicsShape(sceneLoader, 1, Color.BLACK, Size.makeSize(pivot_width, pivot_height), Position.makePosition(firstPoint.x, firstPoint.y), 0, BodyDef.BodyType.StaticBody, 1);
+        Body body1 = entity1.getComponent(PhysicsBodyComponent.class).body;
 
         entities.add(entity1);
 
@@ -551,12 +609,12 @@ public class Helper {
 
         float e_count=(length-pivot_height/2f)/(2*rope_width);
         for (int i = 0; i < e_count; i++) {
-            Entity e=GenericEntityBuilder.createPhysicsShape(world,0 ,Color.BLACK, Size.makeSize(2*rope_width,2*rope_height), Position.makePosition(point1.x + i*rope_width,point1.y) ,0, BodyDef.BodyType.DynamicBody,1);
+            Entity e= GenericEntityBuilder.createPhysicsShape(sceneLoader,0 , Color.BLACK, Size.makeSize(2*rope_width,2*rope_height), Position.makePosition(point1.x + i*rope_width,point1.y) ,0, BodyDef.BodyType.DynamicBody,1);
 
-            //      Entity e=GenericEntityBuilder.createPhysicsSprite(world,0, Assets.imageAsset.alien3s,Size.makeSize(2*rope_width,2*rope_height), Position.makePosition(point1.x + i*rope_width,point1.y) ,0, BodyDef.BodyType.DynamicBody,1);
+      //      Entity e=GenericEntityBuilder.createPhysicsSprite(world,0, Assets.imageAsset.alien3s,Size.makeSize(2*rope_width,2*rope_height), Position.makePosition(point1.x + i*rope_width,point1.y) ,0, BodyDef.BodyType.DynamicBody,1);
 
             entities.add(e);
-            Body body= e.getComponent(PhysicsBody.class).body;
+            Body body= e.getComponent(PhysicsBodyComponent.class).body;
 
             jd.bodyA=prevBody;
             jd.bodyB=body;
@@ -577,8 +635,11 @@ public class Helper {
         return  entities;
     }
 
-    public static void createRope(){
-/*
+ /*   public static void createRope(){
+
+
+
+
 			Vector2 point1 = playerBody.getPosition().add(.25f, .125f);
 			Vector2 point2 = body.getPosition().add(.25f, .125f);
 
@@ -644,11 +705,14 @@ public class Helper {
 			jd1.maxLength=piece_width;
 			Joint revolute=world.createJoint(jd);
 			//shape.dispose();
-		}*/
+		}
+
+
+
     }
+*/
 
-
-    public void createRopeJoint(com.badlogic.gdx.physics.box2d.World physicsWorld){
+    public void createRopeJoint(World physicsWorld){
 
         Body body[]=new Body[5];
         RevoluteJoint revoluteJoint[]=new RevoluteJoint[4];
@@ -701,17 +765,18 @@ public class Helper {
     }
 
     public void addRope(World world){
-        {
+        /*{
 
-     /*       Entity entity=visIDManager.get("firstPoint");
-            Entity second=visIDManager.get("secondPoint");
-*/
+            //Entity entity=visIDManager.get("firstPoint");
+            //Entity second=visIDManager.get("secondPoint");
+
             //Point point=entity.getComponent(Point.class);
             //Point secondPoint=entity.getComponent(Point.class);
 
-	/*	Vector2 point1=new Vector2(entity.getComponent(Transform.class).getX(),entity.getComponent(Transform.class).getY());
+
+	    Vector2 point1=new Vector2(entity.getComponent(Transform.class).getX(),entity.getComponent(Transform.class).getY());
 		Vector2 point2=new Vector2(second.getComponent(Transform.class).getX(),second.getComponent(Transform.class).getY());
-*/
+
 
             Vector2 point1=new Vector2(3f,4f);
             Vector2 point2=new Vector2(4,4);
@@ -757,8 +822,8 @@ public class Helper {
             //ropeJointDef.maxLength=.5f;
             for (int i = 0; i < e_count; i++) {
 
-                Body body=GenericEntityBuilder.createPhysicsShape(world,0 ,Color.BLACK, Size.makeSize(2*rope_width,2*rope_height), Position.makePosition(rope_height+ point1.x - MathUtils.sinDeg((float) angle1)*(2*rope_height) * i-rope_height,point1.y-4*rope_width*MathUtils.cosDeg((float) angle1)*i-rope_width),0, BodyDef.BodyType.DynamicBody,1).getComponent(PhysicsBody.class).body;
-                Vector2 anchor = new Vector2(point1.x - MathUtils.sinDeg((float) angle1)*(2*rope_height) * i, point1.y-4*rope_width*MathUtils.cosDeg((float) angle1)*i);
+                Body body=GenericEntityBuilder.createPhysicsShape(world,0 , Color.BLACK, Size.makeSize(2*rope_width,2*rope_height), Position.makePosition(rope_height+ point1.x - MathUtils.sinDeg((float) angle1)*(2*rope_height) * i-rope_height,point1.y-4*rope_width* MathUtils.cosDeg((float) angle1)*i-rope_width),0, BodyDef.BodyType.DynamicBody,1).getComponent(PhysicsBody.class).body;
+                Vector2 anchor = new Vector2(point1.x - MathUtils.sinDeg((float) angle1)*(2*rope_height) * i, point1.y-4*rope_width* MathUtils.cosDeg((float) angle1)*i);
                 //jd.initialize(prevBody, body, anchor);
 
 ///				jd.bodyA=prevBody;
@@ -782,17 +847,23 @@ public class Helper {
                 prevBody = body;
             }
 
-            Vector2 anchor = new Vector2(point1.x - MathUtils.sinDeg((float) angle1)*(2*rope_height) * e_count, point2.y+rope_width*MathUtils.cosDeg((float) angle1));
+            Vector2 anchor = new Vector2(point1.x - MathUtils.sinDeg((float) angle1)*(2*rope_height) * e_count, point2.y+rope_width* MathUtils.cosDeg((float) angle1));
             //jd.initialize(prevBody, body2, anchor);
 
             jd.bodyA=prevBody;
             jd.bodyB=body2;
 
-	/*		jd1.bodyA=prevBody;
+
+
+
+		jd1.bodyA=prevBody;
 			jd1.bodyB=body2;
 			jd1.localAnchorA.set(piece_width,rope_width);
 			jd1.localAnchorB.set(0,rope_width);
-			jd1.maxLength=piece_width;*/
+			jd1.maxLength=piece_width;*//**//*
+
+
+
 
             jd1.localAnchorA.set(rope_width/2f,0);
             jd1.localAnchorB.set(-.25f, 0);
@@ -805,7 +876,10 @@ public class Helper {
         }
 
 
-		/*{
+
+
+
+{
 			Entity entity=visIDManager.get("firstpoint1");
 			Entity second=visIDManager.get("secondpoint1");
 
@@ -857,27 +931,59 @@ public class Helper {
 			jd.initialize(prevBody, body2, anchor);
 			joint=world.createJoint(jd);
 			//shape.dispose();
-		}*/
+		}
+
+
+*/
     }
 
-    public static void createCircularMotion(World world, int totalObject, int type, float size, float x, float y, float radius,boolean isPhysics ,CircularMotion.MotionType motionType){
+  //  public static final int CIRCLE=0;
+  //  public static final int SQUARE=1;
+
+
+    public static Shape createShape(float size, Enums.Shape type){
+
+        Shape shape=null;
+        if(type== Enums.Shape.CIRCLE){
+           shape=new CircleShape();
+           shape.setRadius(size);
+            Gdx.app.log(TAG,"circle");
+        }else if(type== Enums.Shape.RECTANGLE){
+            shape = new PolygonShape();
+            ((PolygonShape)shape).setAsBox(size,size);
+            Gdx.app.log(TAG,"square");
+        }
+
+        if (shape == null) throw new IllegalStateException("Shape type is not circle not square");
+
+        return shape;
+    }
+
+    public static World getPhysicsWorld(SceneLoader sceneLoader){
+
+        World world=sceneLoader.world;
+        if (world == null) throw new IllegalStateException("Scene having no world");
+        return world;
+    }
+
+    public static void createCircularMotion(SceneLoader world, int totalObject, Enums.Shape type, float size, float x, float y, float radius, boolean isPhysics , CircularMotion.MotionType motionType){
 
         float speed=2;
         int layer=1;
         float density=1;
-        Shape shape=PhysicsHelper.createShape(size,type);
+        Shape shape=createShape(size,type);
 
         for (int i=0;i<totalObject;i++){
             Entity entity1=null;
-            if(type==PhysicsHelper.CIRCLE)
-                entity1=GenericEntityBuilder.createShape(world,layer,Color.BLACK,size,Position.makePosition(x,y,true),0);
-            else if(type==PhysicsHelper.SQUARE)
-                entity1=GenericEntityBuilder.createShape(world,layer,Color.BLACK,Size.makeSize(2*size,2*size),Position.makePosition(x,y,true),0);
+            if(type== Enums.Shape.CIRCLE)
+                entity1= GenericEntityBuilder.createShape(world,layer, Color.BLACK,size, Position.makePosition(x,y,true),0);
+            else if(type== Enums.Shape.RECTANGLE)
+                entity1= GenericEntityBuilder.createShape(world,layer, Color.BLACK, Size.makeSize(2*size,2*size), Position.makePosition(x,y,true),0);
 
-            EntityManager.addCircularMotion(entity1,x,y,radius,speed, motionType).angle=i*(360/totalObject);
-            if(isPhysics) PhysicsManager.addPhysicsBody(entity1,shape,density,PhysicsHelper.createBodyDef(BodyDef.BodyType.StaticBody, x, y));
+            EntityManager.addCircularMotion(entity1,x,y,radius,speed, motionType,type).angle=i*(360/totalObject);
+            if(isPhysics) EntityManager.addPhysicsBody(getPhysicsWorld(world),entity1,shape,density, PhysicsHelper.createBodyDef(BodyDef.BodyType.StaticBody, x, y));
         }
         shape.dispose();
-
     }
 }
+

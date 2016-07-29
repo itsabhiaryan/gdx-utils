@@ -2,8 +2,8 @@ package com.nayragames.vis.component;
 
 import com.artemis.Component;
 import com.badlogic.gdx.math.Rectangle;
-import com.nayragames.gdxutils.Position;
-import com.nayragames.gdxutils.Size;
+import com.nayragames.gdxutils.model.Position;
+import com.nayragames.gdxutils.model.Size;
 
 
 /**

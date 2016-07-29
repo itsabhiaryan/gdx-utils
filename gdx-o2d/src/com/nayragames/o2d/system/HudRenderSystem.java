@@ -4,9 +4,11 @@ import com.badlogic.ashley.core.EntitySystem;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.nayragames.gdxutils.LogManager;
-import com.nayragames.gdxutils.Position;
+import com.nayragames.gdxutils.model.LogManager;
+import com.nayragames.gdxutils.model.Position;
 import com.nayragames.o2d.Constants;
+import com.nayragames.o2d.GenericEntityBuilder;
+import com.nayragames.o2d.ResourceLoader;
 import com.uwsoft.editor.renderer.SceneLoader;
 import com.uwsoft.editor.renderer.components.label.LabelComponent;
 import com.uwsoft.editor.renderer.components.physics.PhysicsBodyComponent;
@@ -86,7 +88,7 @@ public class HudRenderSystem extends EntitySystem {
     public void update(float deltaTime) {
         super.update(deltaTime);
 
-        LogManager.log(fpsText);
+        //LogManager.log(fpsText);
 
         totalEntityText.setText("Total Entity : "+sceneLoader.getEngine().getEntities().size());
         physicsBodyText.setText("Physics Body : "+sceneLoader.getEngine().getEntitiesFor(Family.all(PhysicsBodyComponent.class).get()).size());

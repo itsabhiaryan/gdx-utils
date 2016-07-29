@@ -14,10 +14,14 @@ import com.uwsoft.editor.renderer.components.TransformComponent;
 import com.uwsoft.editor.renderer.systems.render.logic.Drawable;
 
 /**
+ * (c) 2016 Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 28-12-2015.
+ *
  * System that is responsible for rendering shape.
  * Entity must required have ShapeComponent.
  *
- * Created by ARYAN on 28-12-2015.
  */
 
 public class ShapeRendererDrawable implements Drawable {

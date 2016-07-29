@@ -1,4 +1,4 @@
-package com.nayragames.gdxutils;
+package com.nayragames.gdxutils.model;
 
 /**
  * (c) 2016 Abhishek Aryan

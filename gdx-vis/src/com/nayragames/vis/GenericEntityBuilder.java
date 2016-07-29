@@ -19,9 +19,9 @@ import com.badlogic.gdx.physics.box2d.ChainShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.kotcrab.vis.runtime.component.*;
 import com.kotcrab.vis.runtime.system.physics.PhysicsSystem;
-import com.nayragames.gdxutils.Position;
-import com.nayragames.gdxutils.Scale;
-import com.nayragames.gdxutils.Size;
+import com.nayragames.gdxutils.model.Position;
+import com.nayragames.gdxutils.model.Scale;
+import com.nayragames.gdxutils.model.Size;
 import com.nayragames.gdxutils.b2d.BodyEditorLoader;
 import com.nayragames.vis.component.AnimationComponent;
 import com.nayragames.vis.component.CollisionComponent;
@@ -79,7 +79,7 @@ public class GenericEntityBuilder {
         return entity;
     }*/
 
-    //public static void createTweenEntity(World world, int count, Main game){
+    //public static void createTweenEntity(World world, int count, _Main game){
 
         /*Entity e=createEntity(world,Assets.imageAsset.alien3s,Size.makeSize(1,1),Position.makePosition(3,3),true, Player.PLAYER,0);
         VisSprite spriteComponent=e.getComponent(VisSprite.class);

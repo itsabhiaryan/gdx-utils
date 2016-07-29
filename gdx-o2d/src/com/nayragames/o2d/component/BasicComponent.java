@@ -2,8 +2,8 @@ package com.nayragames.o2d.component;
 
 import com.badlogic.ashley.core.Component;
 import com.badlogic.gdx.math.Rectangle;
-import com.nayragames.gdxutils.Position;
-import com.nayragames.gdxutils.Size;
+import com.nayragames.gdxutils.model.Position;
+import com.nayragames.gdxutils.model.Size;
 
 /**
  * Created by ARYAN on 12-12-2015.

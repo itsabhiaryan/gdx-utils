@@ -1,4 +1,4 @@
-package com.nayragames.gdxutils;
+package com.nayragames.gdxutils.model;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector2;

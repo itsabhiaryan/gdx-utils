@@ -7,7 +7,10 @@ import com.uwsoft.editor.renderer.data.*;
 import com.uwsoft.editor.renderer.resources.IResourceRetriever;
 
 /**
- * Created by Personal on 25-01-2016.
+ * (c) 2016 Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 25-01-2016.
  */
 public class VOManager {
 

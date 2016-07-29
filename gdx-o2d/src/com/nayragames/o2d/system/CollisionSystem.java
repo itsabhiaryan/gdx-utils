@@ -1,6 +1,8 @@
 
 package com.nayragames.o2d.system;
 
+import aurelienribon.tweenengine.BaseTween;
+import aurelienribon.tweenengine.TweenCallback;
 import com.badlogic.ashley.core.ComponentMapper;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
@@ -9,6 +11,7 @@ import com.badlogic.ashley.utils.Bag;
 import com.badlogic.ashley.utils.ImmutableArray;
 import com.nayragames.o2d.Constants;
 import com.nayragames.o2d.Enums;
+import com.nayragames.o2d.TweenBuilder;
 import com.nayragames.o2d.component.*;
 import com.uwsoft.editor.renderer.SceneLoader;
 import com.uwsoft.editor.renderer.components.DimensionsComponent;
@@ -18,11 +21,13 @@ import com.uwsoft.editor.renderer.components.label.LabelComponent;
 import com.uwsoft.editor.renderer.utils.ComponentRetriever;
 
 /**
- * System that handle collision of entity which having CollisionComponent.
+ * (c) 2016 Abhishek Aryan
  *
- * Created by ARYAN on 30-11-2015.
+ * @author Abhishek Aryan
+ * @since 30-11-2015.
+ *
+ * System that handle collision of entity which having CollisionComponent.
  */
-
 
 public class CollisionSystem extends IteratingSystem {
 
@@ -67,13 +72,13 @@ public class CollisionSystem extends IteratingSystem {
 
 					collisionMapper.get(collection).isCollected=true;
 
-					TweenBuilder.applyScale(basicComponent1);
+					/*TweenBuilder.applyScale(basicComponent1);
 					TweenBuilder.applyCollectionTween(basicComponent,new TweenCallback() {
 						@Override
 						public void onEvent(int type, BaseTween<?> source) {
 							sceneLoader.getEngine().removeEntity(collection);
 						}
-					});
+					});*/
 				}
 
 			}

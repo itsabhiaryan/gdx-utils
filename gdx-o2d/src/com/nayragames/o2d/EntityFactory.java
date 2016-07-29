@@ -1,28 +1,11 @@
-package com.nayragames.vis;
 
-import com.artemis.Entity;
-import com.artemis.World;
-import com.artemis.managers.GroupManager;
-import com.artemis.managers.PlayerManager;
+package com.nayragames.o2d;
+
+import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.ai.steer.behaviors.Arrive;
-import com.badlogic.gdx.ai.steer.limiters.LinearLimiter;
-import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.g2d.*;
-import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.badlogic.gdx.physics.box2d.ChainShape;
-import com.badlogic.gdx.physics.box2d.FixtureDef;
-import com.kotcrab.vis.runtime.component.*;
-import com.kotcrab.vis.runtime.system.physics.PhysicsSystem;
-import com.nayragames.gdxutils.model.Position;
-import com.nayragames.gdxutils.model.Scale;
-import com.nayragames.gdxutils.model.Size;
-import com.nayragames.vis.component.*;
+import com.uwsoft.editor.renderer.components.TransformComponent;
 
 /**
  * Factory class of Entity used in game.
@@ -30,16 +13,17 @@ import com.nayragames.vis.component.*;
  * Created by ARYAN on 30-11-2015.
  */
 
+
 public class EntityFactory {
 
 	private static final String TAG = "[" + EntityFactory.class.getSimpleName() + "]";
 
-	public static Entity createPlayerEntity(World world, TextureRegion texture, Size size, Position position, boolean isCentric, Enums.Player playerTag, float angle){
+/*	public static Entity createPlayerEntity(World world, TextureRegion texture, Size size, Position position, boolean isCentric, Player playerTag, float angle){
 
 		Entity entity=world.createEntity();
 		entity.edit().add(new Layer(Enums.Layer.UI_LAYER.value));
 		entity.edit().add(new Renderable(0));
-		EntityManager.addVisSprite(entity,texture,size);
+		EntityManager.addTextureRegion(entity,texture,size);
 		EntityManager.addOrigin(entity,size.x/2,size.y/2);
 		EntityManager.addTransform(entity,position, Scale.makeUnScale(),angle);
 		entity.edit().add(EntityManager.createSteerC(entity));
@@ -53,7 +37,7 @@ public class EntityFactory {
 		Entity entity=world.createEntity();
 		entity.edit().add(new Layer(Enums.Layer.BG_LAYER.value));
 		entity.edit().add(new Renderable(0));
-		EntityManager.addVisSprite(entity,texture,size);
+		EntityManager.addTextureRegion(entity,texture,size);
 		EntityManager.addOrigin(entity,size.x/2,size.y/2);
 		if(isCentric)
 			EntityManager.addTransform(entity,position.sub(size.scl(.5f)), Scale.makeUnScale(),angle);
@@ -66,7 +50,7 @@ public class EntityFactory {
 	public static Entity createLeftRightEntity(World world, TextureRegion textureRegion, float width, float height){
 
 		Entity entity=GenericEntityBuilder.createSprite(world,1,textureRegion,Size.makeSize(width*.1f,height*.1f),Position.makePosition(width/2f,height*.9f),180);
-		world.getSystem(PlayerManager.class).setPlayer(entity, Enums.Player.NPC.value);
+		world.getSystem(PlayerManager.class).setPlayer(entity, Player.NPC.value);
 		entity.edit().add(new LeftRightComponent());
 		entity.edit().add(EntityManager.createFSMC(entity));
 		entity.edit().add(new BulletSpawnComponent());
@@ -80,11 +64,11 @@ public class EntityFactory {
 			entity.edit().add(new Layer(Enums.Layer.PLAYER_LAYER.value));
 			entity.edit().add(new Renderable(0));
 			//entity.edit().add(createAC(Assets.animationAsset.bomb16,.1f, Animation.PlayMode.LOOP));
-//			entity.edit().add(EntityManager.addVisSprite(Assets.imageAsset.playerBullet, Size.makeSize(width * .025f, height * .03f)));
+//			entity.edit().add(EntityManager.addTextureRegion(Assets.imageAsset.playerBullet, Size.makeSize(width * .025f, height * .03f)));
 			EntityManager.addTransform(entity, Position.makePosition(x, y + .1f), Scale.makeUnScale(),angle);
 			//entity.edit().add(EntityManager.createBasic(Size.makeSize(width * .025f, height * .03f), Position.makePosition(x, y + .1f), true, angle));
-			world.getSystem(PlayerManager.class).setPlayer(entity, Enums.Player.PLAYER.value);
-			world.getSystem(GroupManager.class).add(entity, Enums.Group.PLAYER_BULLET.value);
+			world.getSystem(PlayerManager.class).setPlayer(entity, Player.PLAYER.value);
+			world.getSystem(GroupManager.class).add(entity, Group.PLAYER_BULLET.value);
 			entity.edit().add(new CollisionComponent());
 			entity.edit().add(EntityManager.createFSMC(entity));
 			entity.edit().add(new MovementComponent(.085f));
@@ -99,9 +83,9 @@ public class EntityFactory {
 		Entity entity =world.createEntity();
 		entity.edit().add(new Layer(Enums.Layer.NP_LAYER.value));
 		entity.edit().add(new Renderable(0));
-		EntityManager.addVisSprite(entity,textureRegion,Size.makeSize(width*.075f,height*.075f));
+		EntityManager.addTextureRegion(entity,textureRegion,Size.makeSize(width*.075f,height*.075f));
 		EntityManager.addTransform(entity,Position.makePosition(width/2f,height*.9f),Scale.makeUnScale(),180);
-		world.getSystem(PlayerManager.class).setPlayer(entity,  Enums.Player.NPC.value);
+		world.getSystem(PlayerManager.class).setPlayer(entity,  Player.NPC.value);
 
 		entity.edit().add(EntityManager.createSteerC(entity));
 		entity.edit().add(new LeaderComponent(entity.getComponent(SteerableComponent.class)));
@@ -119,9 +103,9 @@ public class EntityFactory {
 		Entity entity =world.createEntity();
 		entity.edit().add(new Layer(Enums.Layer.NP_LAYER.value));
 		entity.edit().add(new Renderable(0));
-		EntityManager.addVisSprite(entity,textureRegion,Size.makeSize(width*.075f,height*.075f));
+		EntityManager.addTextureRegion(entity,textureRegion,Size.makeSize(width*.075f,height*.075f));
 		EntityManager.addTransform(entity,Position.makePosition(1,1),Scale.makeUnScale(),180);
-		world.getSystem(PlayerManager.class).setPlayer(entity, Enums.Player.NPC.value);
+		world.getSystem(PlayerManager.class).setPlayer(entity, Player.NPC.value);
 
 		entity.edit().add(EntityManager.createSteerC(entity,true));
 		entity.edit().add(new BulletSpawnComponent());
@@ -175,7 +159,8 @@ public class EntityFactory {
 
 	public static void createRocket(World world,float width,float height,float x,float y) {
 
-/*
+
+
 		Array<Entity> entities = world.getSystem(CollisionSystem.class).getEnemyShip();
 			int ship=0;
 			{
@@ -219,7 +204,8 @@ public class EntityFactory {
 				GenericEntityBuilder.addSound(entity,Assets.soundAsset.roc);
 			}
 
-*/
+
+
 
 	}
 
@@ -231,9 +217,9 @@ public class EntityFactory {
 		entity.edit().add(EntityManager.createAC(textureRegions,.1f, Animation.PlayMode.LOOP_PINGPONG));
 		entity.edit().add(EntityManager.createBasic(Size.makeSize(.5f, .5f), Position.makePosition(MathUtils.random(0,4.8f),0),true,0));
 
-		world.getSystem(PlayerManager.class).setPlayer(entity, Enums.Player.PLAYER.value);
-		world.getSystem(GroupManager.class).add(entity, Enums.Group.PLAYER.value);
-		entity.edit().add(new BulletSpawnComponent(true, BulletSpawnComponent.BulletSpawnType.SINGLE));
+		world.getSystem(PlayerManager.class).setPlayer(entity,Player.PLAYER.value);
+		world.getSystem(GroupManager.class).add(entity,Group.PLAYER.value);
+		entity.edit().add(new BulletSpawnComponent(Player.PLAYER, BulletSpawnComponent.BulletSpawnType.SINGLE));
 		entity.getComponent(BulletSpawnComponent.class).time=10;
 
 		entity.edit().add(EntityManager.createSteerC(entity,true));
@@ -242,34 +228,38 @@ public class EntityFactory {
 		EntityManager.createFormationMemberComponent(entity,playerEntity);
 		SteerableComponent steerableComponent =entity.getComponent(SteerableComponent.class);
 		steerableComponent.setMaxLinearAcceleration(100);
-		steerableComponent.setSteeringBehavior(com.nayragames.vis.ai.steer.SB.createSB1(steerableComponent, entity.getComponent(FormationMemberComponent.class).getTargetLocation()));
+		steerableComponent.setSteeringBehavior(SB.createSB1(steerableComponent, entity.getComponent(FormationMemberComponent.class).getTargetLocation()));
 
 		//steerableComponent.setSteeringBehavior(SB.createWander(steerableComponent));
 
-		/*
+
+
 		Arrive<Vector2> arriveSB = new Arrive<Vector2>(steerableComponent,playerEntity.getComponent(SteerableComponent.class)) //
 				.setLimiter(new LinearLimiter(3500, 1000)) //
 				.setTimeToTarget(0.1f) //
 				.setArrivalTolerance(0.001f) //
-				.setDecelerationRadius(800);*/
+				.setDecelerationRadius(800);*//**//*
 
-		/*SteerableComponent steeringComponent1=playerEntity.getComponent(SteerableComponent.class);
-		steerableComponent.setSteeringBehavior(SB.createSB1(steerableComponent,steeringComponent1));*/
+
+
+SteerableComponent steeringComponent1=playerEntity.getComponent(SteerableComponent.class);
+		steerableComponent.setSteeringBehavior(SB.createSB1(steerableComponent,steeringComponent1));
+
 
 		return entity;
 	}
 
-	public static Entity createEnemyShip(World world, TextureRegion[] textureRegions, float width, float height, float x, float y, int angle,BitmapFont bitmapFont){
+	public static Entity createEnemyShip(World world, TextureRegion[] textureRegions, float width, float height, float x, float y, int angle){
 
 		Entity entity =world.createEntity();
 		entity.edit().add(new Layer(Enums.Layer.PLAYER_LAYER.value));
 		entity.edit().add(new Renderable(0));
-		//entity.edit().add(addVisSprite(Assets.imageAsset.alien3s,Size.makeSize(width*.2f,height*.1f),Position.makePosition(MathUtils.random(x, y),height*.95f),false,angle));
+		//entity.edit().add(addTextureRegion(Assets.imageAsset.alien3s,Size.makeSize(width*.2f,height*.1f),Position.makePosition(MathUtils.random(x, y),height*.95f),false,angle));
 		entity.edit().add(EntityManager.createAC(textureRegions,.1f, Animation.PlayMode.LOOP));
 		entity.edit().add(new BasicComponent(Size.makeSize(width*.1f,height*.06f), Position.makePosition(MathUtils.random(x, y),height*.95f),angle));
 
-		world.getSystem(PlayerManager.class).setPlayer(entity, Enums.Player.NPC.value);
-		world.getSystem(GroupManager.class).add(entity, Enums.Group.ENEMY_SHIP.value);
+		world.getSystem(PlayerManager.class).setPlayer(entity, Player.NPC.value);
+		world.getSystem(GroupManager.class).add(entity, Group.ENEMY_SHIP.value);
 
 		entity.edit().add(new MovementComponent(.025f));
 		entity.edit().add(new BulletSpawnComponent());
@@ -277,7 +267,7 @@ public class EntityFactory {
 		entity.edit().add(EntityManager.createSteerC(entity));
 		entity.edit().add(new CollisionComponent());
 
-
+		GameSceneManager gameSceneManager=world.getSystem(GameSceneManager.class);
 
 		int enemyPower=10;
 		int healthValue=enemyPower <10?enemyPower :10;
@@ -286,7 +276,7 @@ public class EntityFactory {
 		entity.edit().add(health);
 
 		float percent=(health.health/health.maximumHealth)*100;
-		VisText textComponent=new VisText(bitmapFont,String.valueOf((int)percent));
+		VisText textComponent=new VisText(Assets.bitmapFontAsset.bitmapFont,String.valueOf((int)percent));
 		//textComponent.setScale(.5f, .5f);
 
 		entity.edit().add(textComponent);
@@ -297,16 +287,16 @@ public class EntityFactory {
 		return entity;
 	}
 
-	public static Entity createEnemyOnPath(World world, TextureRegion[] textureRegions, float width, float height, float x, float y,BitmapFont bitmapFont){
+	public static Entity createEnemyOnPath(World world, TextureRegion[] textureRegions, float width, float height, float x, float y){
 
 		Entity entity =world.createEntity();
 		entity.edit().add(new Layer(Enums.Layer.PLAYER_LAYER.value));
 		entity.edit().add(new Renderable(0));
-		//leader.edit().add(addVisSprite(Resource.ALIEN3s,Size.makeSize(width*.2f,height*.1f),Position.makePosition(x,y),false,0));
+		//leader.edit().add(addTextureRegion(Resource.ALIEN3s,Size.makeSize(width*.2f,height*.1f),Position.makePosition(x,y),false,0));
 		entity.edit().add(new AnimationComponent(textureRegions,.1f, Animation.PlayMode.LOOP));
 		entity.edit().add(new BasicComponent(Size.makeSize(width*.2f,height*.1f), Position.makePosition(x,y),0));
-		world.getSystem(PlayerManager.class).setPlayer(entity, Enums.Player.NPC.value);
-		world.getSystem(GroupManager.class).add(entity, Enums.Group.ENEMY_SHIP.value);
+		world.getSystem(PlayerManager.class).setPlayer(entity, Player.NPC.value);
+		world.getSystem(GroupManager.class).add(entity,Group.ENEMY_SHIP.value);
 		entity.edit().add(EntityManager.createSteerC(entity));
 
 		entity.edit().add(EntityManager.createFSMC(entity));
@@ -318,7 +308,7 @@ public class EntityFactory {
 		entity.edit().add(health);
 
 		float percent=(health.health/health.maximumHealth)*100;
-		VisText textComponent=new VisText(bitmapFont,String.valueOf((int)percent));
+		VisText textComponent=new VisText(Assets.bitmapFontAsset.bitmapFont,String.valueOf((int)percent));
 		//textComponent.setScale(.5f, .5f);
 		entity.edit().add(textComponent);
 
@@ -335,7 +325,7 @@ public class EntityFactory {
 		//entity.getComponent(VisSprite.class).sprite.setAlpha(0);
 
 		//world.getManager(GroupManager.class).add(leader, Resource.PLAYER);
-		world.getSystem(PlayerManager.class).setPlayer(entity, Enums.Group.PLAYER_BULLET.value);
+		world.getSystem(PlayerManager.class).setPlayer(entity, Group.PLAYER_BULLET.value);
 
 		com.badlogic.gdx.physics.box2d.World physicsWorld=world.getSystem(PhysicsSystem.class).getPhysicsWorld();
 
@@ -365,23 +355,23 @@ public class EntityFactory {
 		Entity entity=world.createEntity();
 		entity.edit().add(new Layer(Enums.Layer.PLAYER_LAYER.value));
 		entity.edit().add(new Renderable(0));
-		EntityManager.addVisSprite(entity, textureRegion, Size.makeSize(width*.1f,width*.1f));
+		EntityManager.addTextureRegion(entity, textureRegion, Size.makeSize(width*.1f,width*.1f));
 		//,Position.makePosition(width*.5f,height*.5f),true,0
 		entity.edit().add(EntityManager.createBasic(Size.makeSize(width*.1f,width*.1f), Position.makePosition(width*.5f,height*.5f),true,0));
-		entity.getWorld().getSystem(GroupManager.class).add(entity, Enums.Group.PLAYER.value);
+		entity.getWorld().getSystem(GroupManager.class).add(entity, Group.PLAYER.value);
 
 		return entity;
 	}
 
-	public static Entity spawnBulletByEntity(World world, TextureRegion textureRegion, TextureRegion[] textureRegions , float size, Position point, float angle, Enums.Player player, BulletSpawnComponent.BulletSpawnType type){
+	public static Entity spawnBulletByEntity(World world, TextureRegion textureRegion, TextureRegion[] textureRegions , float size, Position point, float angle, Player player, BulletSpawnComponent.BulletSpawnType type){
 
 		Entity entity =world.createEntity();
 		entity.edit().add(new Layer(Enums.Layer.PLAYER_LAYER.value));
 		entity.edit().add(new Renderable(0));
-		//leader.edit().add(addVisSprite(Resource.PLAYER_BULLET,Size.makeSize(size,size),point,true,angle));
+		//leader.edit().add(addTextureRegion(Resource.PLAYER_BULLET,Size.makeSize(size,size),point,true,angle));
 		entity.edit().add(new MovementComponent(.05f));
 
-		if(player.value == Enums.Player.NPC.value) {
+		if(player.value ==Player.NPC.value) {
 			entity.edit().add(EntityManager.createBasic(Size.makeSize(size,size),point,true,angle));
 			String anim="";
 			if(type== BulletSpawnComponent.BulletSpawnType.SINGLE)
@@ -394,15 +384,15 @@ public class EntityFactory {
 				entity.edit().add(new VisSprite(new Sprite(textureRegion)));
 //				leader.edit().add(createAC(Assets.animationAsset.bomb0, .1f, Animation.PlayMode.LOOP));
 
-			world.getSystem(PlayerManager.class).setPlayer(entity, Enums.Player.NPC.value);
-			world.getSystem(GroupManager.class).add(entity, Enums.Group.ENEMY_BULLET.value);
+			world.getSystem(PlayerManager.class).setPlayer(entity, Player.NPC.value);
+			world.getSystem(GroupManager.class).add(entity, Group.ENEMY_BULLET.value);
 		}
 		else {
 				entity.edit().add(EntityManager.createBasic(Size.makeSize(size*.5f,size*.5f),point,true,angle));
 				entity.edit().add(new VisSprite(new Sprite(textureRegion)));
 				//entity.edit().add(createAC(Assets.animationAsset.bomb16, .5f, Animation.PlayMode.LOOP));
-				world.getSystem(PlayerManager.class).setPlayer(entity, Enums.Player.PLAYER.value);
-				world.getSystem(GroupManager.class).add(entity, Enums.Group.PLAYER_BULLET.value);
+				world.getSystem(PlayerManager.class).setPlayer(entity, Player.PLAYER.value);
+				world.getSystem(GroupManager.class).add(entity, Group.PLAYER_BULLET.value);
 			}
 
 		//leader.getComponent(SpriteComponent.class).setRotation(angle);
@@ -423,7 +413,6 @@ public class EntityFactory {
 		entity.edit().add(basicComponent);
 		entity.edit().add(new ExpireComponent(10, ExpireComponent.ExpireType.MAGNET));
 		EntityManager.addSound(entity, sound);
-
 	}
 
 	public static void createShieldAnimation(World world, TextureRegion[] textureRegions, BasicComponent basicComponent, Sound sound){
@@ -470,7 +459,7 @@ public class EntityFactory {
 		CollisionComponent collisionComponent=new CollisionComponent();
 		collisionComponent.type= Enums.CollectionType.COIN.value;
 		entity.edit().add(collisionComponent);
-		world.getSystem(GroupManager.class).add(entity, Enums.Group.COLLECTABLE.value);
+		world.getSystem(GroupManager.class).add(entity, Group.COLLECTABLE.value);
 		entity.edit().add(EntityManager.createSteerC(entity));
 
 		SteerableComponent steer=entity.getComponent(SteerableComponent.class);
@@ -488,7 +477,7 @@ public class EntityFactory {
 		return entity;
 	}
 
-	public static Entity createParticleEntity(World world,float x,float y,float size,ParticleEffect particleEffect){
+	public static Entity createParticleEntity(World world,float x,float y,float size){
 
 		Entity entity=world.createEntity();
 		entity.edit().add(new Layer(Enums.Layer.PLAYER_LAYER.value));
@@ -497,12 +486,12 @@ public class EntityFactory {
 		//ParticleEffect particleEffect = new ParticleEffect();
 		//particleEffect.load(Gdx.files.internal("particle/explosion.p"), Gdx.files.internal("particle"));
 
-		VisParticle pc = new VisParticle(particleEffect);
+		VisParticle pc = new VisParticle(Assets.particleAsset.explosion);
 		entity.edit().add(pc);
 		pc.getEffect().scaleEffect(size);
 		pc.getEffect().setPosition(x, y);
 		entity.edit().add(new ExpireComponent(1, ExpireComponent.ExpireType.PARTICLE));
-		//EntityManager.addSound(entity, Assets.soundAsset.bigExplosion);
+		EntityManager.addSound(entity, Assets.soundAsset.bigExplosion);
 		return entity;
 	}
 
@@ -512,11 +501,13 @@ public class EntityFactory {
 	public static Entity createParticleonDragon(World world,float x,float y,float size){
 
 
-		/*if(!isPooled){
+
+if(!isPooled){
 			//Assets.particleAsset.explosion.scaleEffect(.2f);
 			bucketEffect =new ParticleEffectPool(Assets.particleAsset.explosion,10,20);
 			isPooled=true;
-		}*/
+		}
+
 
 		Entity entity=world.createEntity();
 		entity.edit().add(new Layer(Enums.Layer.PLAYER_LAYER.value));
@@ -535,18 +526,19 @@ public class EntityFactory {
 
 		return entity;
 	}
-
-	public static void createPlayerParts(final Body body, final World world, Transform transform, float revertPosition){
+*/
+	public static void createPlayerParts(final Body body, TransformComponent transform, float revertPosition){
 
 		final Vector2 pos=body.getPosition();
     	final Vector2 velocity=body.getLinearVelocity();
 		final float angle=body.getAngle();
 
-		Gdx.app.log(TAG,"Transform"+transform.getX()+"X"+transform.getY());
+		Gdx.app.log(TAG,"Transform"+transform.x+"X"+transform.y);
 		Gdx.app.log(TAG,"Position"+pos.x+"AND "+pos.y);
+		//GameSceneManager.death++;
+		//GameManager.saveData();
 
-
-		  for(int i=0;i<10;i++) {
+		/*  for(int i=0;i<10;i++) {
 			  Entity entity ;
 			   if(i<7)
 				   entity = GenericEntityBuilder.createPhysicsShape(world, 1, Color.BLACK, Size.makeSize(MathUtils.random(.05f, .125f), MathUtils.random(.05f, .125f)), Position.makePosition(MathUtils.random(transform.getX(), transform.getX() + .5f), MathUtils.random(transform.getY(), transform.getY() + .25f)), angle, BodyDef.BodyType.DynamicBody, 1);
@@ -558,13 +550,13 @@ public class EntityFactory {
 
 				float dst=pos.x+2.5f-4.5f;
 
-				/*Timeline.createSequence()
+				Timeline.createSequence()
 						.pushPause(.1f)
 						.push(Tween.to(world.getSystem(CameraManager.class).getCamera(), CameraAccessor.POS_XY,2).target(revertPosition,2.4f))
 						.setCallback(new TweenCallback() {
 							@Override
 							public void onEvent(int type, BaseTween<?> source) {
-								for(int i = 0; i<world.getSystem(PlayerSystem.class).status.length; i++)
+								for(int i=0;i<world.getSystem(PlayerSystem.class).status.length;i++)
 									if(world.getSystem(PlayerSystem.class).status[i]) {
 										world.getSystem(PlayerSystem.class).deleteArray(i);
 										world.getSystem(PlayerSystem.class).status[i] = false;
@@ -577,18 +569,19 @@ public class EntityFactory {
 								world.getSystem(GameSceneManager.class).createPlayer();
 							}
 						})
-						.start(GameManager.game.tweenManager);*/
+						.start(GameManager.game.tweenManager);
 		//	}
-		//});
+		//});*/
 	}
 
-	public static Entity createFPSEntity(World world,BitmapFont bitmapFont){
+	public static Entity createFPSEntity(){
 
-		Entity entity=world.createEntity();
-		EntityManager.addVisText(entity, bitmapFont,"");
-		EntityManager.addLayer(entity,1);
+		Entity entity=new Entity();
+		/*EntityManager.ad(entity, Assets.bitmapFontAsset.bitmapFont,"");
+		EntityManager.addLayer(entity,1);*/
 
 		return entity;
 	}
 
 }
+

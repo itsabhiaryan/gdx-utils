@@ -1,4 +1,4 @@
-package com.nayragames.gdxutils;
+package com.nayragames.gdxutils.model;
 
 /**
  * (c) 2016 Abhishek Aryan
@@ -14,9 +14,9 @@ import com.badlogic.gdx.scenes.scene2d.actions.TemporalAction;
 import com.badlogic.gdx.utils.Pool;
 import com.badlogic.gdx.utils.Pools;
 
-public class MoveAlongPath extends TemporalAction {
+public class MoveAlongAction extends TemporalAction {
 
-    //private float x, y;
+    private float x, y;
     private boolean rotate;
     private Path<Vector2> path;
     private Vector2 value = new Vector2();
@@ -39,17 +39,16 @@ public class MoveAlongPath extends TemporalAction {
 
     @Override
     protected void begin () {
-       // x = actor.getX();
-       // y = actor.getY();
+        x = actor.getX();
+        y = actor.getY();
     }
 
     @Override
     protected void update (float percent) {
         path.valueAt(value, percent);
-        actor.setPosition(value.x, value.y);
+        actor.setPosition(x + value.x, y + value.y);
         if (rotate) {
             actor.setRotation(path.derivativeAt(value, percent).angle());
-            //((AnimationActor)actor).angle=path.derivativeAt(value, percent).angle();
         }
     }
 
@@ -60,14 +59,14 @@ public class MoveAlongPath extends TemporalAction {
     }
 
     /**Returns a new or pooled MoveAlongAction with the given path and a duration of {@code 1.0}. */
-    public static MoveAlongPath obtain(Path<Vector2> path) {
+    public static MoveAlongAction obtain(Path<Vector2> path) {
         return obtain(path, 1.0f);
     }
 
     /**Returns a new or pooled MoveAlongAction with the given path and duration. */
-    public static MoveAlongPath obtain(Path<Vector2> path, float duration) {
-        Pool<MoveAlongPath> pool = Pools.get(MoveAlongPath.class);
-        MoveAlongPath action = pool.obtain();
+    public static MoveAlongAction obtain(Path<Vector2> path, float duration) {
+        Pool<MoveAlongAction> pool = Pools.get(MoveAlongAction.class);
+        MoveAlongAction action = pool.obtain();
         action.setDuration(duration);
         action.setPath(path);
         action.setPool(pool);

@@ -14,10 +14,8 @@ import com.kotcrab.vis.runtime.component.VisText;
 import com.kotcrab.vis.runtime.system.CameraManager;
 import com.kotcrab.vis.runtime.system.VisIDManager;
 import com.kotcrab.vis.runtime.util.AfterSceneInit;
-import com.nayragames.gdxutils.LogManager;
-import com.nayragames.gdxutils.Position;
+import com.nayragames.gdxutils.model.Position;
 import com.nayragames.vis.Constants;
-import com.nayragames.vis.GenericEntityBuilder;
 
 /**
  * System is used only for debugging purpose used for getting Total Entity count and what is FPS.

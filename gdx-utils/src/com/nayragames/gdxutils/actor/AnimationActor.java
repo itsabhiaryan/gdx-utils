@@ -6,8 +6,8 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 
-import com.nayragames.gdxutils.Position;
-import com.nayragames.gdxutils.Size;
+import com.nayragames.gdxutils.model.Position;
+import com.nayragames.gdxutils.model.Size;
 
 /**
  * (c) 2016 Abhishek Aryan

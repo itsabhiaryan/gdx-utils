@@ -108,7 +108,7 @@ public class VisUIFactory {
         return visTextButton;
     }
 
-/*    private void addVisTextButton(VisTable table, String title, final AbstractScreen screen) {
+/*    private void addVisTextButton(VisTable table, String title, final _AbstractScreen screen) {
 
         VisTextButton btn = new VisTextButton(title);
         btn.addListener(new ClickListener() {

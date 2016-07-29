@@ -32,7 +32,7 @@ public class VisUIManager {
         isVisUIEnabled = true;
     }
 
-    public static Array<SplitPane> addSplitPane(Table stage, final AbstractScreen screen) {
+    public static Array<SplitPane> addSplitPane(Table stage, final _AbstractScreen screen) {
 
         final float w = game.w;
         final float h = game.h;

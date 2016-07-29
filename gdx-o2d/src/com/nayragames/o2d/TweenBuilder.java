@@ -1,18 +1,15 @@
-package com.nayragames.vis;
+package com.nayragames.o2d;
 
 import aurelienribon.tweenengine.*;
-
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.utils.Array;
 
-import com.kotcrab.vis.runtime.component.Transform;
-import com.kotcrab.vis.runtime.component.VisSprite;
-
-import com.nayragames.vis.component.BasicComponent;
-import com.nayragames.vis.tween.accessors.BasicComponentAccessor;
-import com.nayragames.vis.tween.accessors.CameraAccessor;
-import com.nayragames.vis.tween.accessors.TransformAccessor;
+import com.nayragames.o2d.component.BasicComponent;
+import com.nayragames.o2d.tween.accessors.BasicComponentAccessor;
+import com.nayragames.o2d.tween.accessors.CameraAccessor;
+import com.nayragames.o2d.tween.accessors.TransformAccessor;
+import com.uwsoft.editor.renderer.components.TransformComponent;
 
 /**
  * (c) 2016 Abhishek Aryan
@@ -21,13 +18,13 @@ import com.nayragames.vis.tween.accessors.TransformAccessor;
  * @since 30-11-2015.
  *
  * Collection of different tween used in ECS.
- *
  */
+
 public class TweenBuilder {
 
-    private static final String TAG =TweenBuilder.class.getSimpleName();
+    private static final String TAG = "[" + TweenBuilder.class.getSimpleName() + "]";
 
-    public static void sceneZoomOut(OrthographicCamera camera, TweenManager tweenManager){
+    public static void sceneZoomOut(OrthographicCamera camera,TweenManager tweenManager){
         camera.zoom=0;
         Tween.to(camera, CameraAccessor.ZOOM,1).target(1).start(tweenManager);
     }
@@ -37,7 +34,7 @@ public class TweenBuilder {
         Tween.to(camera, CameraAccessor.ZOOM,1).target(0).start(tweenManager);
     }
 
-    public static void buttonInterface(Transform sprite, final TweenCallback tweenCallback,TweenManager tweenManager){
+    public static void buttonInterface(TransformComponent sprite, TweenCallback tweenCallback,TweenManager tweenManager){
         Timeline.createSequence()
                 .push(Tween.to(sprite, TransformAccessor.SCALE_XY,.1f).targetRelative(-.05f,-.05f))
                 .push(Tween.to(sprite, TransformAccessor.SCALE_XY,.1f).targetRelative(.05f,.05f))
@@ -45,7 +42,7 @@ public class TweenBuilder {
                 .start(tweenManager);
     }
 
-    public static void zoomPageTransation(final Array<Sprite> hide, final Array<Sprite> show, final OrthographicCamera camera,final TweenManager tweenManager){
+    public static void zoomPageTransation(final Array<Sprite> hide, final Array<Sprite> show, final OrthographicCamera camera, final TweenManager tweenManager){
 
         Timeline.createSequence()
                 .push(Tween.to(camera, CameraAccessor.ZOOM,1).target(0)
@@ -65,14 +62,14 @@ public class TweenBuilder {
                         }).start(tweenManager));
     }
 
-    public static void applyScale(Transform transform,TweenManager tweenManager){
+    public static void applyScale(TransformComponent transform,TweenManager tweenManager){
         Timeline.createSequence()
                 .push(Tween.to(transform, TransformAccessor.SCALE_XY, .1f).target(1.25f, 1.25f))
                 .push(Tween.to(transform, TransformAccessor.SCALE_XY, .1f).target(1, 1))
                 .start(tweenManager);
     }
 
-    public static void applyCollectionTween(Transform transform, TweenCallback tweenCallback,TweenManager tweenManager){
+    public static void applyCollectionTween(TransformComponent transform,TweenCallback tweenCallback,TweenManager tweenManager){
 
         Timeline.createSequence()
                 .beginParallel()
@@ -85,7 +82,7 @@ public class TweenBuilder {
 
     }
 
-    public static void applyThrust(BasicComponent shipBasic, TweenCallback callback,TweenManager tweenManager){
+    public static void applyThrust(BasicComponent shipBasic, TweenCallback callback, TweenManager tweenManager){
 
         Timeline.createSequence()
                 .push(Tween.to(shipBasic, BasicComponentAccessor.POS_XY,.1f).targetRelative(0,.1f))
@@ -94,11 +91,13 @@ public class TweenBuilder {
                 .start(tweenManager);
     }
 
-    public static void playerDieTween(VisSprite spriteComponent){
+    /*public static void playerDieTween(VisSprite spriteComponent){
 
-      /*  Timeline.createSequence()
+            Timeline.createSequence()
                 .push(Tween.to(spriteComponent, ASpriteComponentAccessor.OPACITY,.5f).target(0))
                 .push(Tween.to(spriteComponent, ASpriteComponentAccessor.OPACITY,.5f).target(1))
-                .start(_Main.tweenManager);*/
-    }
+                .start(_Main.tweenManager);
+
+    }*/
 }
+

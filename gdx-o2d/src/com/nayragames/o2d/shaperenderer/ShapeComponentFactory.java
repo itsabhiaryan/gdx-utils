@@ -1,5 +1,6 @@
 package com.nayragames.o2d.shaperenderer;
 
+import box2dLight.RayHandler;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.physics.box2d.World;
 import com.nayragames.o2d.component.ShapeComponent;
@@ -12,7 +13,11 @@ import com.uwsoft.editor.renderer.resources.IResourceRetriever;
 import com.uwsoft.editor.renderer.utils.ComponentRetriever;
 
 /**
- * Created by ARYAN on 27-01-2016.
+ * (c) 2016 Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 27-01-2016.
+ *
  */
 public class ShapeComponentFactory extends ComponentFactory {
 
