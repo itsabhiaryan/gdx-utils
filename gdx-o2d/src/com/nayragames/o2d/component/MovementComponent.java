@@ -1,7 +1,13 @@
 package com.nayragames.o2d.component;
 
-
 import com.badlogic.ashley.core.Component;
+
+/**
+ * (c) 2016 Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 12/9/2015.
+ */
 
 public class MovementComponent implements Component {
 

@@ -1,17 +1,13 @@
-
 package com.nayragames.o2d.system;
 
-import aurelienribon.tweenengine.BaseTween;
-import aurelienribon.tweenengine.TweenCallback;
 import com.badlogic.ashley.core.ComponentMapper;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
 import com.badlogic.ashley.utils.Bag;
 import com.badlogic.ashley.utils.ImmutableArray;
-import com.nayragames.o2d.Constants;
+import com.nayragames.gdxutils._GameManager;
 import com.nayragames.o2d.Enums;
-import com.nayragames.o2d.TweenBuilder;
 import com.nayragames.o2d.component.*;
 import com.uwsoft.editor.renderer.SceneLoader;
 import com.uwsoft.editor.renderer.components.DimensionsComponent;
@@ -85,13 +81,11 @@ public class CollisionSystem extends IteratingSystem {
 		}));
 	}
 
-
-/**
+	/**
 	 * Decrease health of enemy by particular value which is associated with HealthComponent.
 	 * @param entity Entity whose health is going to be decrease.
 	 *
 	 */
-
 
 	private HealthComponent decrementHealth(Entity entity){
 
@@ -105,7 +99,7 @@ public class CollisionSystem extends IteratingSystem {
 	}
 
 
-/**
+	/**
 	 * Set value to TextComponent after increasing the value of TextComponent by value.
 	 * @param text TextComponent on which operation performed.
 	 * @param value value which is increased.
@@ -152,7 +146,7 @@ public class CollisionSystem extends IteratingSystem {
 	}
 
 
-/**
+	/**
 	 * Method called when rocket is try to fire by player .
 	 * @return total enemy which is either ship or dragon and having position above the player.
 	 *
@@ -182,7 +176,7 @@ public class CollisionSystem extends IteratingSystem {
 
 
 
-/**
+	/**
 	 * CollisionPair class handle collision between two group of entity.
 	 * we can add number of different pair of group and handler that handle if entities of group collide.
 	 *
@@ -247,7 +241,7 @@ public class CollisionSystem extends IteratingSystem {
 
 	@Override
 	public boolean checkProcessing() {
-		return !Constants.isPaused();
+		return !_GameManager.isPaused();
 	}
 }
 

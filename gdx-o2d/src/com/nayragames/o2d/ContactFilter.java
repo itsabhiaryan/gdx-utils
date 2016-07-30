@@ -1,4 +1,3 @@
-
 package com.nayragames.o2d;
 
 import com.badlogic.gdx.math.Vector2;
@@ -7,9 +6,12 @@ import com.badlogic.gdx.physics.box2d.Fixture;
 import com.uwsoft.editor.renderer.SceneLoader;
 
 /**
- * Used to decide collision between to body is about to happen or not.
+ * (c) 2016 Abhishek Aryan
  *
- * Created by ARYAN on 30-12-2015.
+ * @author Abhishek Arayan
+ * @since 30-12-2015.
+ *
+ * Used to decide collision between to body is about to happen or not.
  */
 
 public class ContactFilter implements com.badlogic.gdx.physics.box2d.ContactFilter {

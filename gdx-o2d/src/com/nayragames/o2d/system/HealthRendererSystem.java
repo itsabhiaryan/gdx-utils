@@ -4,15 +4,18 @@ import com.badlogic.ashley.core.ComponentMapper;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
-import com.nayragames.o2d.Constants;
+import com.nayragames.gdxutils._GameManager;
 import com.nayragames.o2d.component.BasicComponent;
 import com.nayragames.o2d.component.HealthComponent;
 import com.uwsoft.editor.renderer.components.label.LabelComponent;
 
 /**
+ * (c) 2016 Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 12/9/2015.
  * This system update position of TextComponent of Entity to its BasicComponent.
  *
- * Created by ARYAN on 12/9/2015.
  */
 
 public class HealthRendererSystem extends IteratingSystem {
@@ -37,8 +40,6 @@ public class HealthRendererSystem extends IteratingSystem {
 
     @Override
     public boolean checkProcessing() {
-        return !Constants.isPaused();
+        return !_GameManager.isPaused();
     }
-
-
 }

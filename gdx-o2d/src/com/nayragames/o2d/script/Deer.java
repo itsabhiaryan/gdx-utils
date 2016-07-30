@@ -9,7 +9,10 @@ import com.uwsoft.editor.renderer.scripts.IScript;
 import com.uwsoft.editor.renderer.utils.ComponentRetriever;
 
 /**
- * Created by azakhary on 7/26/2015.
+ * (c) 2016 Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 7/26/2015.
  */
 public class Deer implements IScript {
 

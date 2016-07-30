@@ -1,10 +1,12 @@
 package com.nayragames.o2d.component;
 
-
 import com.badlogic.ashley.core.Component;
 
 /**
- * Created by Personal on 14-12-2015.
+ * (c) 2016 Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 14-12-2015.
  */
 public class RumbleComponent implements Component {
 

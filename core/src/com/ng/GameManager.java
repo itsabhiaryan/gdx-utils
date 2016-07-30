@@ -8,16 +8,9 @@ import com.nayragames.gdxutils.services.IServices;
  */
 public class GameManager extends _GameManager {
 
-
-
-
-
     public GameManager(Main game){
         super(game);
         Pref.init();
-
-
-
 
     }
 

@@ -6,22 +6,26 @@ import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
-import com.nayragames.o2d.Constants;
+import com.nayragames.gdxutils._GameManager;
 import com.nayragames.o2d.component.Bounds;
 import com.uwsoft.editor.renderer.components.DimensionsComponent;
 import com.uwsoft.editor.renderer.components.TransformComponent;
 
 /**
+ * (c) 2016 Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 30-07-2016
+ *
  * This system updates Bounds component of entity that have any of these component VisSprite,AnimationComponent,ShapeComponent.
  *
- * @author ARYAN */
+ */
 
 public class BoundsUpdater extends IteratingSystem {
 
 	private ComponentMapper<DimensionsComponent> dimensionCm= ComponentMapper.getFor(DimensionsComponent.class);
 	private ComponentMapper<Bounds> boundsCm= ComponentMapper.getFor(Bounds.class);
 	private ComponentMapper<TransformComponent> transformCm= ComponentMapper.getFor(TransformComponent.class);
-
 
 	private BoundsCalculator calculator = new BoundsCalculator();
 
@@ -161,6 +165,6 @@ public class BoundsUpdater extends IteratingSystem {
 
 	@Override
 	public boolean checkProcessing() {
-		return !Constants.isPaused();
+		return !_GameManager.isPaused();
 	}
 }

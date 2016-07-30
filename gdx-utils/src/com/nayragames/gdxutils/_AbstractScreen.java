@@ -46,7 +46,7 @@ public abstract class _AbstractScreen implements Screen {
      //   if(isTweenEnabled&& !GameManager.isPaused()) game.tweenManager.update(delta);
 
         GL20 gl = Gdx.gl;
-        gl.glClearColor(1, 0, 0, 1);
+        gl.glClearColor(0, 0, 0, 1);
         gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         gl.glEnable(GL20.GL_BLEND);
         gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);

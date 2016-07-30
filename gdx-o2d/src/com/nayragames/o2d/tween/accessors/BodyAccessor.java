@@ -5,7 +5,10 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Transform;
 
 /**
- * Created by ARYAN on 12/30/2015.
+ * (c) 2016 Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 12/30/2015.
  */
 public class BodyAccessor implements TweenAccessor<Body> {
 
@@ -26,9 +29,7 @@ public class BodyAccessor implements TweenAccessor<Body> {
                 return 1;
 
             default: assert false; return -1;
-
         }
-
     }
 
     @Override
@@ -37,7 +38,6 @@ public class BodyAccessor implements TweenAccessor<Body> {
         switch (tweenType) {
 
             case POS_XY:
-
                 target.setTransform(newValues[0],newValues[1],transform.getRotation());
 
                 break;
@@ -50,6 +50,5 @@ public class BodyAccessor implements TweenAccessor<Body> {
 
             default: assert false;
         }
-
     }
 }

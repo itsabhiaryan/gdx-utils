@@ -10,6 +10,14 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.nayragames.gdxutils.ai.Scene2dLocation;
 
+/**
+ * (c) 2016 Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 1/26/2016.
+ *
+ */
+
 public class SteerableComponent implements Component, Steerable<Vector2> {
 	
 	float boundingRadius;

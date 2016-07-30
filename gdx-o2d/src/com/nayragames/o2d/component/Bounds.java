@@ -4,7 +4,13 @@ import com.badlogic.ashley.core.Component;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
-/** @author ARYAN */
+/**
+ * (c) 2016 Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 30-07-2016
+ *
+ */
 
 public class Bounds implements Component {
 	public Rectangle bounds = new Rectangle();

@@ -13,31 +13,41 @@ import com.uwsoft.editor.renderer.components.ViewPortComponent;
 import com.uwsoft.editor.renderer.utils.ComponentRetriever;
 
 /**
+ * (c) 2010 Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 30-11-2015.
+ *
  * Parent Manager class of all Manager class.
  *
- * @author ARYAN on 30-11-2015.
  */
 
 public abstract class BaseSceneManager extends EntitySystem implements InputProcessor {
 
-	private static final String TAG = "[" + BaseSceneManager.class.getSimpleName() + "]";
+	private static final String TAG = BaseSceneManager.class.getSimpleName();
 	protected _Main game;
-	protected Camera camera;
+	public Camera camera;
 	protected Vector3 unProjectVec = new Vector3();
 	protected Vector3 unProjectVecDrag = new Vector3();
 	public static InputProcessor sceneInput ;
-	protected Entity root;
+	public Entity root;
 	protected SceneLoader sceneLoader;
 
 	public BaseSceneManager(_Main game,SceneLoader sceneLoader) {
 		this.game = game;
 		sceneInput=this;
 		this.sceneLoader=sceneLoader;
-		root =sceneLoader.getRoot();
+		root =this.sceneLoader.getRoot();
+
+		System.out.println(sceneLoader);
+		System.out.println("Value of"+root);
+
 		camera=ComponentRetriever.get(root,ViewPortComponent.class).viewPort.getCamera();
 		Gdx.input.setInputProcessor(this);
 		Gdx.input.setCatchBackKey(true);
 	}
+
+
 
 	@Override
 	public boolean scrolled (int amount) {

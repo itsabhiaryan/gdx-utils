@@ -4,7 +4,11 @@ import com.badlogic.gdx.physics.box2d.*;
 import com.uwsoft.editor.renderer.SceneLoader;
 
 /**
- * Created by ARYAN on 30-12-2015.
+ * (c) 2016 Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 30-12-2015.
+ *
  */
 public class ContactListener implements com.badlogic.gdx.physics.box2d.ContactListener {
 
@@ -16,7 +20,7 @@ public class ContactListener implements com.badlogic.gdx.physics.box2d.ContactLi
     public ContactListener(SceneLoader sceneLoader, Body body){
         this.sceneLoader=sceneLoader;
         this.playerBody=body;
-        //PhysicsHelper.getPhysicsWorld(world).setContactListener(this);
+        //Helper.getPhysicsWorld(world).setContactListener(this);
     }
 
     @Override

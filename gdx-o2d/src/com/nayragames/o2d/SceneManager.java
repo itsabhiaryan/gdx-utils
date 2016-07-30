@@ -1,5 +1,7 @@
 package com.nayragames.o2d;
 
+import com.badlogic.ashley.core.Engine;
+import com.badlogic.ashley.core.EntitySystem;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.nayragames.gdxutils._Main;
@@ -16,13 +18,17 @@ import com.uwsoft.editor.renderer.utils.ComponentRetriever;
  * @author Abhishek Aryan
  * @since 11/29/2015.
  *
- * This class is used to load Scene and unload it.
+ * Handle loading scene adding systems to engine and update engine.
+ * 1. create object of this class.
+ * 2. load scene
+ * 3. add system to engine.
+ * 4. call update method through your render or update method.
  */
 public class SceneManager {
 
-    private static final String TAG = "[" + SceneManager.class.getSimpleName() + "]";
+    private static final String TAG =  SceneManager.class.getSimpleName();
     public SceneLoader sceneLoader;
-    private static String scenePath;
+    public  String scenePath;
     private StretchViewport stretchViewport;
     private static _Main game;
 
@@ -31,14 +37,37 @@ public class SceneManager {
     /** initialization of ResourceManager which is used when we load any scene. */
 
     public SceneManager(_Main game){
+        this(game,new ResourceLoader(game.width,game.height));
+    }
+
+    public SceneManager(_Main game,ResourceLoader resourceLoader){
         SceneManager.game=game;
-        resourceManager=new ResourceLoader(game.width,game.height);
+        resourceManager=resourceLoader;
         resourceManager.initAllResources();
 
         stretchViewport=new StretchViewport(game.width,game.height);
         sceneLoader=new SceneLoader(resourceManager);
         //addExternalMapperToRetriever();
         isLoaded=true;
+    }
+
+    /** First load scene then add systems to engine. */
+
+    public SceneManager loadScene(String name){
+
+        this.scenePath=name;
+        sceneLoader.loadScene(scenePath,stretchViewport);
+
+        return this;
+    }
+
+    /** System must be added after loading scene. */
+
+    public void addSystems(EntitySystem... systems){
+
+        Engine engine=sceneLoader.getEngine();
+        for(EntitySystem entitySystem:systems)
+            engine.addSystem(entitySystem);
     }
 
     public void addExternalMapperToRetriever(){
@@ -51,6 +80,7 @@ public class SceneManager {
     public static ShapeRendererType shapeRendererType;
 
     public void update(){
+        //Gdx.app.log(TAG,"update scene");
         sceneLoader.getEngine().update(Gdx.graphics.getDeltaTime());
     }
 
@@ -94,8 +124,6 @@ public class SceneManager {
         //sceneLoader.getEngine().addSystem(new SettingSceneManager(game));
         game.setOrientation(OrientationServices.Orientation.PORTRAIT);
 
-
-
         return sceneLoader;
     }
 
@@ -111,9 +139,7 @@ public class SceneManager {
         sceneLoader.getEngine().addSystem(new HudRenderSystem(sceneLoader,stretchViewport));
         sceneLoader.getEngine().addSystem(new CircularMotionSystem());
 
-
         game.setOrientation(OrientationServices.Orientation.LANDSCAPE);
-
 
         return sceneLoader;
     }
@@ -131,7 +157,6 @@ public class SceneManager {
         sceneLoader.getEngine().addSystem(new HudRenderSystem(sceneLoader,stretchViewport));
 
         game.setOrientation(OrientationServices.Orientation.LANDSCAPE);
-
 
         return sceneLoader;
     }

@@ -11,7 +11,11 @@ import com.uwsoft.editor.renderer.SceneLoader;
 import com.uwsoft.editor.renderer.components.physics.PhysicsBodyComponent;
 
 /**
- * Created by ARYAN on 1/6/2016.
+ * (c) 2016 Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 1/6/2016.
+ *
  */
 public class PlayerEntity {
 
@@ -55,7 +59,7 @@ public class PlayerEntity {
            // FixtureDef fixtureDef=new FixtureDef();
            // fixtureDef.density=1.25f;
 
-            //PhysicsHelper.heliLoader.attachFixture(body,PhysicsHelper.BodyLoaderData.HELI.value,fixtureDef,.7f);
+            //Helper.heliLoader.attachFixture(body,Helper.BodyLoaderData.HELI.value,fixtureDef,.7f);
 
         } else if(randomType==1){
             shape=new CircleShape();

@@ -12,8 +12,16 @@ import com.badlogic.gdx.ai.utils.Location;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
+
 import com.nayragames.o2d.component.SteerableComponent;
 
+/**
+ * (c) 2016 Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 30-07-2016
+ *
+ */
 
 public class SB {
 

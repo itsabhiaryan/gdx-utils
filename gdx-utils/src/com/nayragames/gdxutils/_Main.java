@@ -8,7 +8,11 @@ import com.nayragames.gdxutils.services.IServices;
 import com.nayragames.gdxutils.services.OrientationServices;
 
 /**
- * Created by Personal on 7/29/2016.
+ * (c) 2016 Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 7/29/2016.
+ *
  */
 public abstract class _Main extends Game {
 
@@ -17,7 +21,6 @@ public abstract class _Main extends Game {
     public _GameManager gameManager;
 
     public _Main(){
-
 
     }
 
@@ -32,15 +35,16 @@ public abstract class _Main extends Game {
         height=Gdx.graphics.getHeight();
     }
 
-    /*@Override
+    @Override
     public void render() {
         super.render();
 
-        Gdx.gl.glClearColor(0, 1, 0, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT );
-
-
-    }*/
+        GL20 gl = Gdx.gl;
+        gl.glClearColor(0, 0, 0, 1);
+        gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        gl.glEnable(GL20.GL_BLEND);
+        gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
+    }
 
     public AdServices getAdService(){
         return (AdServices)services;
@@ -53,5 +57,4 @@ public abstract class _Main extends Game {
     public void setOrientation(OrientationServices.Orientation orientation){
         ((OrientationServices)services).setOrientation(orientation);
     }
-
 }

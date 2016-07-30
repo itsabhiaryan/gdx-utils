@@ -1,29 +1,30 @@
 package com.nayragames.o2d;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.nayragames.gdxutils.model.TextureManager;
 import com.uwsoft.editor.renderer.resources.FontSizePair;
 import com.uwsoft.editor.renderer.resources.ResourceManager;
 
-import java.io.File;
-
 /**
- * Created by ARYAN on 1/29/2016.
+ * (c) 2016 Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 1/29/2016.
+ *
+ * Inherit this class if you wanna add resource to runtime.
  */
 public class ResourceLoader extends ResourceManager {
 
-    public float w,h;
+    protected float w,h;
     public static final String WHITE_TEXTURE="white";
     public static final String LEADER_BOARD="leaderboard";
     public static final String TAP_HERE ="tap";
     public static final String FAILED_PARTICLE="fail",COMPLETE_PARTICLE="success";
     public static FontSizePair fontSizePair_0,fontSizePair_1,fontSizePair_2;
     public static Color colors[];
-
 
     public ResourceLoader(float w, float h){
         this.w=w;
@@ -49,6 +50,7 @@ public class ResourceLoader extends ResourceManager {
         colors=new Color[]{Color.FIREBRICK, Color.FOREST, Color.MAGENTA , Color.CORAL, Color.VIOLET, Color.GOLDENROD, Color.LIME, Color.MAROON, Color.OLIVE, Color.PURPLE, Color.TEAL, Color.ROYAL, Color.SCARLET, Color.SKY};
     }
 
+
     public void addSprite(String name, TextureRegion textureRegion){
         mainPack.addRegion(name,textureRegion);
     }
@@ -61,7 +63,7 @@ public class ResourceLoader extends ResourceManager {
         return mainPack;
     }
 
-    public void loadParticles(){
+    protected void loadParticles(){
 
        /* ParticleEffect particleEffect1=new ParticleEffect();
         particleEffect1.load(Gdx.files.internal(particleEffectsPath + File.separator + Particles.COMPLETE.value), Gdx.files.internal(particleEffectsPath));
@@ -72,8 +74,8 @@ public class ResourceLoader extends ResourceManager {
         particleEffects.put(FAILED_PARTICLE,particleEffect3);*/
     }
 
-    public void loadTexture(){
-        //mainPack.addRegion(WHITE_TEXTURE,new TextureRegion(TextureManager.getPixmapTexture(Color.WHITE)));
+    protected void loadTexture(){
+        mainPack.addRegion(WHITE_TEXTURE,new TextureRegion(TextureManager.getPixmapTexture(Color.WHITE)));
       //  mainPack.addRegion(LEADER_BOARD,new TextureRegion(new Texture(Images.LEADER_BOARD.value)));
        // mainPack.addRegion(TAP_HERE,new TextureRegion(new Texture(Images.TAP_HERE.value)));
     }

@@ -4,14 +4,18 @@ import com.badlogic.ashley.core.ComponentMapper;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
-import com.nayragames.o2d.Constants;
+import com.nayragames.gdxutils._GameManager;
 import com.nayragames.o2d.component.BasicComponent;
 import com.nayragames.o2d.component.RumbleComponent;
 
 import java.util.Random;
 
 /**
- * Created by ARYAN on 14-12-2015.
+ * (c) 2016 Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 14-12-2015.
+ *
  */
 
 public class RumbleSystem extends IteratingSystem {
@@ -47,7 +51,7 @@ public class RumbleSystem extends IteratingSystem {
 
     @Override
     public boolean checkProcessing() {
-        return !Constants.isPaused();
+        return !_GameManager.isPaused();
     }
 
 

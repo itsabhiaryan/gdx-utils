@@ -8,8 +8,16 @@ import com.badlogic.gdx.ai.fsm.State;
 import com.badlogic.gdx.ai.fsm.StateMachine;
 import com.badlogic.gdx.ai.msg.Telegram;
 import com.badlogic.gdx.ai.msg.Telegraph;
+
 import com.nayragames.o2d.ai.fsm.EntityState;
 
+/**
+ * (c) 2016 Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 12/9/2015.
+ *
+ */
 
 public class FSMComponent implements Component, Telegraph {
 

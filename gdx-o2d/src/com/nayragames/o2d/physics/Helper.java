@@ -1,4 +1,4 @@
-package com.nayragames.o2d;
+package com.nayragames.o2d.physics;
 
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.Gdx;
@@ -8,116 +8,33 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.physics.box2d.joints.*;
 import com.badlogic.gdx.utils.Array;
-import com.nayragames.gdxutils.b2d.BodyEditorLoader;
+
+import com.nayragames.gdxutils.b2d.PhysicsHelper;
 import com.nayragames.gdxutils.model.Position;
 import com.nayragames.gdxutils.model.Size;
+
+import com.nayragames.o2d.EntityManager;
+import com.nayragames.o2d.Enums;
+import com.nayragames.o2d.GenericEntityBuilder;
 import com.nayragames.o2d.component.CircularMotion;
+
 import com.uwsoft.editor.renderer.SceneLoader;
 import com.uwsoft.editor.renderer.components.physics.PhysicsBodyComponent;
 
-
 /**
- * Created by ARYAN on 1/1/2016.
+ * (c) 2016 Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 1/1/2016.
+ *
  */
 
-public class PhysicsHelper {
+public class Helper {
 
-    private static final String TAG = "[" + PhysicsHelper.class.getSimpleName() + "]";
-
-    public enum BodyLoaderData {
-
-        GEAR("Gear"),
-        HELI("Name")
-        ;
-        public  String value;
-        BodyLoaderData(String value){
-            this.value=value;
-        }
-    }
-
-    public static BodyEditorLoader loader,heliLoader;
-
-    static {
-        try {
-                //loader=new BodyEditorLoader(Gdx.files.internal(Resource.Jsons.GEAR.value));
-                //heliLoader=new BodyEditorLoader(Gdx.files.internal(Resource.Jsons.HELICOPTER.value));
-            }
-            catch (Exception e){
-                Gdx.app.log(TAG,"Exception in static block loading",e);
-            }
-    }
-
-    public static BodyDef createBodyDef(BodyDef.BodyType type, float x, float y){
-        BodyDef bodyDef=new BodyDef();
-        bodyDef.type=type;
-        bodyDef.position.set(x,y);
-        return bodyDef;
-    }
-
-    public static FixtureDef createFixtureDef(Shape shape, float density, float restitution, float friction){
-        FixtureDef fixtureDef=new FixtureDef();
-        fixtureDef.shape=shape;
-        fixtureDef.density=density;
-        fixtureDef.restitution=restitution;
-        fixtureDef.friction=friction;
-
-        return fixtureDef;
-    }
-
-    public static MouseJointDef createMouseJointDef(Body body1 , Body body2, Vector3 target){
-
-        MouseJointDef mouseJointDef=new MouseJointDef();
-        mouseJointDef.bodyA=body1;
-        mouseJointDef.bodyB=body2;
-
-        mouseJointDef.collideConnected = true;
-        mouseJointDef.target.set(target.x, target.y);
-        mouseJointDef.maxForce = 1000.0f * body2.getMass();
-        mouseJointDef.frequencyHz=5;
-
-        return mouseJointDef;
-    }
-
-    public static RopeJointDef createRopeJointDef(Body body1 , Body body2, Vector2 firstAnchor, Vector2 secondAnchor, float length){
-
-        RopeJointDef ropeJointDef = new RopeJointDef();
-        ropeJointDef.bodyA = body1;
-        ropeJointDef.bodyB = body2;
-        ropeJointDef.localAnchorA.set(firstAnchor);
-        ropeJointDef.localAnchorB.set(secondAnchor);
-        ropeJointDef.maxLength = length;
-
-        return ropeJointDef;
-    }
-
-    public static RevoluteJointDef createRevoluteJointDef(Body body1 , Body body2, Vector2 firstAnchor, Vector2 secondAnchor){
-
-        RevoluteJointDef revoluteJointDef=new RevoluteJointDef();
-        revoluteJointDef.bodyA=body1;
-        revoluteJointDef.bodyB=body2;
-        revoluteJointDef.localAnchorA.set(firstAnchor);
-        revoluteJointDef.localAnchorB.set(secondAnchor);
-
-        return revoluteJointDef;
-    }
-
-    public static DistanceJointDef createDistanceJointDef(){
-
-        DistanceJointDef def=new DistanceJointDef();
-        def.collideConnected=true;
-        return def;
-    }
-
-    public static WeldJointDef createWeldJointDef(){
-
-        WeldJointDef jd = new WeldJointDef();
-        jd.collideConnected=true;
-
-        return jd;
-    }
+    private static final String TAG = Helper.class.getSimpleName();
 
     public static MouseJoint createMouseJoint(SceneLoader world, Body ground, Body hitBody, Vector3 unProjectVec){
-        MouseJointDef mouseJointDef= PhysicsHelper.createMouseJointDef(ground,hitBody,unProjectVec);
+        MouseJointDef mouseJointDef= com.nayragames.gdxutils.b2d.PhysicsHelper.createMouseJointDef(ground,hitBody,unProjectVec);
         return (MouseJoint)getPhysicsWorld(world).createJoint(mouseJointDef);
     }
 
@@ -132,29 +49,29 @@ public class PhysicsHelper {
 
     public static Array<Entity> addObject(SceneLoader sceneLoader, int type){
 
-        //PhysicsHelper.addFirstObject(world,new Vector2(5.5f,4f),2);
-        //PhysicsHelper.addSecondObject(world,new Vector2(37f,4),new Vector2(39,4),1.5f);
-       // PhysicsHelper.addSecondObject1(world,new Vector2(25,4),new Vector2(27f,4),1f);
-        //PhysicsHelper.createHangingChain(world,new Vector2(10f,4),1);
-        //PhysicsHelper.createBridge(world,new Vector2(3.5f,4),new Vector2(4.5f,4),1f);
+        //Helper.addFirstObject(world,new Vector2(5.5f,4f),2);
+        //Helper.addSecondObject(world,new Vector2(37f,4),new Vector2(39,4),1.5f);
+       // Helper.addSecondObject1(world,new Vector2(25,4),new Vector2(27f,4),1f);
+        //Helper.createHangingChain(world,new Vector2(10f,4),1);
+        //Helper.createBridge(world,new Vector2(3.5f,4),new Vector2(4.5f,4),1f);
 
         switch (type){
 
             case 0:
-            //    return PhysicsHelper.createBridge(world,new Vector2(61f,4),new Vector2(62f,4f),1.25f);
-                return PhysicsHelper.createHangingChain(sceneLoader,new Vector2(61.5f,4.1f),1.2f);
+            //    return Helper.createBridge(world,new Vector2(61f,4),new Vector2(62f,4f),1.25f);
+                return Helper.createHangingChain(sceneLoader,new Vector2(61.5f,4.1f),1.2f);
 
             case 1:
-                return PhysicsHelper.createHangingChain(sceneLoader,new Vector2(10f,4.1f),1.1f);
+                return Helper.createHangingChain(sceneLoader,new Vector2(10f,4.1f),1.1f);
 
 
             case 2:
-                return PhysicsHelper.addSecondObject1(sceneLoader,new Vector2(25,4.4f),new Vector2(27f,4.3f),1.3f);
+                return Helper.addSecondObject1(sceneLoader,new Vector2(25,4.4f),new Vector2(27f,4.3f),1.3f);
 
 
             case 3:
-               // return PhysicsHelper.addSecondObject(world,new Vector2(37,4),new Vector2(39,4),1.5f);
-            return  PhysicsHelper.addFirstObject(sceneLoader,new Vector2(38,4.3f),1.3f);
+               // return Helper.addSecondObject(world,new Vector2(37,4),new Vector2(39,4),1.5f);
+            return  Helper.addFirstObject(sceneLoader,new Vector2(38,4.3f),1.3f);
 
             default:
                 return  null;
@@ -183,7 +100,7 @@ public class PhysicsHelper {
         body2.applyForceToCenter(new Vector2(50,0),true);
         entities.add(entity2);
 
-        world1.createJoint(createRopeJointDef(pivotBody,body2,new Vector2(0,0),new Vector2(0,hangBlock_height/2f),rope_length));
+        world1.createJoint(PhysicsHelper.createRopeJointDef(pivotBody,body2,new Vector2(0,0),new Vector2(0,hangBlock_height/2f),rope_length));
 
         Vector2 point1=firstPoint;
         Vector2 point2=new Vector2(firstPoint.x,firstPoint.y-rope_length);
@@ -230,8 +147,8 @@ public class PhysicsHelper {
             prevBody = body;
         }
 
-        world1.createJoint(createRevoluteJointDef(prevBody,body2,new Vector2(rope_width,0),new Vector2(0, hangBlock_height/2f)));
-        world1.createJoint(createRopeJointDef(prevBody,body2,new Vector2(rope_width,0),new Vector2(0, hangBlock_height/2f),0));
+        world1.createJoint(PhysicsHelper.createRevoluteJointDef(prevBody,body2,new Vector2(rope_width,0),new Vector2(0, hangBlock_height/2f)));
+        world1.createJoint(PhysicsHelper.createRopeJointDef(prevBody,body2,new Vector2(rope_width,0),new Vector2(0, hangBlock_height/2f),0));
         return entities;
     }
 
@@ -263,8 +180,8 @@ public class PhysicsHelper {
 
         entities.add(entity2);
 
-        world1.createJoint(createRopeJointDef(pivotBody1, body2, new Vector2(0, 0), new Vector2(0, hangBlock_height/2f), rope_length));
-        world1.createJoint(createRopeJointDef(pivotBody2, body2, new Vector2(0, 0), new Vector2(0, hangBlock_height/2f), rope_length));
+        world1.createJoint(PhysicsHelper.createRopeJointDef(pivotBody1, body2, new Vector2(0, 0), new Vector2(0, hangBlock_height/2f), rope_length));
+        world1.createJoint(PhysicsHelper.createRopeJointDef(pivotBody2, body2, new Vector2(0, 0), new Vector2(0, hangBlock_height/2f), rope_length));
 
        {
             Vector2 point1 = firstPoint;
@@ -311,8 +228,8 @@ public class PhysicsHelper {
                 jd1.localAnchorB.set(-rope_width, 0);
                 prevBody = body;
             }
-            world1.createJoint(createRevoluteJointDef(prevBody, body2, new Vector2(rope_width, 0), new Vector2(0, hangBlock_height/2)));
-            world1.createJoint(createRopeJointDef(prevBody, body2, new Vector2(rope_width, 0), new Vector2(0, hangBlock_height/2), 0));
+            world1.createJoint(PhysicsHelper.createRevoluteJointDef(prevBody, body2, new Vector2(rope_width, 0), new Vector2(0, hangBlock_height/2)));
+            world1.createJoint(PhysicsHelper.createRopeJointDef(prevBody, body2, new Vector2(rope_width, 0), new Vector2(0, hangBlock_height/2), 0));
        }
 
        {
@@ -363,8 +280,8 @@ public class PhysicsHelper {
                 prevBody = body;
 
             }
-            world1.createJoint(createRevoluteJointDef(prevBody, body2, new Vector2(rope_width, 0), new Vector2(0, hangBlock_height/2f)));
-            world1.createJoint(createRopeJointDef(prevBody, body2, new Vector2(rope_width, 0), new Vector2(0, hangBlock_height/2f), 0));
+            world1.createJoint(PhysicsHelper.createRevoluteJointDef(prevBody, body2, new Vector2(rope_width, 0), new Vector2(0, hangBlock_height/2f)));
+            world1.createJoint(PhysicsHelper.createRopeJointDef(prevBody, body2, new Vector2(rope_width, 0), new Vector2(0, hangBlock_height/2f), 0));
        }
        return entities;
     }
@@ -398,8 +315,8 @@ public class PhysicsHelper {
 
         entities.add(entity2);
 
-        world1.createJoint(createRopeJointDef(pivotBody1,body2,new Vector2(0,0),new Vector2(-dst/2,hangBlock_height/2f),rope_length));
-        world1.createJoint(createRopeJointDef(pivotBody2,body2,new Vector2(0,0),new Vector2(dst/2,hangBlock_height/2f),rope_length));
+        world1.createJoint(PhysicsHelper.createRopeJointDef(pivotBody1,body2,new Vector2(0,0),new Vector2(-dst/2,hangBlock_height/2f),rope_length));
+        world1.createJoint(PhysicsHelper.createRopeJointDef(pivotBody2,body2,new Vector2(0,0),new Vector2(dst/2,hangBlock_height/2f),rope_length));
 
         {
             Vector2 point1 = firstPoint;
@@ -446,8 +363,8 @@ public class PhysicsHelper {
                 jd1.localAnchorB.set(-rope_width, 0);
                 prevBody = body;
             }
-            world1.createJoint(createRevoluteJointDef(prevBody, body2, new Vector2(rope_width , 0), new Vector2(-dst/2, hangBlock_height/2f)));
-            world1.createJoint(createRopeJointDef(prevBody, body2, new Vector2(rope_width , 0), new Vector2(-dst/2, hangBlock_height/2f), 0));
+            world1.createJoint(PhysicsHelper.createRevoluteJointDef(prevBody, body2, new Vector2(rope_width , 0), new Vector2(-dst/2, hangBlock_height/2f)));
+            world1.createJoint(PhysicsHelper.createRopeJointDef(prevBody, body2, new Vector2(rope_width , 0), new Vector2(-dst/2, hangBlock_height/2f), 0));
         }
 
         {
@@ -494,8 +411,8 @@ public class PhysicsHelper {
                 prevBody = body;
             }
 
-            world1.createJoint(createRevoluteJointDef(prevBody, body2, new Vector2(rope_width, 0), new Vector2(dst/2, hangBlock_height/2)));
-            world1.createJoint(createRopeJointDef(prevBody, body2, new Vector2(rope_width , 0), new Vector2(dst/2, hangBlock_height/2), 0));
+            world1.createJoint(PhysicsHelper.createRevoluteJointDef(prevBody, body2, new Vector2(rope_width, 0), new Vector2(dst/2, hangBlock_height/2)));
+            world1.createJoint(PhysicsHelper.createRopeJointDef(prevBody, body2, new Vector2(rope_width , 0), new Vector2(dst/2, hangBlock_height/2), 0));
         }
         return entities;
     }
@@ -565,8 +482,8 @@ public class PhysicsHelper {
             prevBody = body;
         }
 
-        world1.createJoint(createRevoluteJointDef(prevBody, pivotBody2, new Vector2(rope_width, 0), new Vector2(0,- pivot_height/2f)));
-        world1.createJoint(createRopeJointDef(prevBody, pivotBody2, new Vector2(rope_width, 0), new Vector2(0, -pivot_height/2f), 0));
+        world1.createJoint(PhysicsHelper.createRevoluteJointDef(prevBody, pivotBody2, new Vector2(rope_width, 0), new Vector2(0,- pivot_height/2f)));
+        world1.createJoint(PhysicsHelper.createRopeJointDef(prevBody, pivotBody2, new Vector2(rope_width, 0), new Vector2(0, -pivot_height/2f), 0));
 
         return array;
     }

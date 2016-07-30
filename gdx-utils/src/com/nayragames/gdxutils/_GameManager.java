@@ -29,7 +29,11 @@ public abstract class _GameManager {
         //if(isSoundPause) BaseSceneManager.pause();
     }
 
-    public static void resume(){
+    public void pause(){
+        isPaused=true;
+    }
+
+    public void resume(){
         isPaused = false;
         //BaseSceneManager.resume();
     }

@@ -8,9 +8,9 @@ import com.badlogic.ashley.systems.IteratingSystem;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.nayragames.gdxutils._GameManager;
 import com.nayragames.gdxutils.model.Position;
 import com.nayragames.gdxutils.model.Size;
-import com.nayragames.o2d.Constants;
 import com.nayragames.o2d.GenericEntityBuilder;
 import com.nayragames.o2d.component.HealthComponent;
 import com.nayragames.o2d.component.LeftRightComponent;
@@ -19,9 +19,12 @@ import com.uwsoft.editor.renderer.components.DimensionsComponent;
 import com.uwsoft.editor.renderer.components.TransformComponent;
 
 /**
+ * (c) 2016 Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 14-01-2016.
  * System that move entity from left to right and vice versa.
  *
- * Created by ARYAN on 14-01-2016.
  */
 
 public class LeftRightSystem extends IteratingSystem {
@@ -94,8 +97,7 @@ public class LeftRightSystem extends IteratingSystem {
 
 	@Override
 	public boolean checkProcessing() {
-		return !Constants.isPaused();
+		return !_GameManager.isPaused();
 	}
-
 }
 

@@ -7,7 +7,11 @@ import com.uwsoft.editor.renderer.scripts.IScript;
 import com.uwsoft.editor.renderer.utils.ComponentRetriever;
 
 /**
- * Created by ARYAN on 30-01-2016.
+ * (c) 2016 Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 30-01-2016.
+ *
  */
 public class ButtonScript implements IScript {
 

@@ -8,7 +8,11 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.uwsoft.editor.renderer.SceneLoader;
 
 /**
- * Created by ARYAN on 1/25/2016.
+ * (c) 2016 Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 1/25/2016.
+ *
  */
 public class Box2dDebugRenderSystem extends EntitySystem {
     //private CameraManager cameraManager;

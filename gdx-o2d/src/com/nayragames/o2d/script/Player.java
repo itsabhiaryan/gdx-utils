@@ -14,7 +14,11 @@ import com.uwsoft.editor.renderer.scripts.IScript;
 import com.uwsoft.editor.renderer.utils.ComponentRetriever;
 
 /**
- * Created by azakhary on 8/4/2015.
+ * (c) 2016 Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 8/4/2015.
+ *
  */
 public class Player implements IScript {
 

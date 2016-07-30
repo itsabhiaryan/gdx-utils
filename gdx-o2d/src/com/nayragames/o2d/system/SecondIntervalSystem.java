@@ -6,7 +6,11 @@ import com.badlogic.ashley.systems.IntervalIteratingSystem;
 import com.nayragames.o2d.component.TickPerSecond;
 
 /**
- * Created by ARYAN on 1/28/2016.
+ * (c) 2016 Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 1/28/2016.
+ *
  */
 public class SecondIntervalSystem extends IntervalIteratingSystem {
 

@@ -4,6 +4,14 @@ import com.badlogic.ashley.core.Component;
 import com.badlogic.gdx.math.MathUtils;
 import com.nayragames.o2d.Enums;
 
+/**
+ * (c) 2016 Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 30-07-2016
+ *
+ */
+
 public class BulletSpawnComponent implements Component {
 
 	public enum BulletSpawnType {

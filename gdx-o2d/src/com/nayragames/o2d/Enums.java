@@ -1,9 +1,12 @@
 package com.nayragames.o2d;
 
 /**
- * Collection of different Enums used in ECS.
+ * (c) 2016 Abhishek Aryan
  *
- * Created by ARYAN on 15-12-2015.
+ * @author Abhishek Aryan
+ * @since 15-12-2015.
+ *
+ * Collection of different Enums used in ECS.
  */
 public class Enums {
 

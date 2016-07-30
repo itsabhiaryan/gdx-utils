@@ -1,4 +1,3 @@
-
 package com.nayragames.o2d;
 
 import com.badlogic.ashley.core.Entity;
@@ -8,11 +7,14 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.uwsoft.editor.renderer.components.TransformComponent;
 
 /**
+ * (c) 2016 Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 30-11-2015.
+ *
  * Factory class of Entity used in game.
  *
- * Created by ARYAN on 30-11-2015.
  */
-
 
 public class EntityFactory {
 

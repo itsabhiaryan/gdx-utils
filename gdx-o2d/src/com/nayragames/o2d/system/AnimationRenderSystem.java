@@ -11,10 +11,13 @@ import com.uwsoft.editor.renderer.components.TextureRegionComponent;
 import com.uwsoft.editor.renderer.components.TransformComponent;
 
 /**
+ * (c) 2016 Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 28-12-2015.
+ *
  * This system is used when we want to render any Animation.
  * Entity must have AnimationComponent.
- *
- * Created by ARYAN on 28-12-2015.
  */
 public class AnimationRenderSystem extends IteratingSystem {
 
@@ -43,6 +46,5 @@ public class AnimationRenderSystem extends IteratingSystem {
         animation.stateTime += deltaTime;
         texture.region = animation.animation.getKeyFrame(animation.stateTime);
         //batch.draw(textureRegion, transform.getX(), transform.getY(), origin.getOriginX(),origin.getOriginY(), animation.getWidth(), animation.getHeight(), transform.getScaleX(), transform.getScaleY(), transform.getRotation());
-
     }
 }

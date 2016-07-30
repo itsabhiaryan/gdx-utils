@@ -1,5 +1,13 @@
 package com.nayragames.o2d;
 
+/**
+ * (c) 2016 Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 30-07-2016
+ *
+ */
+
 public class CollisionBits {
 	
 	public static final short 	
@@ -10,7 +18,8 @@ public class CollisionBits {
 		TouchSensor     = 0x0010,
 		Effects 		= 0x0020;
 		
-	public static final short 		
+	public static final short
+
 		Mask_Character	    = SlideCharacter | Terrain | VisionSensor,
 		Mask_Bullet 		= Character | Terrain | VisionSensor | Effects,
 		Mask_Terrain 		= Character | SlideCharacter | Terrain | VisionSensor | TouchSensor | Effects,

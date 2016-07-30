@@ -4,9 +4,9 @@ import com.badlogic.ashley.core.EntitySystem;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.nayragames.gdxutils._GameManager;
 import com.nayragames.gdxutils.model.LogManager;
 import com.nayragames.gdxutils.model.Position;
-import com.nayragames.o2d.Constants;
 import com.nayragames.o2d.GenericEntityBuilder;
 import com.nayragames.o2d.ResourceLoader;
 import com.uwsoft.editor.renderer.SceneLoader;
@@ -16,9 +16,12 @@ import com.uwsoft.editor.renderer.utils.ComponentRetriever;
 import com.uwsoft.editor.renderer.utils.ItemWrapper;
 
 /**
- * System is used only for debugging purpose used for getting Total Entity count and what is FPS.
+ * (c) 2016 Abhishek Aryan
  *
- * Created by ARYAN on 12/8/2015.
+ * @author Abhishek Aryan
+ * @since 12/8/2015.
+ *
+ * System is used only for debugging purpose used for getting Total Entity count and what is FPS.
  */
 
 public class HudRenderSystem extends EntitySystem {
@@ -97,6 +100,6 @@ public class HudRenderSystem extends EntitySystem {
 
     @Override
     public boolean checkProcessing() {
-        return !Constants.isPaused();
+        return !_GameManager.isPaused();
     }
 }

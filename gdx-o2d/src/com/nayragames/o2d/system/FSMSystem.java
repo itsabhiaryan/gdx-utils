@@ -4,14 +4,18 @@ import com.badlogic.ashley.core.ComponentMapper;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
-import com.nayragames.o2d.Constants;
+import com.nayragames.gdxutils._GameManager;
 import com.nayragames.o2d.component.FSMComponent;
 
 /**
+ * (c) 2016 Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 12/9/2015.
+ *
  * This system is used to update FiniteStateMachine if entity having FSMComponent.
  * Finite State Machine is part of Artificial Intelligence (gdx-ai)
  *
- * Created by ARYAN on 12/9/2015.
  */
 
 public class FSMSystem extends IteratingSystem {
@@ -30,7 +34,7 @@ public class FSMSystem extends IteratingSystem {
 
 	@Override
 	public boolean checkProcessing() {
-		return !Constants.isPaused();
+		return !_GameManager.isPaused();
 	}
 
 

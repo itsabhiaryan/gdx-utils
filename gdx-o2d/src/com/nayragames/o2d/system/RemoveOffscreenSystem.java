@@ -4,15 +4,19 @@ import com.badlogic.ashley.core.ComponentMapper;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
-import com.nayragames.o2d.Constants;
+import com.nayragames.gdxutils._GameManager;
 import com.nayragames.o2d.component.BasicComponent;
 import com.nayragames.o2d.component.CollisionComponent;
 import com.uwsoft.editor.renderer.components.LayerMapComponent;
 
 /**
+ * (c) 2016 Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 09-12-2015.
+ *
  * System that remove entity which is going to offscreen if that entity is in player layer.
  *
- * Created by ARYAN on 09-12-2015.
  */
 
 public class RemoveOffscreenSystem extends IteratingSystem {
@@ -41,7 +45,7 @@ public class RemoveOffscreenSystem extends IteratingSystem {
 
     @Override
     public boolean checkProcessing() {
-        return !Constants.isPaused();
+        return !_GameManager.isPaused();
     }
 
 

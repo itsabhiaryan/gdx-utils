@@ -6,18 +6,22 @@ import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
-import com.nayragames.o2d.Constants;
+import com.nayragames.gdxutils._GameManager;
 import com.nayragames.o2d.component.B2DSteerableComponent;
 import com.nayragames.o2d.component.SteerableComponent;
 import com.uwsoft.editor.renderer.components.TransformComponent;
 import com.uwsoft.editor.renderer.components.physics.PhysicsBodyComponent;
 
 /**
+ * (c) 2016 Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 11/29/2015.
+ *
  * System that handle steering property of Entity.
  * Entity having SteerableComponent or B2DSteerableComponent
  * Steering is part of Artificial Intelligence (gdx-ai)
  *
- * Created by ARYAN on 11/29/2015.
  */
 
 public class SteeringSystem extends IteratingSystem {
@@ -185,7 +189,7 @@ public class SteeringSystem extends IteratingSystem {
 
 	@Override
 	public boolean checkProcessing() {
-		return !Constants.isPaused();
+		return !_GameManager.isPaused();
 	}
 
 

@@ -4,13 +4,17 @@ import com.badlogic.ashley.core.ComponentMapper;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
-import com.nayragames.o2d.Constants;
+import com.nayragames.gdxutils._GameManager;
 import com.nayragames.o2d.component.LeaderComponent;
 
 /**
+ * (c) 2016 Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 12/9/2015.
+ *
  * This system is used to update enemyPower of member with respect to its lead.
  * Formation is part of Artificial Intelligence (gdx-ai)
- * Created by ARYAN on 12/9/2015.
  */
 
 public class FormationSystem extends IteratingSystem {
@@ -32,8 +36,6 @@ public class FormationSystem extends IteratingSystem {
 
 	@Override
 	public boolean checkProcessing() {
-		return !Constants.isPaused();
+		return !_GameManager.isPaused();
 	}
-
-
 }

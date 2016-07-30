@@ -215,7 +215,7 @@ public class EntityManager {
 		FixtureDef fixtureDef=new FixtureDef();
 		fixtureDef.density=density;
 
-		Body body=entity.getWorld().getSystem(PhysicsSystem.class).getPhysicsWorld().createBody(PhysicsHelper.createBodyDef(type,x,y));
+		Body body=entity.getWorld().getSystem(PhysicsSystem.class).getPhysicsWorld().createBody(Helper.createBodyDef(type,x,y));
 		loader.attachFixture(body,name,fixtureDef,scaleFactor);
 
 		PhysicsBodyComponent physicsBody=new PhysicsBodyComponent();

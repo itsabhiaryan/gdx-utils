@@ -1,6 +1,5 @@
 package com.nayragames.o2d;
 
-
 import com.badlogic.ashley.core.Component;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.utils.ImmutableArray;
@@ -8,11 +7,12 @@ import com.badlogic.gdx.Gdx;
 import com.nayragames.gdxutils.b2d.BodyEditorLoader;
 
 /**
+ * (c) 2016 Abhishek Aryan
  *
+ * @author Abhishek Aryan
+ * @since 02-12-2015.
  *
  * Utilities method for ECS.
- *
- * Created by ARYAN on 02-12-2015.
  */
 public class EntityUtilities {
 

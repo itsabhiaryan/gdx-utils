@@ -5,14 +5,20 @@ import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
 import com.badlogic.gdx.math.MathUtils;
-import com.nayragames.o2d.Constants;
+import com.nayragames.gdxutils._GameManager;
+import com.nayragames.o2d.Mappers;
 import com.nayragames.o2d.component.MovementComponent;
 import com.uwsoft.editor.renderer.components.TransformComponent;
+import com.uwsoft.editor.renderer.utils.ComponentRetriever;
 
 /**
+ * (c) 2016 Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 09-12-2015.
+ *
  * If entity having MovementComponent then that entity follow his path with particular speed.
  *
- * Created by ARYAN on 09-12-2015.
  */
 
 public class MovementSystem extends IteratingSystem {
@@ -24,6 +30,9 @@ public class MovementSystem extends IteratingSystem {
   
 	public MovementSystem() {
 		super(Family.all(MovementComponent.class,TransformComponent.class).get());
+
+		transformMapper=ComponentMapper.getFor(TransformComponent.class);
+		movementMapper=ComponentMapper.getFor(MovementComponent.class);
 	}
 
 	@Override
@@ -37,13 +46,10 @@ public class MovementSystem extends IteratingSystem {
 
 		transformComponent.x=(transformComponent.x - movementComponent.speed * (float) (Math.sin(angleInRad)));
 		transformComponent.y=(transformComponent.y + movementComponent.speed * (float) (Math.cos(angleInRad)));
-
 	}
 
 	@Override
 	public boolean checkProcessing() {
-		return !Constants.isPaused();
+		return !_GameManager.isPaused();
 	}
-
-
 }

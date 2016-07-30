@@ -5,10 +5,14 @@ import aurelienribon.tweenengine.TweenAccessor;
 import com.nayragames.o2d.component.BasicComponent;
 
 /**
+ * (c) 2016 Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 12-12-2015.
+ *
  * A Tween Accessor for tween data member value of ABasicComponent of ECS.
  * This class must register with Tween for implementation.
  *
- * Created by ARYAN on 12-12-2015.
  */
 
 public class BasicComponentAccessor implements TweenAccessor<BasicComponent> {

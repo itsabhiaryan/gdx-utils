@@ -5,6 +5,9 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
 /**
+ * (c) 2016 Abhishek Aryan
+ *
+ *
  * A Tween Accessor for tween data member value of Image.
  * This class must register with Tween for implementation.
  * @author ARYAN

@@ -45,7 +45,7 @@ project(":desktop") {
         compile "com.badlogicgames.gdx:gdx-backend-lwjgl:$gdxVersion"
         compile "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
 
-        compile "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-desktop"
+       compile "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-desktop"
     }
 }
 
@@ -69,7 +69,6 @@ project(":ios") {
     apply plugin: "java"
     apply plugin: "robovm"
 
-
     dependencies {
         compile project(":core")
         compile "com.mobidevelop.robovm:robovm-rt:$roboVMVersion"
@@ -83,7 +82,6 @@ project(":html") {
     apply plugin: "gwt"
     apply plugin: "war"
 
-
     dependencies {
         compile project(":core")
         compile "com.badlogicgames.gdx:gdx-backend-gwt:$gdxVersion"
@@ -96,10 +94,10 @@ project(":core") {
     apply plugin: "java"
 
     dependencies {
-        //compile project(":gdx-utils")
+       // compile project(":gdx-utils")
         compile project(":gdx-o2d")
         compile "com.badlogicgames.gdx:gdx:$gdxVersion"
-        compile "com.badlogicgames.gdx:gdx-box2d:$gdxVersion"
+        //compile "com.badlogicgames.gdx:gdx-box2d:$gdxVersion"
     }
 }
 

@@ -4,7 +4,7 @@ import com.badlogic.ashley.core.ComponentMapper;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
-import com.nayragames.o2d.Constants;
+import com.nayragames.gdxutils._GameManager;
 import com.nayragames.o2d.component.CircularMotion;
 import com.uwsoft.editor.renderer.components.TransformComponent;
 import com.uwsoft.editor.renderer.components.particle.ParticleComponent;
@@ -12,10 +12,14 @@ import com.uwsoft.editor.renderer.components.physics.PhysicsBodyComponent;
 import com.uwsoft.editor.renderer.physics.PhysicsBodyLoader;
 
 /**
+ * (c) 2016 Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 04-01-2016.
+ *
  * If entity having CircularMotion component then entity it moves around a point.
  * Center of that Circle is decide at creation of CircularMotion component.
  *
- * Created by ARYAN on 04-01-2016.
  */
 public class CircularMotionSystem extends IteratingSystem {
 
@@ -66,6 +70,6 @@ public class CircularMotionSystem extends IteratingSystem {
 
     @Override
     public boolean checkProcessing() {
-        return !Constants.isPaused();
+        return !_GameManager.isPaused();
     }
 }

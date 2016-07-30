@@ -12,6 +12,12 @@ import com.badlogic.gdx.utils.Array;
 import com.nayragames.gdxutils.ai.Scene2dLocation;
 import com.nayragames.gdxutils.ai.formation.*;
 
+/**
+ * (c) 2016 Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 12/9/2015.
+ */
 
 public class LeaderComponent implements Component {
 

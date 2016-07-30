@@ -23,11 +23,14 @@ import com.uwsoft.editor.renderer.resources.IResourceRetriever;
 import com.uwsoft.editor.renderer.utils.ComponentRetriever;
 
 /**
+ * (c) 2016 Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 12/12/2015.
+ *
  * Collection of generic method for entity creation having different types of components.
  *
- * Created by ARYAN on 12/12/2015.
  */
-
 
 public class GenericEntityBuilder {
 

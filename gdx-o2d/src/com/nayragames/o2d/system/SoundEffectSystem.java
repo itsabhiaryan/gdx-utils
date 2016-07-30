@@ -4,13 +4,16 @@ import com.badlogic.ashley.core.ComponentMapper;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
-import com.nayragames.o2d.Constants;
+import com.nayragames.gdxutils._GameManager;
 import com.nayragames.o2d.component.SoundComponent;
 
 /**
+ * (c) 2016 Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 12/9/2015.
  * System that is responsible for sound play by entity having #VisSound.
  *
- * Created by ARYAN on 12/9/2015.
  */
 
 public class SoundEffectSystem extends IteratingSystem {
@@ -32,7 +35,7 @@ public class SoundEffectSystem extends IteratingSystem {
 
     @Override
     public boolean checkProcessing() {
-        return !Constants.isPaused();
+        return !_GameManager.isPaused();
     }
 
 }

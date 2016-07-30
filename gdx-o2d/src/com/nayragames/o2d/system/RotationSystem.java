@@ -8,7 +8,11 @@ import com.nayragames.o2d.component.RotationComponent;
 import com.uwsoft.editor.renderer.components.TransformComponent;
 
 /**
- * Created by ARYAN on 1/30/2016.
+ * (c) 2016 Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 1/30/2016.
+ *
  */
 public class RotationSystem extends IteratingSystem {
 
