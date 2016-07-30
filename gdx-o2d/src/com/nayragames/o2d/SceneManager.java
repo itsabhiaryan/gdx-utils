@@ -1,6 +1,6 @@
 package com.nayragames.o2d;
 
-import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.nayragames.gdxutils._Main;
 import com.nayragames.gdxutils.services.OrientationServices;
@@ -9,7 +9,6 @@ import com.nayragames.o2d.shaperenderer.ShapeRendererType;
 import com.nayragames.o2d.system.*;
 import com.uwsoft.editor.renderer.SceneLoader;
 import com.uwsoft.editor.renderer.utils.ComponentRetriever;
-import com.uwsoft.editor.renderer.utils.ItemWrapper;
 
 /**
  * (c) 2016 Abhishek Aryan
@@ -29,11 +28,7 @@ public class SceneManager {
 
     public ResourceLoader resourceManager;
 
-    /**
-     * initialization of ResourceManager which is used when we load any scene.
-     *
-     *
-     */
+    /** initialization of ResourceManager which is used when we load any scene. */
 
     public SceneManager(_Main game){
         SceneManager.game=game;
@@ -50,13 +45,14 @@ public class SceneManager {
         ComponentRetriever.addMapper(ShapeComponent.class);
     }
 
-    /**
-     * Different method for loading of different scene.
-     *
-     */
+    /** Different method for loading of different scene. */
 
     public boolean isLoaded;
     public static ShapeRendererType shapeRendererType;
+
+    public void update(){
+        sceneLoader.getEngine().update(Gdx.graphics.getDeltaTime());
+    }
 
     public SceneLoader loadMainScene () {
 

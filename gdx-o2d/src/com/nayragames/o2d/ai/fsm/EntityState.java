@@ -4,8 +4,8 @@ import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.ai.fsm.State;
 import com.badlogic.gdx.ai.msg.Telegram;
 
-public enum EntityState implements State<Entity> {
-    ;
+public class EntityState implements State<Entity> {
+
 
     @Override
     public void enter(Entity entity) {

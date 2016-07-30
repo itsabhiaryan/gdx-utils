@@ -24,7 +24,7 @@ public class B2DSteerableComponent implements Component,Steerable<Vector2> {
 	boolean independentFacing;
 
 	public SteeringBehavior<Vector2> steeringBehavior;
-	public SteeringAcceleration<Vector2> steeringOutput = new SteeringAcceleration<Vector2>(new Vector2());
+	public SteeringAcceleration<Vector2> steeringOutput;
 
 	public B2DSteerableComponent(Body body, boolean independentFacing, float boundingRadius) {
 	
@@ -32,7 +32,7 @@ public class B2DSteerableComponent implements Component,Steerable<Vector2> {
 		this.independentFacing = independentFacing;
 		this.boundingRadius = boundingRadius;
 		this.tagged = false;
-
+		steeringOutput = new SteeringAcceleration<Vector2>(new Vector2());
 		body.setUserData(this);
 	}
 	

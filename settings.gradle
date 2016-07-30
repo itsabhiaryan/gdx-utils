@@ -1,6 +1,6 @@
 //include ':mylib'
+include 'android', 'ios', 'html'
 include 'desktop', 'core'
-       // 'android', 'ios', 'html'
 include 'gdx-utils'
 include 'gdx-o2d'
 include 'gdx-vis'

@@ -16,10 +16,10 @@ repositories {
 dependencies {
    // testCompile group: 'junit', name: 'junit', version: '4.11'
     compile project(":gdx-utils")
-    //provided "com.underwaterapps.overlap2druntime:overlap2d-runtime-libgdx:0.1.2-SNAPSHOT"
+    provided "com.underwaterapps.overlap2druntime:overlap2d-runtime-libgdx:0.1.2-SNAPSHOT"
 
-   // provided "aurelienribon:tweenengine:6.3.3"
-   // provided "aurelienribon:tweenengine:6.3.3:sources"
+    provided "aurelienribon:tweenengine:6.3.3"
+    provided "aurelienribon:tweenengine:6.3.3:sources"
 
 }
 

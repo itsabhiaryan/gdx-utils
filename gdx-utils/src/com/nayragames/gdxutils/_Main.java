@@ -14,11 +14,10 @@ public abstract class _Main extends Game {
 
     public IServices services;
     public float width,height;
+    public _GameManager gameManager;
 
     public _Main(){
 
-        width=Gdx.graphics.getWidth();
-        height=Gdx.graphics.getHeight();
 
     }
 
@@ -27,16 +26,21 @@ public abstract class _Main extends Game {
         this.services=services;
     }
 
-
     @Override
+    public void create() {
+        width=Gdx.graphics.getWidth();
+        height=Gdx.graphics.getHeight();
+    }
+
+    /*@Override
     public void render() {
         super.render();
 
-        Gdx.gl.glClearColor(0, 0, 0, 1);
+        Gdx.gl.glClearColor(0, 1, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT );
 
 
-    }
+    }*/
 
     public AdServices getAdService(){
         return (AdServices)services;

@@ -42,14 +42,14 @@ project(":desktop") {
 
     dependencies {
         compile project(":core")
-     /*   compile "com.badlogicgames.gdx:gdx-backend-lwjgl:$gdxVersion"
+        compile "com.badlogicgames.gdx:gdx-backend-lwjgl:$gdxVersion"
         compile "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
 
-        compile "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-desktop"*/
+        compile "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-desktop"
     }
 }
 
-/*project(":android") {
+project(":android") {
     apply plugin: "android"
 
     configurations { natives }
@@ -90,15 +90,16 @@ project(":html") {
         compile "com.badlogicgames.gdx:gdx:$gdxVersion:sources"
         compile "com.badlogicgames.gdx:gdx-backend-gwt:$gdxVersion:sources"
     }
-}*/
+}
 
 project(":core") {
     apply plugin: "java"
 
     dependencies {
-        compile project(":gdx-utils")
-       /* compile "com.badlogicgames.gdx:gdx:$gdxVersion"
-        compile "com.badlogicgames.gdx:gdx-box2d:$gdxVersion"*/
+        //compile project(":gdx-utils")
+        compile project(":gdx-o2d")
+        compile "com.badlogicgames.gdx:gdx:$gdxVersion"
+        compile "com.badlogicgames.gdx:gdx-box2d:$gdxVersion"
     }
 }
 

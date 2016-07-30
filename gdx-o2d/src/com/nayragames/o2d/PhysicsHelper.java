@@ -20,7 +20,6 @@ import com.uwsoft.editor.renderer.components.physics.PhysicsBodyComponent;
  * Created by ARYAN on 1/1/2016.
  */
 
-
 public class PhysicsHelper {
 
     private static final String TAG = "[" + PhysicsHelper.class.getSimpleName() + "]";

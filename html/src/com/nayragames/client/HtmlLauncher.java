@@ -3,7 +3,7 @@ package com.nayragames.client;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.backends.gwt.GwtApplication;
 import com.badlogic.gdx.backends.gwt.GwtApplicationConfiguration;
-import com.nayragames.Main;
+import com.ng.Main;
 
 public class HtmlLauncher extends GwtApplication {
 
