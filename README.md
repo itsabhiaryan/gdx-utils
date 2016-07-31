@@ -5,6 +5,7 @@ This is helper library for libgdx game frameworks.
 This library is deployed in maven central repository.
 
 [![](https://img.shields.io/badge/maven--central-1.0-blue.svg)](https://repo1.maven.org/maven2/com/github/aryan9234/gdx-utils/1.0/gdx-utils-1.0.jar)
+[![](https://img.shields.io/badge/jcenter-1.0-blue.svg)](http://jcenter.bintray.com/com/github/aryan9234/gdx-utils/1.0/)
 [![](https://img.shields.io/badge/snapshot-1.0.1-orange.svg)](https://oss.sonatype.org/content/repositories/snapshots/com/github/aryan9234/gdx-utils/1.0.1-SNAPSHOT/gdx-utils-1.0.1-20160724.190533-1.jar)
 
 ###How to use as dependency in gradle###
