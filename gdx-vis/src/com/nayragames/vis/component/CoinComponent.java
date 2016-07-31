@@ -3,7 +3,11 @@ package com.nayragames.vis.component;
 import com.artemis.Component;
 
 /**
- * Created by Personal on 02-12-2015.
+ * (c) 2016 Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 02-12-2015.
+ *
  */
 public class CoinComponent extends Component {
 

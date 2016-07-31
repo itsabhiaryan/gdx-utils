@@ -10,18 +10,22 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.kotcrab.vis.runtime.component.PhysicsBody;
 import com.kotcrab.vis.runtime.component.Transform;
-import com.nayragames.vis.Constants;
+import com.nayragames.gdxutils._GameManager;
 import com.nayragames.vis.Enums;
 import com.nayragames.vis.component.B2DSteerableComponent;
 import com.nayragames.vis.component.MovementComponent;
 import com.nayragames.vis.component.SteerableComponent;
 
 /**
+ * (c) 2016 Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 11/29/2015.
+ *
  * System that handle steering property of Entity.
  * Entity having SteerableComponent or B2DSteerableComponent
  * Steering is part of Artificial Intelligence (gdx-ai)
  *
- * Created by ARYAN on 11/29/2015.
  */
 
 public class SteeringSystem extends EntityProcessingSystem{
@@ -183,6 +187,6 @@ public class SteeringSystem extends EntityProcessingSystem{
 
 	@Override
 	protected boolean checkProcessing() {
-		return !Constants.isPaused();
+		return !_GameManager.isPaused();
 	}
 }

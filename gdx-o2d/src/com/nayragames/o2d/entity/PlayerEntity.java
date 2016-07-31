@@ -3,9 +3,9 @@ package com.nayragames.o2d.entity;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.physics.box2d.*;
+import com.nayragames.gdxutils.b2d.GenericPhysicsHelper;
 import com.nayragames.gdxutils.model.Position;
 import com.nayragames.gdxutils.model.Scale;
-import com.nayragames.gdxutils.b2d.PhysicsHelper;
 import com.nayragames.o2d.EntityManager;
 import com.uwsoft.editor.renderer.SceneLoader;
 import com.uwsoft.editor.renderer.components.physics.PhysicsBodyComponent;
@@ -47,7 +47,7 @@ public class PlayerEntity {
 
 
         World physicsWorld = sceneLoader.world;
-        Body body = physicsWorld.createBody(PhysicsHelper.createBodyDef(BodyDef.BodyType.DynamicBody,positionx,positiony));
+        Body body = physicsWorld.createBody(GenericPhysicsHelper.createBodyDef(BodyDef.BodyType.DynamicBody,positionx,positiony));
 
         Shape shape;
         if(randomType==0) {
@@ -59,7 +59,7 @@ public class PlayerEntity {
            // FixtureDef fixtureDef=new FixtureDef();
            // fixtureDef.density=1.25f;
 
-            //Helper.heliLoader.attachFixture(body,Helper.BodyLoaderData.HELI.value,fixtureDef,.7f);
+            //PhysicsHelper.heliLoader.attachFixture(body,PhysicsHelper.BodyLoaderData.HELI.value,fixtureDef,.7f);
 
         } else if(randomType==1){
             shape=new CircleShape();

@@ -1,4 +1,3 @@
-
 package com.nayragames.gdxutils.model;
 
 import com.badlogic.gdx.Gdx;
@@ -7,6 +6,14 @@ import com.badlogic.gdx.graphics.PixmapIO;
 import com.badlogic.gdx.utils.ScreenUtils;
 
 import java.nio.ByteBuffer;
+
+/**
+ * (c) 2016 Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 24-07-2016
+ *
+ */
 
 public class ScreenshotFactory {
 	

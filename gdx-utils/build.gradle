@@ -1,15 +1,15 @@
-group 'com.github.aryan9234'
-version '0.0.1-SNAPSHOT'
+group GROUP
+version VERSION_NAME
 
 apply plugin: 'java'
 apply plugin: 'maven'
 apply plugin: "nebula.provided-base"
+apply plugin: 'com.jfrog.bintray'
 //apply from: '../publish.gradle'
-//apply from: 'bintray_push.gradle'
+apply from: 'bintray_push.gradle'
 
 sourceCompatibility = 1.6
 sourceSets.main.java.srcDirs = [ "src/" ]
-
 
 repositories {
     mavenCentral()
@@ -24,6 +24,9 @@ dependencies {
     provided "com.badlogicgames.box2dlights:box2dlights:$box2DLightsVersion"
     provided "com.badlogicgames.gdx:gdx-ai:$aiVersion"
     provided 'com.kotcrab.vis:vis-ui:1.1.4'
+
+    provided "aurelienribon:tweenengine:6.3.3"
+    provided "aurelienribon:tweenengine:6.3.3:sources"
 }
 
 /*uploadArchives {

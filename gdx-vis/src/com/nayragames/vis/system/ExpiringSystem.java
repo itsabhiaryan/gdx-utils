@@ -6,11 +6,14 @@ import com.artemis.Entity;
 import com.artemis.systems.DelayedEntityProcessingSystem;
 import com.nayragames.vis.component.ExpireComponent;
 
-
 /**
+ * (c) 2016 Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 12/9/2015.
+ *
  * System used to expire or delete entity form ECS world if entity having ExpireComponent.
  *
- * Created by ARYAN on 12/9/2015.
  */
 
 public class ExpiringSystem extends DelayedEntityProcessingSystem {

@@ -11,12 +11,17 @@ import com.kotcrab.vis.runtime.component.PhysicsBody;
 import com.kotcrab.vis.runtime.component.Variables;
 import com.kotcrab.vis.runtime.system.CameraManager;
 import com.kotcrab.vis.runtime.system.physics.PhysicsSystem;
-import com.nayragames.vis.Constants;
+import com.nayragames.gdxutils._GameManager;
 import com.nayragames.vis.component.Bounds;
 
 /**
- * Helper of PhysicsSystem like if entity remove from world than it delete body form physics World.
- * Created by ARYAN on 28-12-2015.
+ * (c) 2016 Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 28-12-2015.
+ *
+ * PhysicsHelper of PhysicsSystem like if entity remove from world than it delete body form physics World.
+ *
  */
 public class PhysicsManager extends EntitySystem {
 
@@ -109,11 +114,11 @@ public class PhysicsManager extends EntitySystem {
     @Override
     protected boolean checkProcessing() {
 
-        if(Constants.isPaused())
+        if(_GameManager.isPaused())
             getWorld().getSystem(PhysicsSystem.class).setEnabled(false);
         else
             getWorld().getSystem(PhysicsSystem.class).setEnabled(true);
 
-        return !Constants.isPaused();
+        return !_GameManager.isPaused();
     }
 }

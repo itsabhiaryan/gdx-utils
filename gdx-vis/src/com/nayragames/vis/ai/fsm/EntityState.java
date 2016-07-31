@@ -4,6 +4,14 @@ import com.artemis.Entity;
 import com.badlogic.gdx.ai.fsm.State;
 import com.badlogic.gdx.ai.msg.Telegram;
 
+/**
+ * (c) 2016 Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 12/28/2015.
+ *
+ */
+
 public enum EntityState implements State<Entity> {
     ;
 

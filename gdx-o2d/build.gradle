@@ -1,5 +1,5 @@
-group 'com.aryan9234.github'
-version '1.0-SNAPSHOT'
+group GROUP
+version VERSION_NAME
 
 apply plugin: 'java'
 apply plugin: "nebula.provided-base"
@@ -15,9 +15,11 @@ repositories {
 
 dependencies {
    // testCompile group: 'junit', name: 'junit', version: '4.11'
-    compile project(":gdx-utils")
+    //compile project(":gdx-utils")
+    compile "com.github.aryan9234:gdx-utils:1.0"
     compile "com.underwaterapps.overlap2druntime:overlap2d-runtime-libgdx:0.1.2-SNAPSHOT"
     provided "com.badlogicgames.gdx:gdx-ai:$aiVersion"
+
     provided "aurelienribon:tweenengine:6.3.3"
     provided "aurelienribon:tweenengine:6.3.3:sources"
 }

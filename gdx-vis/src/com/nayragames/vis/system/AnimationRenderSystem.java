@@ -10,14 +10,18 @@ import com.kotcrab.vis.runtime.component.Transform;
 import com.kotcrab.vis.runtime.system.delegate.DeferredEntityProcessingSystem;
 import com.kotcrab.vis.runtime.system.delegate.EntityProcessPrincipal;
 import com.kotcrab.vis.runtime.system.render.RenderBatchingSystem;
-import com.nayragames.vis.Constants;
+import com.nayragames.gdxutils._GameManager;
 import com.nayragames.vis.component.AnimationComponent;
 
 /**
+ * (c) 2016 Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 28-12-2015.
+ *
  * This system is used when we want to render any Animation.
  * Entity must have AnimationComponent.
  *
- * Created by ARYAN on 28-12-2015.
  */
 public class AnimationRenderSystem extends DeferredEntityProcessingSystem {
 
@@ -51,6 +55,6 @@ public class AnimationRenderSystem extends DeferredEntityProcessingSystem {
 
     @Override
     protected boolean checkProcessing() {
-        return !Constants.isPaused();
+        return !_GameManager.isPaused();
     }
 }

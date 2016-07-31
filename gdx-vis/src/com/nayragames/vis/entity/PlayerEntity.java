@@ -16,7 +16,11 @@ import com.nayragames.model.Size;
 
 */
 /**
- * Created by ARYAN on 1/6/2016.
+ * (c) 2016 Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 1/6/2016.
+ *
  *//*
 
 public class PlayerEntity {

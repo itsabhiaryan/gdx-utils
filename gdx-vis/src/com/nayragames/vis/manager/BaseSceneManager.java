@@ -13,14 +13,18 @@ import com.kotcrab.vis.runtime.component.VisSprite;
 import com.kotcrab.vis.runtime.system.CameraManager;
 import com.kotcrab.vis.runtime.system.VisIDManager;
 import com.kotcrab.vis.runtime.util.AfterSceneInit;
+import com.nayragames.gdxutils._Main;
 import com.nayragames.vis.GenericEntityBuilder;
 import com.nayragames.vis.component.Bounds;
 
-
 /**
+ * (c) 2016 Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 30-11-2015.
+ *
  * Parent Manager class of all Manager class.
  *
- * @author ARYAN on 30-11-2015.
  */
 
 public abstract class BaseSceneManager extends Manager implements InputProcessor, AfterSceneInit {
@@ -28,7 +32,7 @@ public abstract class BaseSceneManager extends Manager implements InputProcessor
 	private static final String TAG = "[" + BaseSceneManager.class.getSimpleName() + "]";
 	protected ComponentMapper<VisSprite> spriteCm;
 	protected ComponentMapper<Bounds> boundsCm;
-	protected Game game;
+	protected _Main game;
 	protected CameraManager cameraManager;
 	protected VisIDManager idManager;
 	protected Vector3 unProjectVec = new Vector3();
@@ -36,7 +40,7 @@ public abstract class BaseSceneManager extends Manager implements InputProcessor
 	public static InputProcessor sceneInput ;
 	public static VisMusic musicComponent;
 
-	public BaseSceneManager(Game game) {
+	public BaseSceneManager(_Main game) {
 		this.game = game;
 		sceneInput=this;
 	}

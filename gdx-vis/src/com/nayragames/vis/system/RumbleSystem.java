@@ -4,15 +4,18 @@ import com.artemis.Aspect;
 import com.artemis.ComponentMapper;
 import com.artemis.Entity;
 import com.artemis.systems.EntityProcessingSystem;
-import com.nayragames.vis.Constants;
+import com.nayragames.gdxutils._GameManager;
 import com.nayragames.vis.component.BasicComponent;
 import com.nayragames.vis.component.RumbleComponent;
-import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
 
 import java.util.Random;
 
 /**
- * Created by ARYAN on 14-12-2015.
+ * (c) 2016 Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 14-12-2015.
+ *
  */
 
 public class RumbleSystem extends EntityProcessingSystem {
@@ -48,6 +51,6 @@ public class RumbleSystem extends EntityProcessingSystem {
 
     @Override
     protected boolean checkProcessing() {
-        return !Constants.isPaused();
+        return !_GameManager.isPaused();
     }
 }

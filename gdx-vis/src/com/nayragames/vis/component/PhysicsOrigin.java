@@ -3,7 +3,11 @@ package com.nayragames.vis.component;
 import com.artemis.Component;
 
 /**
- * Created by ARYAN on 12/30/2015.
+ * (c) 2016 Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 12/30/2015.
+ *
  */
 public class PhysicsOrigin extends Component {
 

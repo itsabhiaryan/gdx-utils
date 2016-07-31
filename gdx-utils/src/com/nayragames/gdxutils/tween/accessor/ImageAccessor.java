@@ -1,18 +1,20 @@
-package com.nayragames.o2d.tween.accessors;
+package com.nayragames.gdxutils.tween.accessor;
 
 import aurelienribon.tweenengine.TweenAccessor;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
 /**
- * A Tween Accessor for tween data member value of Sprite.
+ * (c) 2016 Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 30-07-2016
+ *
+ * A Tween Accessor for tween data member value of Image.
  * This class must register with Tween for implementation.
  *
- * Created by ARYAN on 12-12-2015.
  */
-
-public class SpriteAccessor implements TweenAccessor<Sprite> {
-
+public class ImageAccessor implements TweenAccessor<Image> {
 	public static final int POS_XY = 1;
 	public static final int CPOS_XY = 2;
 	public static final int SCALE_XY = 3;
@@ -21,7 +23,7 @@ public class SpriteAccessor implements TweenAccessor<Sprite> {
 	public static final int TINT = 6;
 
 	@Override
-	public int getValues(Sprite target, int tweenType, float[] returnValues) {
+	public int getValues(Image target, int tweenType, float[] returnValues) {
 		switch (tweenType) {
 			case POS_XY:
 				returnValues[0] = target.getX();
@@ -52,7 +54,7 @@ public class SpriteAccessor implements TweenAccessor<Sprite> {
 	}
 
 	@Override
-	public void setValues(Sprite target, int tweenType, float[] newValues) {
+	public void setValues(Image target, int tweenType, float[] newValues) {
 		switch (tweenType) {
 			case POS_XY: target.setPosition(newValues[0], newValues[1]); break;
 			case CPOS_XY: target.setPosition(newValues[0] - target.getWidth()/2, newValues[1] - target.getHeight()/2); break;

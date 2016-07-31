@@ -1,0 +1,59 @@
+
+game.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+gameplay1
+  rotate: false
+  xy: 1, 141
+  size: 480, 800
+  orig: 480, 800
+  offset: 0, 0
+  index: -1
+gameplay2
+  rotate: false
+  xy: 483, 141
+  size: 480, 800
+  orig: 480, 800
+  offset: 0, 0
+  index: -1
+play
+  rotate: false
+  xy: 1, 71
+  size: 212, 68
+  orig: 212, 68
+  offset: 0, 0
+  index: -1
+rate
+  rotate: false
+  xy: 1, 1
+  size: 212, 68
+  orig: 212, 68
+  offset: 0, 0
+  index: -1
+cube
+  rotate: false
+  xy: 215, 75
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+
+game2.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+levelpage
+  rotate: false
+  xy: 1, 1
+  size: 480, 800
+  orig: 480, 800
+  offset: 0, 0
+  index: -1
+mainpage
+  rotate: false
+  xy: 483, 1
+  size: 480, 800
+  orig: 480, 800
+  offset: 0, 0
+  index: -1

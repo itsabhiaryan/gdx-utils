@@ -20,7 +20,7 @@ public class ContactListener implements com.badlogic.gdx.physics.box2d.ContactLi
     public ContactListener(SceneLoader sceneLoader, Body body){
         this.sceneLoader=sceneLoader;
         this.playerBody=body;
-        //Helper.getPhysicsWorld(world).setContactListener(this);
+        //o_PhysicsHelper.getPhysicsWorld(world).setContactListener(this);
     }
 
     @Override

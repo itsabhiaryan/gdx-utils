@@ -3,6 +3,13 @@ package com.nayragames.vis.component;
 import com.artemis.Component;
 import com.badlogic.gdx.math.MathUtils;
 
+/**
+ * (c) 2016 Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 01-08-2016
+ *
+ */
 public class BulletSpawnComponent extends Component {
 
 	public enum BulletSpawnType {

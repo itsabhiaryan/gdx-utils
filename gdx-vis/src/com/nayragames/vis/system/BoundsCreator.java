@@ -5,15 +5,20 @@ import com.artemis.BaseEntitySystem;
 import com.artemis.ComponentMapper;
 import com.artemis.utils.IntBag;
 import com.kotcrab.vis.runtime.component.VisSprite;
-import com.nayragames.vis.Constants;
+import com.nayragames.gdxutils._GameManager;
 import com.nayragames.vis.component.AnimationComponent;
 import com.nayragames.vis.component.Bounds;
 import com.nayragames.vis.component.ShapeComponent;
 
 /**
+ * (c) 2016 Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 01-08-2016
+ *
  * This system create and add Bounds component for entity that have any of these component VisSprite,AnimationComponent,ShapeComponent.
  *
- * @author ARYAN */
+ */
 
 public class BoundsCreator extends BaseEntitySystem {
 	private ComponentMapper<Bounds> boundsCm;
@@ -38,6 +43,6 @@ public class BoundsCreator extends BaseEntitySystem {
 
 	@Override
 	protected boolean checkProcessing() {
-		return !Constants.isPaused();
+		return !_GameManager.isPaused();
 	}
 }

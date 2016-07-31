@@ -1,5 +1,11 @@
 package com.nayragames.gdxutils.model;
 
+import com.badlogic.gdx.math.Path;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.actions.TemporalAction;
+import com.badlogic.gdx.utils.Pool;
+import com.badlogic.gdx.utils.Pools;
+
 /**
  * (c) 2016 Abhishek Aryan
  *
@@ -7,12 +13,6 @@ package com.nayragames.gdxutils.model;
  * @since 24-07-2016
  *
  */
-
-import com.badlogic.gdx.math.Path;
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.actions.TemporalAction;
-import com.badlogic.gdx.utils.Pool;
-import com.badlogic.gdx.utils.Pools;
 
 public class MoveAlongPath extends TemporalAction {
 

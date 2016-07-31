@@ -12,18 +12,22 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.kotcrab.vis.runtime.component.Transform;
 import com.kotcrab.vis.runtime.component.VisSprite;
+import com.nayragames.gdxutils._GameManager;
 import com.nayragames.gdxutils.model.Position;
 import com.nayragames.gdxutils.model.Size;
-import com.nayragames.vis.Constants;
 import com.nayragames.vis.Enums;
-import com.nayragames.vis.GenericEntityBuilder;
 import com.nayragames.vis.component.HealthComponent;
 import com.nayragames.vis.component.LeftRightComponent;
+import com.nayragames.vis.physics.PhysicsFactory;
 
 /**
+ * (c) 2016 Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 14-01-2016.
+ *
  * System that move entity from left to right and vice versa.
  *
- * Created by ARYAN on 14-01-2016.
  */
 
 public class LeftRightSystem extends EntityProcessingSystem {
@@ -64,7 +68,8 @@ public class LeftRightSystem extends EntityProcessingSystem {
 			transform.setX(x);
 
 			int randomValue = MathUtils.random(1000);
-            Entity entity= GenericEntityBuilder.createPhysicsShape(world,1, Color.WHITE, Size.makeSize(.25f, .25f), Position.makePosition(transform.getX() + sprite.getWidth() / 2, transform.getY() + sprite.getHeight() / 2),180, BodyDef.BodyType.DynamicBody,.5f);
+
+            Entity entity= PhysicsFactory.createPhysicsShape(world,1, Color.WHITE, Size.makeSize(.25f, .25f), Position.makePosition(transform.getX() + sprite.getWidth() / 2, transform.getY() + sprite.getHeight() / 2),180, BodyDef.BodyType.DynamicBody,.5f);
             if (randomValue < 1) {
 
 				playerManager.setPlayer(entity, Enums.Player.PLAYER.value);
@@ -95,7 +100,7 @@ public class LeftRightSystem extends EntityProcessingSystem {
 
 	@Override
 	protected boolean checkProcessing() {
-		return !Constants.isPaused();
+		return !_GameManager.isPaused();
 	}
 }
 

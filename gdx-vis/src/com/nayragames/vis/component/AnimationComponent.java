@@ -4,9 +4,12 @@ import com.artemis.Component;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
-
 /**
- * Created by ARYAN on 26-11-2015.
+ * (c) 2016 Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 26-11-2015.
+ *
  */
 public class AnimationComponent extends Component {
 

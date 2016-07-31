@@ -3,7 +3,11 @@ package com.nayragames.vis.component;
 import com.artemis.Component;
 
 /**
- * Created by ARYAN on 12/28/2015.
+ * (c) 2016 Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 12/28/2015.
+ *
  */
 public class ShapeComponent extends Component {
 

@@ -8,14 +8,19 @@ import com.kotcrab.vis.runtime.component.Origin;
 import com.kotcrab.vis.runtime.component.PhysicsBody;
 import com.kotcrab.vis.runtime.component.Transform;
 import com.kotcrab.vis.runtime.component.VisParticle;
-import com.nayragames.vis.Constants;
+import com.nayragames.gdxutils._GameManager;
 import com.nayragames.vis.component.CircularMotion;
 
 /**
+ * (c) 2016 Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 04-01-2016.
+ *
+ *
  * If entity having CircularMotion component then entity it moves around a point.
  * Center of that Circle is decide at creation of CircularMotion component.
  *
- * Created by ARYAN on 04-01-2016.
  */
 public class CircularMotionSystem extends EntityProcessingSystem {
 
@@ -61,6 +66,6 @@ public class CircularMotionSystem extends EntityProcessingSystem {
 
     @Override
     protected boolean checkProcessing() {
-        return !Constants.isPaused();
+        return !_GameManager.isPaused();
     }
 }

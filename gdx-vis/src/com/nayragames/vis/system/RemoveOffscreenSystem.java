@@ -6,16 +6,19 @@ import com.artemis.Entity;
 import com.artemis.annotations.Wire;
 import com.artemis.systems.EntityProcessingSystem;
 import com.kotcrab.vis.runtime.component.Layer;
-import com.nayragames.vis.Constants;
+import com.nayragames.gdxutils._GameManager;
 import com.nayragames.vis.Enums;
 import com.nayragames.vis.component.BasicComponent;
 import com.nayragames.vis.component.CollisionComponent;
 
-
 /**
+ * (c) 2016 Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 09-12-2015.
+ *
  * System that remove entity which is going to offscreen if that entity is in player layer.
  *
- * Created by ARYAN on 09-12-2015.
  */
 
 @Wire
@@ -45,6 +48,6 @@ public class RemoveOffscreenSystem extends EntityProcessingSystem {
 
     @Override
     protected boolean checkProcessing() {
-        return !Constants.isPaused();
+        return !_GameManager.isPaused();
     }
 }

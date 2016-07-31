@@ -1,4 +1,4 @@
-package com.nayragames.vis.tween.accessors;
+package com.nayragames.gdxutils.tween.accessor;
 
 import aurelienribon.tweenengine.TweenAccessor;
 import com.badlogic.gdx.scenes.scene2d.ui.SplitPane;
@@ -10,10 +10,10 @@ import com.badlogic.gdx.scenes.scene2d.ui.SplitPane;
  * Created by ARYAN on 12/6/2015.
  */
 
-public class VisSplitPaneAccessor implements TweenAccessor<SplitPane> {
+public class SplitPaneAccessor implements TweenAccessor<SplitPane> {
 
     public static final int SPLIT_AMOUNT = 1;
-    private static final String TAG = "[" + VisSplitPaneAccessor.class.getSimpleName() + "]";
+    private static final String TAG = "[" + SplitPaneAccessor.class.getSimpleName() + "]";
 
     @Override
     public int getValues(SplitPane target, int tweenType, float[] returnValues) {

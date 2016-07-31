@@ -33,7 +33,6 @@ public class VOManager {
 
         colorPrimitiveVO.shape= VOManager.getShapeVO(new float[]{0,0,0,height,width,height,width,0});
 
-
         return colorPrimitiveVO;
     }
 */
@@ -153,7 +152,6 @@ public class VOManager {
         physicsBodyDataVO.restitution=.2f;
         physicsBodyDataVO.awake=true;
 
-
         return physicsBodyDataVO;
     }
 
@@ -186,5 +184,4 @@ public class VOManager {
 
         return shapeVO;
     }
-
 }

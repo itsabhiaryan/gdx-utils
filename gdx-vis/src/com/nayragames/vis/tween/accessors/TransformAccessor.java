@@ -4,10 +4,14 @@ import aurelienribon.tweenengine.TweenAccessor;
 import com.kotcrab.vis.runtime.component.Transform;
 
 /**
+ * (c) 2016 Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 11/29/2015.
+ *
  * A Tween Accessor for tween data member value of SpriteComponent of ECS.
  * This class must register with Tween for implementation.
  *
- * Created by ARYAN on 11/29/2015.
  */
 
 public class TransformAccessor implements TweenAccessor<Transform> {

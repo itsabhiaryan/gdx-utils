@@ -28,9 +28,13 @@ import com.nayragames.view.screens.GameOverScreen;
 
 */
 /**
+ * (c) 2016 Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 28-12-2015.
+ *
  * System that is helper of game, Entity insertion, deletion and camera movement by player position.
  *
- * Created by ARYAN on 28-12-2015.
  *//*
 
 

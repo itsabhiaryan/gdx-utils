@@ -1,10 +1,17 @@
-
 package com.nayragames.vis.component;
 
 import com.artemis.Component;
 import com.badlogic.gdx.ai.steer.SteeringBehavior;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Pool.Poolable;
+
+/**
+ * (c) 2016 Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 12/28/2015.
+ *
+ */
 
 public class SteeringBehaviorComponent extends Component implements Poolable {
 

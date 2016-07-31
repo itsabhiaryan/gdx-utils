@@ -6,12 +6,16 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.kotcrab.vis.runtime.component.PhysicsBody;
 import com.kotcrab.vis.runtime.system.physics.PhysicsSystem;
+import com.nayragames.gdxutils.b2d.GenericPhysicsHelper;
 import com.nayragames.gdxutils.model.Calc;
 import com.nayragames.gdxutils.b2d.BodyEditorLoader;
-import com.nayragames.gdxutils.b2d.PhysicsHelper;
 
 /**
- * Created by Personal on 7/27/2016.
+ * (c) 2016 Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 7/27/2016.
+ *
  */
 public class PhysicsManager {
 
@@ -40,7 +44,7 @@ public class PhysicsManager {
             shape.setAsBox(width / 2f, height / 2f);
 
         World physicsWorld = entity.getWorld().getSystem(PhysicsSystem.class).getPhysicsWorld();
-        Body body = physicsWorld.createBody(PhysicsHelper.createBodyDef(type,x,y));
+        Body body = physicsWorld.createBody(GenericPhysicsHelper.createBodyDef(type,x,y));
 
         body.createFixture(shape,density);
         PhysicsBody physicsBody = new PhysicsBody(body);
@@ -54,7 +58,7 @@ public class PhysicsManager {
 
     public static PhysicsBody addPhysicsBody(Entity entity, Shape shape, float density, BodyDef bodyDef){
 
-        Body body = Helper.getPhysicsWorld(entity.getWorld()).createBody(bodyDef);
+        Body body = PhysicsHelper.getPhysicsWorld(entity.getWorld()).createBody(bodyDef);
         body.createFixture(shape, density);
         PhysicsBody physicsBody=new PhysicsBody(body);
         entity.edit().add(physicsBody);
@@ -67,7 +71,7 @@ public class PhysicsManager {
         FixtureDef fixtureDef=new FixtureDef();
         fixtureDef.density=density;
 
-        Body body=entity.getWorld().getSystem(PhysicsSystem.class).getPhysicsWorld().createBody(PhysicsHelper.createBodyDef(type,x,y));
+        Body body=entity.getWorld().getSystem(PhysicsSystem.class).getPhysicsWorld().createBody(GenericPhysicsHelper.createBodyDef(type,x,y));
         loader.attachFixture(body,name,fixtureDef,scaleFactor);
 
         PhysicsBody physicsBody=new PhysicsBody(body);

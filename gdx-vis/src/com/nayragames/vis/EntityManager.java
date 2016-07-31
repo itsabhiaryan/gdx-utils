@@ -18,12 +18,20 @@ import com.kotcrab.vis.runtime.component.*;
 import com.nayragames.gdxutils.model.Position;
 import com.nayragames.gdxutils.model.Scale;
 import com.nayragames.gdxutils.model.Size;
-import com.nayragames.vis.component.*;
+import com.nayragames.vis.component.AnimationComponent;
+import com.nayragames.vis.component.BasicComponent;
+import com.nayragames.vis.component.CircularMotion;
+import com.nayragames.vis.component.ShapeComponent;
+//import com.nayragames.vis.component;
 
 /**
+ * (c) 2016 Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 30-11-2015.
+ *
  * Collection of different method for creation of different component of of Entity.
  *
- * Created by ARYAN on 30-11-2015.
  */
 
 public class EntityManager {
@@ -125,7 +133,7 @@ public class EntityManager {
 		return shapeComponent ;
 	}
 
-	public static ShapeComponent addShape(Entity entity,float radius){
+	public static ShapeComponent addShape(Entity entity, float radius){
 
 		ShapeComponent shapeComponent=new ShapeComponent();
 		shapeComponent.setShape(ShapeComponent.Shape.CIRCLE);
@@ -140,9 +148,6 @@ public class EntityManager {
 		entity.edit().add(animationComponent);
 		return animationComponent;
 	}
-
-
-
 
 	public static VisText addVisText(Entity entity, BitmapFont font, String text){
 		VisText visText=new VisText(font, text);
@@ -274,64 +279,7 @@ public class EntityManager {
 		return basicComponent;
 	}
 
-
-	public static FSMComponent createFSMC(Entity entity){
-
-		FSMComponent component=new FSMComponent(entity);
-		entity.edit().add(component);
-		//component.getStateMachine().setInitialState(EntityState.NONE);
-		return component;
-	}
-
-	public static Component createSteerC(Entity entity){
-
-		Component steeringComponent=null;
-		if(entity.getWorld().getMapper(PhysicsBody.class).has(entity))
-			steeringComponent=createB2dSteerC(entity,false);
-		else
-			steeringComponent=createSteerC(entity,false);
-
-		return steeringComponent;
-	}
-
-	public static SteerableComponent createSteerC(Entity entity, boolean isIndependentFace){
-		//SpriteComponent playerBasic=leader.getComponent(SpriteComponent.class);
-
-		//AnimationComponent playerBasic=leader.getComponent(AnimationComponent.class);
-		//if(playerBasic==null)
-			//playerBasic=leader.getComponent(AnimationComponent.class);
-
-		VisSprite playerSprite=entity.getComponent(VisSprite.class);
-		Transform transform=entity.getComponent(Transform.class);
-
-		float bounding=(playerSprite.getWidth()+playerSprite.getHeight())/4;
-		SteerableComponent steerableComponent =new SteerableComponent(bounding,isIndependentFace);
-		steerableComponent.getPosition().set(transform.getX(),transform.getY());
-		steerableComponent.setOrientation(transform.getRotation()*MathUtils.degreesToRadians);
-
-		return steerableComponent;
-	}
-
-	public static B2DSteerableComponent createB2dSteerC(Entity entity){
-
-		B2DSteerableComponent steer=createB2dSteerC(entity,false);
-		return steer;
-	}
-
-	public static B2DSteerableComponent createB2dSteerC(Entity entity, boolean isIndependentFace){
-
-		VisSprite spriteComponent=entity.getComponent(VisSprite.class);
-		PhysicsBody physicsComponent=entity.getComponent(PhysicsBody.class);
-		float bounding=(spriteComponent.getWidth()+spriteComponent.getHeight())/4;
-		B2DSteerableComponent b2dSteer=new B2DSteerableComponent(physicsComponent.body,isIndependentFace,bounding);
-
-		b2dSteer.getPosition().set(physicsComponent.body.getPosition());
-		b2dSteer.setOrientation(physicsComponent.body.getAngle());
-
-		return b2dSteer;
-	}
-
-	public static FormationMemberComponent createFormationMemberComponent(Entity member,Entity leader){
+/*	public static FormationMemberComponent createFormationMemberComponent(Entity member,Entity leader){
 
 		FormationMemberComponent memberComponent=new FormationMemberComponent(leader);
 		member.edit().add(memberComponent);
@@ -339,7 +287,7 @@ public class EntityManager {
 		leaderComponent.addMember(member);
 
 		return memberComponent;
-	}
+	}*/
 
 	public static boolean isPlayerBullet(Entity entity){
 

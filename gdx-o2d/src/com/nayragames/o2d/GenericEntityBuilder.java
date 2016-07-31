@@ -6,10 +6,10 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
+import com.nayragames.gdxutils.b2d.GenericPhysicsHelper;
 import com.nayragames.gdxutils.model.Position;
 import com.nayragames.gdxutils.model.Scale;
 import com.nayragames.gdxutils.model.Size;
-import com.nayragames.gdxutils.b2d.PhysicsHelper;
 import com.nayragames.o2d.component.ShapeComponent;
 import com.uwsoft.editor.renderer.SceneLoader;
 import com.uwsoft.editor.renderer.components.*;
@@ -719,7 +719,7 @@ public class GenericEntityBuilder {
         entity.add(new PolygonComponent());
 
         PhysicsBodyComponent physicsBodyComponent1=new PhysicsBodyComponent();
-        physicsBodyComponent1.body=sceneLoader.world.createBody(PhysicsHelper.createBodyDef(bodyType,x* PhysicsBodyLoader.getScale(),y* PhysicsBodyLoader.getScale()));
+        physicsBodyComponent1.body=sceneLoader.world.createBody(GenericPhysicsHelper.createBodyDef(bodyType,x* PhysicsBodyLoader.getScale(),y* PhysicsBodyLoader.getScale()));
 
         System.out.println("Width is "+width+"Height is"+height);
 

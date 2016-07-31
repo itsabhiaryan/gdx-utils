@@ -12,11 +12,11 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
+import com.nayragames.gdxutils.b2d.GenericPhysicsHelper;
 import com.nayragames.gdxutils.model.Calc;
 import com.nayragames.gdxutils.model.Position;
 import com.nayragames.gdxutils.model.Scale;
 import com.nayragames.gdxutils.model.Size;
-import com.nayragames.gdxutils.b2d.PhysicsHelper;
 import com.nayragames.o2d.component.*;
 import com.uwsoft.editor.renderer.components.*;
 import com.uwsoft.editor.renderer.components.label.LabelComponent;
@@ -187,7 +187,7 @@ public class EntityManager {
 			shape.setAsBox(width / 2f, height / 2f);
 
 		//World physicsWorld = entity.getWorld().getSystem(PhysicsSystem.class).getPhysicsWorld();
-		Body body = world.createBody(PhysicsHelper.createBodyDef(type,x,y));
+		Body body = world.createBody(GenericPhysicsHelper.createBodyDef(type,x,y));
 
 		body.createFixture(shape,density);
 		PhysicsBodyComponent physicsBody = new PhysicsBodyComponent();
@@ -215,7 +215,7 @@ public class EntityManager {
 		FixtureDef fixtureDef=new FixtureDef();
 		fixtureDef.density=density;
 
-		Body body=entity.getWorld().getSystem(PhysicsSystem.class).getPhysicsWorld().createBody(Helper.createBodyDef(type,x,y));
+		Body body=entity.getWorld().getSystem(PhysicsSystem.class).getPhysicsWorld().createBody(o_PhysicsHelper.createBodyDef(type,x,y));
 		loader.attachFixture(body,name,fixtureDef,scaleFactor);
 
 		PhysicsBodyComponent physicsBody=new PhysicsBodyComponent();

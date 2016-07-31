@@ -5,9 +5,13 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 
 /**
+ * (c) 2016 Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 11/30/2015.
+ *
  * Parent Abstract screen for all screen class.
  *
- * Created by ARYAN on 11/30/2015.
  */
 
 public abstract class _AbstractScreen implements Screen {
@@ -16,14 +20,11 @@ public abstract class _AbstractScreen implements Screen {
 
     protected _Main game;
 
-    /**
-     * Is scene of ECS is enabled in implemented screen class.
-     */
+    /** Is scene of ECS is enabled in implemented screen class. */
+
     protected boolean isSceneEnabled;
 
-    /**
-    * Is tween is Enabled in implemented screen class and scene of ECS too.
-    */
+    /** Is tween is Enabled in implemented screen class and scene of ECS too. */
     protected boolean isTweenEnabled;
 
 

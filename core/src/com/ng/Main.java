@@ -1,51 +1,88 @@
 package com.ng;
 
+import com.artemis.BaseSystem;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.kotcrab.vis.runtime.RuntimeContext;
+import com.kotcrab.vis.runtime.data.SceneData;
+import com.kotcrab.vis.runtime.scene.SceneConfig;
+import com.kotcrab.vis.runtime.scene.SceneLoader;
+import com.kotcrab.vis.runtime.scene.SystemProvider;
+import com.kotcrab.vis.runtime.system.render.RenderBatchingSystem;
+import com.kotcrab.vis.runtime.util.EntityEngineConfiguration;
+import com.nayragames.gdxutils._GameManager;
 import com.nayragames.gdxutils._Main;
-import com.nayragames.gdxutils.b2d.PhysicsHelper;
-import com.nayragames.o2d.SceneManager;
-import com.nayragames.o2d.system.BoundsUpdater;
-import com.nayragames.o2d.system.CircularMotionSystem;
-import com.nayragames.o2d.system.MovementSystem;
-import com.ng.manager.MainSceneManager;
-import com.ng.screen.SplashScreen;
+import com.nayragames.gdxutils.b2d.GenericPhysicsHelper;
+import com.nayragames.vis.SceneManager;
+import com.nayragames.vis.system.*;
+import com.ng.manager.HomeSceneManager;
+
+//import com.nayragames.o2d.SceneManager;
 
 public class Main extends _Main implements InputProcessor {
 
 	OrthographicCamera camera;
+//	public SceneManager sM;
 	public SceneManager sM;
+
+	@Override
+	public _GameManager createManager() {
+		return new GameManager(this);
+	}
 
 	@Override
 	public void create() {
 		super.create();
-		gameManager=new GameManager(this);
-		sM =new SceneManager(this);
 
-		sM.resourceManager.addSprite("gud",new TextureRegion(new Texture("image/img.png")));
+//		sM =new SceneManager(this);
+//		sM.resourceManager.addSprite("gud",new TextureRegion(new Texture("image/img.png")));
 
-	/*	sM.loadScene("menu").addSystems(
+		/*	sM.loadScene("menu").addSystems(
 				new MainSceneManager(this, sM.sceneLoader),
 				new BoundsUpdater(),new CircularMotionSystem(),new MovementSystem());
-*/
-		setScreen(new SplashScreen(this));
+		*/
+
+		sM=new SceneManager(this);
+
+		SceneLoader.SceneParameter parameter=new SceneLoader.SceneParameter();
+		parameter.config.addSystem(new SystemProvider() {
+			@Override
+			public BaseSystem create(EntityEngineConfiguration config, RuntimeContext context, SceneData data) {
+				return new ShapeRendererSystem(config.getSystem(RenderBatchingSystem.class));
+			}
+		});
+		parameter.config.addSystem(new SystemProvider() {
+			@Override
+			public BaseSystem create(EntityEngineConfiguration config, RuntimeContext context, SceneData data) {
+				return new HomeSceneManager(gameManager.game);
+			}
+		});
+
+		parameter.config.addSystem(BoundsCreator.class);
+		parameter.config.addSystem(BoundsUpdater.class);
+		//parameter.config.addSystem(SoundEffectSystem.class);
+		//parameter.config.addSystem(MainPageSystem.class);
+		//parameter.config.addSystem(PhysicsUpdateSystem.class, SceneConfig.Priority.HIGH);
+		//parameter.config.addSystem(PhysicsManager.class, SceneConfig.Priority.HIGH);
+		//parameter.config.addSystem(PhysicsSystem.class);
+		parameter.config.addSystem(PhysicsUpdateSystem.class, SceneConfig.Priority.HIGH);
+		parameter.config.addSystem(PhysicsManager.class, SceneConfig.Priority.HIGH);
+		sM.load("scene/firstscene.scene",parameter);
+
+		//setScreen(new SplashScreen(this));
 
 		camera=new OrthographicCamera();
-		camera.setToOrtho(true,800/ PhysicsHelper.PIXEL_PER_METER,480/PhysicsHelper.PIXEL_PER_METER);
+		camera.setToOrtho(true,800/ GenericPhysicsHelper.PIXEL_PER_METER,480/GenericPhysicsHelper.PIXEL_PER_METER);
 
-	/*	Helper.createWorld(camera);
-
-		BodyDef bodyDef=Helper.createBodyDef(BodyDef.BodyType.DynamicBody,10,10);
-		Body body=Helper.getWorld().createBody(bodyDef);
+	/*	PhysicsHelper.createWorld(camera);
+		BodyDef bodyDef=PhysicsHelper.createBodyDef(BodyDef.BodyType.DynamicBody,10,10);
+		Body body=PhysicsHelper.getWorld().createBody(bodyDef);
 
 		CircleShape circleshape=new CircleShape();
 		circleshape.setPosition(new Vector2(.5f, .10f));    //body is still in center only ball shape is 5 meter right from center
 		circleshape.setRadius(.25f);
-
-		body.createFixture(Helper.createFixtureDef(circleshape,1,1,.1f));
-*/
+		body.createFixture(PhysicsHelper.createFixtureDef(circleshape,1,1,.1f));
+	*/
 		//Gdx.input.setInputProcessor(this);
 	}
 
@@ -53,14 +90,13 @@ public class Main extends _Main implements InputProcessor {
 	public void render() {
 		super.render();
 
-
 		sM.update();
 	}
 
 	@Override
 	public void resize(int width, int height) {
 		super.resize(width, height);
-		//camera.setToOrtho(true,width/Helper.PIXEL_PER_METER,height/Helper.PIXEL_PER_METER);
+		//camera.setToOrtho(true,width/PhysicsHelper.PIXEL_PER_METER,height/PhysicsHelper.PIXEL_PER_METER);
 	}
 
 	@Override
@@ -92,18 +128,15 @@ public class Main extends _Main implements InputProcessor {
 
 	@Override
 	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-
-
-/*
-		BodyDef bodyDef=Helper.createBodyDef(BodyDef.BodyType.DynamicBody,screenX/32f,screenY/32f);
-		Body body=Helper.getWorld().createBody(bodyDef);
+		/*
+		BodyDef bodyDef=PhysicsHelper.createBodyDef(BodyDef.BodyType.DynamicBody,screenX/32f,screenY/32f);
+		Body body=PhysicsHelper.getWorld().createBody(bodyDef);
 
 		CircleShape circleshape=new CircleShape();
 		//circleshape.setPosition(new Vector2(5, 10));    //body is still in center only ball shape is 5 meter right from center
 		circleshape.setRadius(.25f);
-		body.createFixture(Helper.createFixtureDef(circleshape,1,1,.1f));
-*/
-
+		body.createFixture(PhysicsHelper.createFixtureDef(circleshape,1,1,.1f));
+		*/
 		return false;
 	}
 
@@ -115,14 +148,15 @@ public class Main extends _Main implements InputProcessor {
 	@Override
 	public boolean touchDragged(int screenX, int screenY, int pointer) {
 
-		/*BodyDef bodyDef=Helper.createBodyDef(BodyDef.BodyType.StaticBody,screenX/32f,screenY/32f);
-		Body body=Helper.getWorld().createBody(bodyDef);
+		/*
+		BodyDef bodyDef=PhysicsHelper.createBodyDef(BodyDef.BodyType.StaticBody,screenX/32f,screenY/32f);
+		Body body=PhysicsHelper.getWorld().createBody(bodyDef);
 
 		CircleShape circleshape=new CircleShape();
 		//circleshape.setPosition(new Vector2(5, 10));    //body is still in center only ball shape is 5 meter right from center
 		circleshape.setRadius(.05f);
-		body.createFixture(Helper.createFixtureDef(circleshape,1,1,.1f));
-*/
+		body.createFixture(PhysicsHelper.createFixtureDef(circleshape,1,1,.1f));
+		*/
 		return false;
 	}
 

@@ -5,12 +5,16 @@ import com.artemis.ComponentMapper;
 import com.artemis.Entity;
 import com.artemis.systems.EntityProcessingSystem;
 import com.kotcrab.vis.runtime.component.VisSound;
-import com.nayragames.vis.Constants;
+import com.nayragames.gdxutils._GameManager;
 
 /**
+ * (c) 2016 Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 12/9/2015.
+ *
  * System that is responsible for sound play by entity having #VisSound.
  *
- * Created by ARYAN on 12/9/2015.
  */
 
 public class SoundEffectSystem extends EntityProcessingSystem {
@@ -31,6 +35,6 @@ public class SoundEffectSystem extends EntityProcessingSystem {
 
     @Override
     protected boolean checkProcessing() {
-        return !Constants.isPaused();
+        return !_GameManager.isPaused();
     }
 }

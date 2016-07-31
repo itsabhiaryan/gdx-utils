@@ -14,14 +14,18 @@ import com.kotcrab.vis.runtime.system.delegate.DeferredEntityProcessingSystem;
 import com.kotcrab.vis.runtime.system.delegate.EntityProcessPrincipal;
 import com.kotcrab.vis.runtime.system.render.RenderBatchingSystem;
 import com.kotcrab.vis.runtime.util.AfterSceneInit;
-import com.nayragames.vis.Constants;
+import com.nayragames.gdxutils._GameManager;
 import com.nayragames.vis.component.ShapeComponent;
 
 /**
+ * (c) 2016 Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 28-12-2015.
+ *
  * System that is responsible for rendering shape.
  * Entity must required have ShapeComponent.
  *
- * Created by ARYAN on 28-12-2015.
  */
 
 public class ShapeRendererSystem extends DeferredEntityProcessingSystem implements AfterSceneInit {
@@ -81,6 +85,6 @@ public class ShapeRendererSystem extends DeferredEntityProcessingSystem implemen
 
     @Override
     protected boolean checkProcessing() {
-        return !Constants.isPaused();
+        return !_GameManager.isPaused();
     }
 }

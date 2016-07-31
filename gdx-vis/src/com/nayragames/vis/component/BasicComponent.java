@@ -5,9 +5,11 @@ import com.badlogic.gdx.math.Rectangle;
 import com.nayragames.gdxutils.model.Position;
 import com.nayragames.gdxutils.model.Size;
 
-
 /**
- * Created by ARYAN on 12-12-2015.
+ * (c) 2016 Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 12-12-2015.
  */
 public class BasicComponent extends Component {
 

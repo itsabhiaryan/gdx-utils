@@ -7,13 +7,17 @@ import com.badlogic.gdx.Gdx;
 import com.nayragames.gdxutils.b2d.BodyEditorLoader;
 
 /**
+ * (c) 2016 Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 02-12-2015.
+ *
  * Utilities method for ECS.
  *
- * Created by ARYAN on 02-12-2015.
  */
 public class EntityUtilities {
 
-    private static final String TAG = "[" + EntityUtilities.class.getSimpleName() + "]";
+    private static final String TAG = EntityUtilities.class.getSimpleName();
 
     public static void printAllComponent(Entity entity) {
 
@@ -24,8 +28,5 @@ public class EntityUtilities {
             System.out.println(component);
     }
 
-    public static BodyEditorLoader createLoader(String filePath){
-        //loader= EntityUtilities.createLoader("json/gear.json");
-        return new BodyEditorLoader(Gdx.files.internal("json/gear.json"));
-    }
+
 }

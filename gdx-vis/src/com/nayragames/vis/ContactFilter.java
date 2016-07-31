@@ -3,12 +3,16 @@ package com.nayragames.vis;
 import com.artemis.World;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Fixture;
-import com.nayragames.vis.physics.Helper;
+import com.nayragames.vis.physics.PhysicsHelper;
 
 /**
+ * (c) 2016 Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 30-12-2015.
+ *
  * Used to decide collision between to body is about to happen or not.
  *
- * Created by ARYAN on 30-12-2015.
  */
 public class ContactFilter implements com.badlogic.gdx.physics.box2d.ContactFilter {
 
@@ -17,7 +21,7 @@ public class ContactFilter implements com.badlogic.gdx.physics.box2d.ContactFilt
 
     public ContactFilter(World world){
         this.world=world;
-        Helper.getPhysicsWorld(world).setContactFilter(this);
+        PhysicsHelper.getPhysicsWorld(world).setContactFilter(this);
     }
 
     @Override

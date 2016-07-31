@@ -1,3 +1,4 @@
+/*
 package com.ng.manager;
 
 import com.badlogic.ashley.core.ComponentMapper;
@@ -17,9 +18,11 @@ import com.nayragames.o2d.manager.BaseSceneManager;
 import com.uwsoft.editor.renderer.SceneLoader;
 import com.uwsoft.editor.renderer.components.TransformComponent;
 
+*/
 /**
  * Created by Personal on 7/30/2016.
- */
+ *//*
+
 public class MainSceneManager extends BaseSceneManager {
 
     public MainSceneManager(_Main game, SceneLoader sceneLoader) {
@@ -57,3 +60,4 @@ public class MainSceneManager extends BaseSceneManager {
         return super.scrolled(amount);
     }
 }
+*/

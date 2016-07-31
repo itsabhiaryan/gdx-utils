@@ -24,6 +24,8 @@ public abstract class _Main extends Game {
 
     }
 
+    public abstract _GameManager createManager();
+
     public _Main(IServices services){
         this();
         this.services=services;
@@ -31,6 +33,7 @@ public abstract class _Main extends Game {
 
     @Override
     public void create() {
+        gameManager=createManager();
         width=Gdx.graphics.getWidth();
         height=Gdx.graphics.getHeight();
     }

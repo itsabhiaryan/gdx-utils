@@ -9,6 +9,14 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.nayragames.gdxutils.ai.Scene2dLocation;
 
+/**
+ * (c) 2016 Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 26-11-2015.
+ *
+ */
+
 public class B2DSteerableComponent extends Component implements Steerable<Vector2> {
 
 	public Body body;

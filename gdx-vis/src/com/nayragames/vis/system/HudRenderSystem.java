@@ -14,13 +14,17 @@ import com.kotcrab.vis.runtime.component.VisText;
 import com.kotcrab.vis.runtime.system.CameraManager;
 import com.kotcrab.vis.runtime.system.VisIDManager;
 import com.kotcrab.vis.runtime.util.AfterSceneInit;
+import com.nayragames.gdxutils._GameManager;
 import com.nayragames.gdxutils.model.Position;
-import com.nayragames.vis.Constants;
 
 /**
+ * (c) 2016 Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 12/8/2015.
+ *
  * System is used only for debugging purpose used for getting Total Entity count and what is FPS.
  *
- * Created by ARYAN on 12/8/2015.
  */
 
 public class HudRenderSystem extends BaseSystem implements AfterSceneInit {
@@ -124,6 +128,6 @@ public class HudRenderSystem extends BaseSystem implements AfterSceneInit {
 
     @Override
     protected boolean checkProcessing() {
-        return !Constants.isPaused();
+        return !_GameManager.isPaused();
     }
 }

@@ -3,7 +3,11 @@ package com.nayragames.vis.component;
 import com.artemis.Component;
 
 /**
- * Created by ARYAN on 12/9/2015.
+ * (c) Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 12/9/2015.
+ *
  */
 
 public class ExpireComponent extends Component {

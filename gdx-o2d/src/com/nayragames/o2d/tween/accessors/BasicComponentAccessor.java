@@ -1,6 +1,5 @@
 package com.nayragames.o2d.tween.accessors;
 
-
 import aurelienribon.tweenengine.TweenAccessor;
 import com.nayragames.o2d.component.BasicComponent;
 

@@ -1,12 +1,15 @@
 package com.nayragames.vis.component;
 
-
 import com.artemis.Component;
 import com.artemis.Entity;
 import com.badlogic.gdx.math.Vector2;
 
 /**
- * Created by ARYAN on 09-12-2015.
+ * (c) 2016 Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 09-12-2015.
+ *
  */
 public class DragonComponent extends Component {
 

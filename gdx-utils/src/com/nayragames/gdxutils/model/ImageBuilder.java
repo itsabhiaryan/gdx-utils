@@ -1,5 +1,11 @@
 package com.nayragames.gdxutils.model;
 
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.Group;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
+
 /**
  * (c) 2016 Abhishek Aryan
  *
@@ -8,13 +14,6 @@ package com.nayragames.gdxutils.model;
  *
  * Builder class that have method which return image.
  */
-
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.scenes.scene2d.Group;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
-
 public class ImageBuilder {
 	
 	public static Image makeImage(Group group, Texture texture, Size size, Position origin, String name) {

@@ -4,7 +4,13 @@ import com.artemis.Component;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
-/** @author ARYAN */
+/**
+ * (c) 2016 Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 01-08-2016
+ *
+ */
 
 public class Bounds extends Component {
 	public Rectangle bounds = new Rectangle();

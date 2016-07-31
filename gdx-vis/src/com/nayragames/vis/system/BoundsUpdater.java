@@ -8,15 +8,20 @@ import com.badlogic.gdx.math.Rectangle;
 import com.kotcrab.vis.runtime.component.Origin;
 import com.kotcrab.vis.runtime.component.Transform;
 import com.kotcrab.vis.runtime.component.VisSprite;
-import com.nayragames.vis.Constants;
+import com.nayragames.gdxutils._GameManager;
 import com.nayragames.vis.component.AnimationComponent;
 import com.nayragames.vis.component.Bounds;
 import com.nayragames.vis.component.ShapeComponent;
 
 /**
+ * (c) 2016 Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 01-08-2016
+ *
  * This system updates Bounds component of entity that have any of these component VisSprite,AnimationComponent,ShapeComponent.
  *
- * @author ARYAN */
+ */
 
 public class BoundsUpdater extends IteratingSystem {
 
@@ -177,6 +182,6 @@ public class BoundsUpdater extends IteratingSystem {
 
 	@Override
 	protected boolean checkProcessing() {
-		return !Constants.isPaused();
+		return !_GameManager.isPaused();
 	}
 }

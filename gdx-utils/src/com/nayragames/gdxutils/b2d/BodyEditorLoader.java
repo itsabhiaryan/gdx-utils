@@ -13,8 +13,6 @@ import com.badlogic.gdx.utils.JsonValue;
 import java.util.HashMap;
 import java.util.Map;
 
-
-
 public class BodyEditorLoader {
 	private final Model model;
 

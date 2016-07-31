@@ -17,7 +17,11 @@ import com.kotcrab.vis.ui.widget.VisTextButton;
 
 */
 /**
- * Created by ARYAN on 12/6/2015.
+ * (c) 2016 Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 12/6/2015.
+ *
  *//*
 
 public class VisUIManager {

@@ -6,13 +6,17 @@ import com.artemis.Entity;
 import com.artemis.systems.EntityProcessingSystem;
 import com.badlogic.gdx.math.MathUtils;
 import com.kotcrab.vis.runtime.component.Transform;
-import com.nayragames.vis.Constants;
+import com.nayragames.gdxutils._GameManager;
 import com.nayragames.vis.component.MovementComponent;
 
 /**
+ * (c) 2016 Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 09-12-2015.
+ *
  * If entity having MovementComponent then that entity follow his path with particular speed.
  *
- * Created by ARYAN on 09-12-2015.
  */
 
 public class MovementSystem extends EntityProcessingSystem {
@@ -41,6 +45,6 @@ public class MovementSystem extends EntityProcessingSystem {
 
 	@Override
 	protected boolean checkProcessing() {
-		return !Constants.isPaused();
+		return !_GameManager.isPaused();
 	}
 }

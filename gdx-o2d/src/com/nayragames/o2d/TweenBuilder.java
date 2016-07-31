@@ -1,13 +1,11 @@
 package com.nayragames.o2d;
 
-import aurelienribon.tweenengine.*;
-import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.utils.Array;
-
+import aurelienribon.tweenengine.Timeline;
+import aurelienribon.tweenengine.Tween;
+import aurelienribon.tweenengine.TweenCallback;
+import aurelienribon.tweenengine.TweenManager;
 import com.nayragames.o2d.component.BasicComponent;
 import com.nayragames.o2d.tween.accessors.BasicComponentAccessor;
-import com.nayragames.o2d.tween.accessors.CameraAccessor;
 import com.nayragames.o2d.tween.accessors.TransformAccessor;
 import com.uwsoft.editor.renderer.components.TransformComponent;
 
@@ -24,42 +22,12 @@ public class TweenBuilder {
 
     private static final String TAG = "[" + TweenBuilder.class.getSimpleName() + "]";
 
-    public static void sceneZoomOut(OrthographicCamera camera,TweenManager tweenManager){
-        camera.zoom=0;
-        Tween.to(camera, CameraAccessor.ZOOM,1).target(1).start(tweenManager);
-    }
-
-    public static void sceneZoomIn(OrthographicCamera camera,TweenManager tweenManager){
-        camera.zoom=1;
-        Tween.to(camera, CameraAccessor.ZOOM,1).target(0).start(tweenManager);
-    }
-
     public static void buttonInterface(TransformComponent sprite, TweenCallback tweenCallback,TweenManager tweenManager){
         Timeline.createSequence()
                 .push(Tween.to(sprite, TransformAccessor.SCALE_XY,.1f).targetRelative(-.05f,-.05f))
                 .push(Tween.to(sprite, TransformAccessor.SCALE_XY,.1f).targetRelative(.05f,.05f))
                 .setCallback(tweenCallback)
                 .start(tweenManager);
-    }
-
-    public static void zoomPageTransation(final Array<Sprite> hide, final Array<Sprite> show, final OrthographicCamera camera, final TweenManager tweenManager){
-
-        Timeline.createSequence()
-                .push(Tween.to(camera, CameraAccessor.ZOOM,1).target(0)
-                .setCallback(new TweenCallback() {
-                    @Override
-                    public void onEvent(int i, BaseTween<?> baseTween) {
-                        for(Sprite sprite:hide)
-                            sprite.setAlpha(0);
-                        for (Sprite sprite:show)
-                            sprite.setAlpha(1);
-                    }
-                }).setCallback(new TweenCallback() {
-                            @Override
-                            public void onEvent(int i, BaseTween<?> baseTween) {
-                                Tween.to(camera, CameraAccessor.ZOOM,1).target(1).start(tweenManager);
-                            }
-                        }).start(tweenManager));
     }
 
     public static void applyScale(TransformComponent transform,TweenManager tweenManager){
@@ -79,7 +47,6 @@ public class TweenBuilder {
                 .push(Tween.to(transform, TransformAccessor.POS_XY, 1).targetRelative(-1, 2))
                 .end()
                 .setCallback(tweenCallback).start(tweenManager);
-
     }
 
     public static void applyThrust(BasicComponent shipBasic, TweenCallback callback, TweenManager tweenManager){
@@ -97,7 +64,6 @@ public class TweenBuilder {
                 .push(Tween.to(spriteComponent, ASpriteComponentAccessor.OPACITY,.5f).target(0))
                 .push(Tween.to(spriteComponent, ASpriteComponentAccessor.OPACITY,.5f).target(1))
                 .start(_Main.tweenManager);
-
     }*/
 }
 

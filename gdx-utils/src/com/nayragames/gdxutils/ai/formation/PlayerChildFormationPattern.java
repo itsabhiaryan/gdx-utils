@@ -5,7 +5,11 @@ import com.badlogic.gdx.ai.utils.Location;
 import com.badlogic.gdx.math.Vector2;
 
 /**
- * Created by ARYAN on 12/13/2015.
+ * (c) 2016 Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 12/13/2015.
+ *
  */
 public class PlayerChildFormationPattern implements FormationPattern<Vector2> {
 

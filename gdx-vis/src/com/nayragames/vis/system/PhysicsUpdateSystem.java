@@ -9,16 +9,20 @@ import com.kotcrab.vis.runtime.component.Origin;
 import com.kotcrab.vis.runtime.component.PhysicsBody;
 import com.kotcrab.vis.runtime.component.Transform;
 import com.kotcrab.vis.runtime.component.VisSprite;
-import com.nayragames.vis.Constants;
+import com.nayragames.gdxutils._GameManager;
 import com.nayragames.vis.component.AnimationComponent;
 import com.nayragames.vis.component.ShapeComponent;
 
 /**
+ * (c) 2016 Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 28-12-2015.
+ *
  * System that is responsible for update transform property by body of Entity.
  * you should disable PHYSICS_SPRITE_UPDATE_SYSTEM system which is enable by default.
  * Entity must have PhysicsBody and Origin and any one from AnimationComponent,ShapeComponent,VisSprite.
  *
- * Created by ARYAN on 28-12-2015.
  */
 public class PhysicsUpdateSystem extends EntityProcessingSystem {
 
@@ -41,10 +45,11 @@ public class PhysicsUpdateSystem extends EntityProcessingSystem {
 
         transform.setPosition(physics.body.getPosition().x-origin.getOriginX(), physics.body.getPosition().y-origin.getOriginY());
         transform.setRotation(physics.body.getAngle() * MathUtils.radiansToDegrees);
+
     }
 
     @Override
     protected boolean checkProcessing() {
-        return !Constants.isPaused();
+        return !_GameManager.isPaused();
     }
 }

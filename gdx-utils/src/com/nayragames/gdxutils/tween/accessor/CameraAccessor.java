@@ -1,13 +1,16 @@
-package com.nayragames.vis.tween.accessors;
+package com.nayragames.gdxutils.tween.accessor;
 
 import aurelienribon.tweenengine.TweenAccessor;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 
 /**
+ * (c) 2016 Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 12-12-2015.
+ *
  * A Tween Accessor for tween data member value of OrthographicCamera.
  * This class must register with Tween for implementation.
- *
- * Created by ARYAN on 12-12-2015.
  */
 
 public class CameraAccessor implements TweenAccessor<OrthographicCamera> {

@@ -7,6 +7,14 @@ import com.badlogic.gdx.ai.utils.Location;
 import com.badlogic.gdx.math.Vector2;
 import com.nayragames.gdxutils.ai.Scene2dLocation;
 
+/**
+ * (c) Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 12/9/2015.
+ *
+ */
+
 public class FormationMemberComponent extends Component implements FormationMember<Vector2>{
 
 	private Scene2dLocation targetLocation;

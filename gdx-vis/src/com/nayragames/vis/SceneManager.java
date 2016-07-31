@@ -15,21 +15,26 @@ import com.kotcrab.vis.runtime.scene.*;
 import com.kotcrab.vis.runtime.system.physics.PhysicsSystem;
 import com.kotcrab.vis.runtime.system.render.RenderBatchingSystem;
 import com.kotcrab.vis.runtime.util.EntityEngineConfiguration;
+import com.nayragames.gdxutils._Main;
 import com.nayragames.vis.system.*;
 
 /**
+ * (c) 2016 Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 11/29/2015.
+ *
  * This class is used to load Scene and unload it.
  *
- * Created by ARYAN on 11/29/2015.
  */
 public class SceneManager {
 
     private static final String TAG = SceneManager.class.getSimpleName();
-    private static SpriteBatch batch;
-    private static VisAssetManager manager;
-    public static Scene scene;
+    private SpriteBatch batch;
+    private VisAssetManager manager;
+    public Scene scene;
+    private _Main game;
     private static String scenePath;
-    private static Game game;
     public static Array<LayerData> layers;
 
     /**
@@ -39,8 +44,8 @@ public class SceneManager {
      *
      */
 
-    public static void init(Game game){
-        SceneManager.game=game;
+    public SceneManager(_Main game){
+        this.game=game;
 
         batch = new SpriteBatch();
         manager=new VisAssetManager(batch);
@@ -48,10 +53,57 @@ public class SceneManager {
         setRuntimeConfig();
     }
 
-    private static void setRuntimeConfig(){
+    private void setRuntimeConfig(){
         RuntimeConfiguration configuration = new RuntimeConfiguration();
         manager.getSceneLoader().setRuntimeConfig(configuration);
     }
+
+    public void update(){
+        scene.render();
+    }
+
+    public void load(String sceneName,SceneLoader.SceneParameter sceneParameter){
+
+        unloadPreviousScene();
+        scenePath=sceneName;
+        scene = manager.loadSceneNow(scenePath, sceneParameter);
+    }
+
+
+    public void load(String sceneName, BaseSystem[] baseSystems, Class<? extends BaseSystem>... systemClass){
+
+        unloadPreviousScene();
+        scenePath=sceneName;
+        SceneLoader.SceneParameter parameter = new SceneLoader.SceneParameter();
+
+        for (Class classes:systemClass)
+            parameter.config.addSystem(classes);
+
+        for(final BaseSystem baseSystem1:baseSystems){
+
+            parameter.config.addSystem(new SystemProvider() {
+                @Override
+                public BaseSystem create(EntityEngineConfiguration config, RuntimeContext context, SceneData data) {
+                    return baseSystem1;
+                }
+            });
+        }
+        scene = manager.loadSceneNow(scenePath, parameter);
+    }
+
+    public void load(String sceneName,Class<? extends BaseSystem>... systemClass){
+
+        unloadPreviousScene();
+        scenePath=sceneName;
+        SceneLoader.SceneParameter parameter = new SceneLoader.SceneParameter();
+
+        for (Class classes:systemClass)
+            parameter.config.addSystem(classes);
+
+        scene = manager.loadSceneNow(scenePath, parameter);
+
+    }
+
 
     /**
      * Different method for loading of different scene.
@@ -59,7 +111,8 @@ public class SceneManager {
      *
      */
 
-    public static void loadMainScene () {
+
+    public void loadMainScene () {
         unloadPreviousScene();
 
         SceneLoader.SceneParameter parameter = new SceneLoader.SceneParameter();
@@ -91,7 +144,7 @@ public class SceneManager {
         //game.setOrientation(IGoogleServices.LANDSCAPE);
     }
 
-    public static void loadMenuScene () {
+    public void loadMenuScene () {
         unloadPreviousScene();
 
         SceneLoader.SceneParameter parameter = new SceneLoader.SceneParameter();
@@ -110,7 +163,7 @@ public class SceneManager {
         scene = manager.loadSceneNow(scenePath, parameter);
     }
 
-    public static void loadHelpScene () {
+    public void loadHelpScene () {
         unloadPreviousScene();
 
         SceneLoader.SceneParameter parameter = new SceneLoader.SceneParameter();
@@ -126,7 +179,7 @@ public class SceneManager {
         scene = manager.loadSceneNow(scenePath, parameter);
     }
 
-    public static void loadAboutScene () {
+    public void loadAboutScene () {
         unloadPreviousScene();
 
         SceneLoader.SceneParameter parameter = new SceneLoader.SceneParameter();
@@ -142,7 +195,7 @@ public class SceneManager {
         scene = manager.loadSceneNow(scenePath, parameter);
     }
 
-    public static void loadGameOverScene () {
+    public void loadGameOverScene () {
         unloadPreviousScene();
         SceneLoader.SceneParameter parameter = new SceneLoader.SceneParameter();
 
@@ -167,7 +220,7 @@ public class SceneManager {
         scene = manager.loadSceneNow(scenePath, parameter);
     }
 
-    public static Scene loadGameScene() {
+    public Scene loadGameScene() {
         unloadPreviousScene();
         //MainSceneManager.timer.clear();
 
@@ -222,7 +275,7 @@ public class SceneManager {
         return layers.get(zDepth).cordsSystem;
     }
 
-    private static void unloadPreviousScene () {
+    private void unloadPreviousScene () {
 
         if (scenePath != null) {
             if(manager.containsAsset(scene))
@@ -237,7 +290,7 @@ public class SceneManager {
         }
     }
 
-    public static VisAssetManager getSceneManager(){
+    public VisAssetManager getSceneManager(){
         return manager;
     }
 
@@ -252,7 +305,7 @@ public class SceneManager {
         return physicsSystem;
     }
 
-    public static void dispose(){
+    public  void dispose(){
         batch.dispose();
         manager.dispose();
         if(ShapeRendererSystem.isRendererAttached)

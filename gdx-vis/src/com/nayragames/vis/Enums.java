@@ -1,9 +1,13 @@
 package com.nayragames.vis;
 
 /**
+ * (c) 2016 Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 15-12-2015.
+ *
  * Collection of different Enums used in ECS.
  *
- * Created by ARYAN on 15-12-2015.
  */
 public class Enums {
 

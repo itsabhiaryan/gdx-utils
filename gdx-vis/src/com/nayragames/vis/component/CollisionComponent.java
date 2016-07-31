@@ -3,7 +3,10 @@ package com.nayragames.vis.component;
 import com.artemis.Component;
 
 /**
- * Created by ARYAN on 04-12-2015.
+ * (c) 2016 Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 04-12-2015.
  */
 public class CollisionComponent extends Component {
 

@@ -3,7 +3,11 @@ package com.nayragames.vis.component;
 import com.artemis.Component;
 
 /**
- * Created by ARYAN on 04-01-2016.
+ * (c) 2016 Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 04-01-2016.
+ *
  */
 public class CircularMotion extends Component{
 

@@ -16,9 +16,9 @@ import com.badlogic.gdx.physics.box2d.joints.*;
  * com.badlogicgames.gdx:gdx-box2d:1.9.3 should be included in your dependencies.
  */
 
-public class PhysicsHelper {
+public class GenericPhysicsHelper {
 
-    private static final String TAG = PhysicsHelper.class.getSimpleName();
+    private static final String TAG = GenericPhysicsHelper.class.getSimpleName();
 
     private static final float TIMESTEP=1/60f;     //60 frame per second
     private static final int VELOCITYITERATION=6;   //higher the value higher the quality of simulation  // 8 and 3 is copy from box2d
@@ -30,7 +30,7 @@ public class PhysicsHelper {
 
     public static World createWorld(OrthographicCamera camera){
 
-        PhysicsHelper.camera=camera;
+        GenericPhysicsHelper.camera=camera;
         world=new World(new Vector2(0,10),true);
         debugRenderer=new Box2DDebugRenderer();
 

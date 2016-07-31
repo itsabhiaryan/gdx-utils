@@ -5,14 +5,18 @@ import com.artemis.ComponentMapper;
 import com.artemis.Entity;
 import com.artemis.systems.EntityProcessingSystem;
 import com.kotcrab.vis.runtime.component.VisText;
-import com.nayragames.vis.Constants;
+import com.nayragames.gdxutils._GameManager;
 import com.nayragames.vis.component.BasicComponent;
 import com.nayragames.vis.component.HealthComponent;
 
 /**
+ * (c) 2016 Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 12/9/2015.
+ *
  * This system update position of TextComponent of Entity to its BasicComponent.
  *
- * Created by ARYAN on 12/9/2015.
  */
 
 public class HealthRendererSystem extends EntityProcessingSystem {
@@ -35,6 +39,6 @@ public class HealthRendererSystem extends EntityProcessingSystem {
 
     @Override
     protected boolean checkProcessing() {
-        return !Constants.isPaused();
+        return !_GameManager.isPaused();
     }
 }

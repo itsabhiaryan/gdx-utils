@@ -11,13 +11,17 @@ import com.artemis.utils.ImmutableBag;
 import com.kotcrab.vis.runtime.component.Transform;
 import com.kotcrab.vis.runtime.component.VisSprite;
 import com.kotcrab.vis.runtime.component.VisText;
-import com.nayragames.vis.Constants;
+import com.nayragames.gdxutils._GameManager;
 import com.nayragames.vis.component.*;
 
 /**
+ * (c) 2016 Abhishek Aryan
+ *
+ * @author Abhishek Aryan
+ * @since 30-11-2015.
+ *
  * System that handle collision of entity which having CollisionComponent.
  *
- * Created by ARYAN on 30-11-2015.
  */
 
 public class CollisionSystem extends EntitySystem {
@@ -211,6 +215,6 @@ public class CollisionSystem extends EntitySystem {
 
 	@Override
 	protected boolean checkProcessing() {
-		return !Constants.isPaused();
+		return !_GameManager.isPaused();
 	}
 }
