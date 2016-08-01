@@ -16,7 +16,7 @@ import com.badlogic.gdx.graphics.GL20;
 
 public abstract class _AbstractScreen implements Screen {
 
-    private static final String TAG = "[" + _AbstractScreen.class.getSimpleName() + "]";
+    private static final String TAG =_AbstractScreen.class.getSimpleName();
 
     protected _Main game;
 
@@ -39,18 +39,22 @@ public abstract class _AbstractScreen implements Screen {
         isTweenEnabled=false;
         isScene2dEnabled =false;
         //showAd(false,false);
-        Gdx.app.log(TAG,"show");
+        //Gdx.app.log(TAG,"show");
     }
 
-    @Override
-    public void render(float delta) {
-     //   if(isTweenEnabled&& !GameManager.isPaused()) game.tweenManager.update(delta);
+    protected void clearScreen(){
 
         GL20 gl = Gdx.gl;
         gl.glClearColor(0, 0, 0, 1);
         gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         gl.glEnable(GL20.GL_BLEND);
         gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
+    }
+
+    @Override
+    public void render(float delta) {
+     //   if(isTweenEnabled&& !GameManager.isPaused()) game.tweenManager.update(delta);
+        clearScreen();
 
       //  if(isSceneEnabled) game.sceneManager.sceneLoader.getEngine().update(Gdx.graphics.getDeltaTime());
 
@@ -60,7 +64,7 @@ public abstract class _AbstractScreen implements Screen {
     @Override
     public void resize(int width, int height) {
         //if(isSceneEnabled) SceneManager.scene.resize(width,height);
-        Gdx.app.log(TAG,"resize");
+        //Gdx.app.log(TAG,"resize");
         //SceneManager.sceneLoader.getRoot().getComponent(ViewPortComponent.class).viewPort.update(width,height);
         //SceneManager.sceneLoader.getRoot().getComponent(ViewPortComponent.class).viewPort.apply();
     }
@@ -68,19 +72,19 @@ public abstract class _AbstractScreen implements Screen {
     @Override
     public void pause() {
 
-        Gdx.app.log(TAG,"pause");
-      //  GameManager.pause(true);
+        //Gdx.app.log(TAG,"pause");
+        //GameManager.pause(true);
     }
 
     @Override
     public void resume() {
-        Gdx.app.log(TAG,"resume");
+       // Gdx.app.log(TAG,"resume");
        // GameManager.resume();
     }
 
     @Override
     public void dispose() {
-        Gdx.app.log(TAG,"dispose");
+        //Gdx.app.log(TAG,"dispose");
     }
 
     public void showAd(boolean isTop,boolean isBottom){
@@ -91,6 +95,6 @@ public abstract class _AbstractScreen implements Screen {
 
     @Override
     public void hide() {
-        Gdx.app.log(TAG,"hide");
+        //Gdx.app.log(TAG,"hide");
     }
 }

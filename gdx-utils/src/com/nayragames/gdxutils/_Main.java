@@ -38,15 +38,19 @@ public abstract class _Main extends Game {
         height=Gdx.graphics.getHeight();
     }
 
-    @Override
-    public void render() {
-        super.render();
+    protected void clearScreen () {
 
         GL20 gl = Gdx.gl;
         gl.glClearColor(0, 0, 0, 1);
         gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         gl.glEnable(GL20.GL_BLEND);
         gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
+    }
+
+    @Override
+    public void render() {
+        super.render();
+
     }
 
     public AdServices getAdService(){
