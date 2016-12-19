@@ -3,9 +3,9 @@ package com.ng.screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.nayragames.gdxutils._AbstractScreen;
-import com.nayragames.gdxutils._Main;
-import com.nayragames.gdxutils.model.TextureManager;
+import com.ng.gdxutils._AbstractScreen;
+import com.ng.gdxutils._Main;
+import com.ng.gdxutils.model.TextureManager;
 
 /**
  * Created by aryan9234 on 29-07-2016.

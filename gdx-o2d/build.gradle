@@ -11,17 +11,20 @@ sourceSets.main.java.srcDirs = [ "src/" ]
 
 repositories {
     mavenCentral()
+    maven { url "https://jitpack.io" }
 }
 
 dependencies {
    // testCompile group: 'junit', name: 'junit', version: '4.11'
-    //compile project(":gdx-utils")
-    compile "com.github.aryan9234:gdx-utils:1.0"
+    compile project(":gdx-utils")
+    //compile "com.github.itsabhiaryan:gdx-utils:1.0"
     compile "com.underwaterapps.overlap2druntime:overlap2d-runtime-libgdx:0.1.2-SNAPSHOT"
     provided "com.badlogicgames.gdx:gdx-ai:$aiVersion"
 
-    provided "aurelienribon:tweenengine:6.3.3"
-    provided "aurelienribon:tweenengine:6.3.3:sources"
+    provided 'com.github.arcnor:universal-tween-engine:6.3.4'
+    provided 'com.github.arcnor:universal-tween-engine:6.3.4:sources'
+    //provided "aurelienribon:tweenengine:6.3.3"
+    //provided "aurelienribon:tweenengine:6.3.3:sources"
 }
 
 /*

@@ -10,12 +10,12 @@ import com.kotcrab.vis.runtime.scene.SceneLoader;
 import com.kotcrab.vis.runtime.scene.SystemProvider;
 import com.kotcrab.vis.runtime.system.render.RenderBatchingSystem;
 import com.kotcrab.vis.runtime.util.EntityEngineConfiguration;
-import com.nayragames.gdxutils._GameManager;
-import com.nayragames.gdxutils._Main;
-import com.nayragames.gdxutils.b2d.GenericPhysicsHelper;
-import com.nayragames.vis.SceneManager;
-import com.nayragames.vis.system.*;
+import com.ng.gdxutils._GameManager;
+import com.ng.gdxutils._Main;
+import com.ng.gdxutils.b2d.GenericPhysicsHelper;
+import com.ng.vis.SceneManager;
 import com.ng.manager.HomeSceneManager;
+import com.ng.vis.system.*;
 
 //import com.nayragames.o2d.SceneManager;
 
@@ -84,6 +84,7 @@ public class Main extends _Main implements InputProcessor {
 		body.createFixture(PhysicsHelper.createFixtureDef(circleshape,1,1,.1f));
 	*/
 		//Gdx.input.setInputProcessor(this);
+//		Gdx.files.internal();
 	}
 
 	@Override

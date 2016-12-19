@@ -1,4 +1,4 @@
-package com.nayragames.mylib;
+package com.ng.mylib;
 
 import org.junit.Test;
 

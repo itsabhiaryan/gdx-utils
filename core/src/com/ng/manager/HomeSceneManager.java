@@ -3,13 +3,12 @@ package com.ng.manager;
 import com.badlogic.gdx.graphics.Color;
 //import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.nayragames.gdxutils._Main;
-import com.nayragames.gdxutils.model.Position;
-import com.nayragames.gdxutils.model.Size;
-import com.nayragames.vis.EntityFactory;
-import com.nayragames.vis.manager.BaseSceneManager;
-import com.nayragames.vis.physics.PhysicsFactory;
-//import com.nayragames.vis.physics.PhysicsFactory;
+import com.ng.gdxutils._Main;
+import com.ng.gdxutils.model.Position;
+import com.ng.gdxutils.model.Size;
+import com.ng.vis.manager.BaseSceneManager;
+import com.ng.vis.physics.PhysicsFactory;
+//import PhysicsFactory;
 
 
 /**

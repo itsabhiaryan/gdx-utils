@@ -1,4 +1,4 @@
-package com.nayragames.mylib;
+package com.ng.mylib;
 
 /**
  * Created by Abhishek Aryan on 21-07-2016.

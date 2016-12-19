@@ -87,14 +87,14 @@ bintray {
         desc = POM_DESCRIPTION
 
         websiteUrl = POM_URL
-        issueTrackerUrl = 'https://github.com/aryan9234/utils/issues'
-        vcsUrl = 'https://github.com/aryan9234/utils.git'
+        issueTrackerUrl = 'https://github.com/itsabhiaryan/utils/issues'
+        vcsUrl = 'https://github.com/itsabhiaryan/utils.git'
 
         licenses = ['Apache-2.0']
         labels = ['gear', 'gore', 'gorilla']
         publicDownloadNumbers = true
 
-        githubRepo = 'aryan9234/utils' //Optional Github repository
+        githubRepo = 'itsabhiaryan/utils' //Optional Github repository
         githubReleaseNotesFile = 'README.md' //Optional Github readme file
 
         version {

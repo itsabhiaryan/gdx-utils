@@ -7,8 +7,8 @@ ext {
     bintrayName = BINTRAY_PACKAGE
 
 
-    siteUrl = 'https://github.com/aryan9234/utils'
-    gitUrl = 'https://github.com/aryan9234/utils.git'
+    siteUrl = 'https://github.com/itsabhiaryan/utils'
+    gitUrl = 'https://github.com/itsabhiaryan/utils.git'
 
 
 

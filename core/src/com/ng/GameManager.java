@@ -1,7 +1,6 @@
 package com.ng;
 
-import com.nayragames.gdxutils._GameManager;
-import com.nayragames.gdxutils.services.IServices;
+import com.ng.gdxutils._GameManager;
 
 /**
  * Created by aryan9234 on 29-07-2016.

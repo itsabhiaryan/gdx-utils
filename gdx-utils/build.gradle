@@ -13,6 +13,7 @@ sourceSets.main.java.srcDirs = [ "src/" ]
 
 repositories {
     mavenCentral()
+    maven { url "https://jitpack.io" }
 }
 
 dependencies {
@@ -25,8 +26,11 @@ dependencies {
     provided "com.badlogicgames.gdx:gdx-ai:$aiVersion"
     provided 'com.kotcrab.vis:vis-ui:1.1.4'
 
-    provided "aurelienribon:tweenengine:6.3.3"
-    provided "aurelienribon:tweenengine:6.3.3:sources"
+    //provided "aurelienribon:tweenengine:6.3.3"
+    //provided "aurelienribon:tweenengine:6.3.3:sources"
+    provided 'com.github.arcnor:universal-tween-engine:6.3.4'
+    provided 'com.github.arcnor:universal-tween-engine:6.3.4:sources'
+    compile "com.badlogicgames.gdx:gdx-tools:$gdxVersion"
 }
 
 /*uploadArchives {
