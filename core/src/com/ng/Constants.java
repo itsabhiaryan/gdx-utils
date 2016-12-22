@@ -10,16 +10,16 @@ public class Constants {
 
     /**
      * Game name is name of this game.
-     * 1. Spider Solitaire
+     * 1. XXXXXXXX
      *
      */
 
-    static final String GAME_NAME="Spider Solitaire";
-    static final String PACKAGE_NAME="com.nayragames.spidersolitaire";
+    static final String GAME_NAME="XXXXXXXXX";
+    static final String PACKAGE_NAME="com.ng.XX";
     public static final String GOOGLE_PLAY_LINK="https://play.google.com/store/apps/details?id="+PACKAGE_NAME;
 
     public enum PublisherIDLink{
-        GOOGLE("https://play.google.com/store/apps/developer?id=Nayra+Games"),
+        GOOGLE("https://play.google.com/store/apps/developer?id="),
         AMAZON("sds"),
         SAMSUNG("sd"),
         SLIDEME("sd"),

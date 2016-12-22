@@ -7,8 +7,8 @@ gwt {
     minHeapSize="1G"
 
     src = files(file("src/")) // Needs to be in front of "modules" below.
-    modules 'com.nayragames.GdxDefinition'
-    devModules 'com.nayragames.GdxDefinitionSuperdev'
+    modules 'com.ng.GdxDefinition'
+    devModules 'com.ng.GdxDefinitionSuperdev'
     project.webAppDirName = 'webapp'
 
     compiler {
