@@ -11,4 +11,8 @@ public interface AdServices extends IServices {
 
     void showTopAd(boolean isShow);
     void showBottomAd(boolean isShow);
+
+    void showFullPageAd();
+    boolean closeFullPageAd();
+    boolean isFullPageAdVisible();
 }

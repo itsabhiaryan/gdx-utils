@@ -67,6 +67,21 @@ public abstract class DesktopGoogleServices implements RateMoreServices, AdServi
 	}
 
 	@Override
+	public void showFullPageAd() {
+
+	}
+
+	@Override
+	public boolean closeFullPageAd() {
+		return false;
+	}
+
+	@Override
+	public boolean isFullPageAdVisible() {
+		return false;
+	}
+
+	@Override
 	public void setOrientation(Orientation orientation) {
 
 	}

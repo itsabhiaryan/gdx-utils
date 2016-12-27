@@ -30,7 +30,7 @@ dependencies {
     //provided "aurelienribon:tweenengine:6.3.3:sources"
     provided 'com.github.arcnor:universal-tween-engine:6.3.4'
     provided 'com.github.arcnor:universal-tween-engine:6.3.4:sources'
-    compile "com.badlogicgames.gdx:gdx-tools:$gdxVersion"
+    //compile "com.badlogicgames.gdx:gdx-tools:$gdxVersion"
 }
 
 /*uploadArchives {
