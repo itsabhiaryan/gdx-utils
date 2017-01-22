@@ -4,6 +4,7 @@ import com.badlogic.ashley.core.Component;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
+
 /**
  * (c) 2016 Abhishek Aryan
  *
@@ -13,13 +14,13 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
  */
 public class AnimationComponent implements Component {
 
-    public Animation animation;
+    public Animation<TextureRegion> animation;
     public float stateTime;
     private float width,height;
 
     public AnimationComponent(TextureRegion[] paramArrayOfTextureRegion, float frameDuration, Animation.PlayMode playMode){
 
-        animation=new Animation(frameDuration,paramArrayOfTextureRegion);
+        animation=new Animation<TextureRegion>(frameDuration,paramArrayOfTextureRegion);
         animation.setPlayMode(playMode);
         stateTime= 0;
     }

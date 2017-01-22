@@ -1,11 +1,13 @@
 package com.ng.gdxutils.actor;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.ng.gdxutils.model.Position;
 import com.ng.gdxutils.model.Size;
 
@@ -18,7 +20,7 @@ import com.ng.gdxutils.model.Size;
  */
 public class AnimationActor extends Actor {
 
-    public Animation animation;
+    public Animation<TextureRegion> animation;
     public TextureRegion reg;
     public float stateTime;
 
@@ -41,7 +43,7 @@ public class AnimationActor extends Actor {
         TextureRegion localTextureRegion = paramArrayOfTextureRegion[0];
         Size localGSize = Size.makeSize(localTextureRegion.getRegionWidth(), localTextureRegion.getRegionHeight());
         setSize(localGSize.x, localGSize.y);
-        this.animation = new Animation(frameDuration, paramArrayOfTextureRegion);
+        this.animation = new Animation<TextureRegion>(frameDuration, paramArrayOfTextureRegion);
         this.animation.setPlayMode(playMode);
         this.scaleX = scaleX;
         this.scaleY = scaleY;
@@ -59,7 +61,7 @@ public class AnimationActor extends Actor {
         TextureRegion localTextureRegion = paramArrayOfTextureRegion[0];
         Size localGSize =Size.makeSize(localTextureRegion.getRegionWidth(), localTextureRegion.getRegionHeight());
         setSize(localGSize.x, localGSize.y);
-        this.animation = new Animation(frameDuration, paramArrayOfTextureRegion);
+        this.animation = new Animation<TextureRegion>(frameDuration, paramArrayOfTextureRegion);
         this.animation.setPlayMode(playMode);
         this.scaleX = scaleX;
         this.scaleY = scaleY;
@@ -79,7 +81,7 @@ public class AnimationActor extends Actor {
         TextureRegion localTextureRegion = paramArrayOfTextureRegion[0];
         Size localGSize = Size.makeSize(localTextureRegion.getRegionWidth(), localTextureRegion.getRegionHeight());
         setSize(localGSize.x, localGSize.y);
-        this.animation = new Animation(frameDuration, paramArrayOfTextureRegion);
+        this.animation = new Animation<TextureRegion>(frameDuration, paramArrayOfTextureRegion);
         this.animation.setPlayMode(playMode);
         this.scaleX = scale;
         this.scaleY = scale;
@@ -92,7 +94,7 @@ public class AnimationActor extends Actor {
 
     public AnimationActor(TextureRegion[] frames_num1, float frameDuration, float scale, Animation.PlayMode playMode) {
 
-        animation=new Animation(frameDuration,frames_num1);
+        animation=new Animation<TextureRegion>(frameDuration,frames_num1);
         animation.setPlayMode(playMode);
         this.scaleX=scale;
         this.scaleY=scale;
@@ -121,11 +123,11 @@ public class AnimationActor extends Actor {
             batch.draw(reg, getX(), getY(), getWidth()/2f, getHeight()/2f, getWidth(), getHeight(), getScaleX(), getScaleY(), getRotation());
         else
             batch.draw(reg, getX(), getY(), this.scaleX*reg.getRegionWidth() / 2, this.scaleY*reg.getRegionHeight() / 2, reg.getRegionWidth() * this.scaleX, reg.getRegionHeight() * this.scaleY, 1.0F, 1.0F, this.angle);
-*/
+      */
 
-
+        Color color = getColor();
+        batch.setColor(color.r, color.g, color.b, color.a * parentAlpha);
         batch.draw(reg,getX(),getY(),getWidth()/2,getHeight()/2,getWidth(),getHeight(),getScaleX(),getScaleY(),getRotation());
-
     }
 
     public void setPosition(Position origin) {
