@@ -8,8 +8,8 @@ This library is deployed in maven central repository.
 [![](https://img.shields.io/badge/jcenter-1.0.0-blue.svg)](http://jcenter.bintray.com/com/github/itsabhiaryan/gdx-utils/1.0.0/)
 [![](https://img.shields.io/badge/snapshot-1.0.1-orange.svg)](https://oss.sonatype.org/content/repositories/snapshots/com/github/itsabhiaryan/gdx-utils/1.0.1-SNAPSHOT/gdx-utils-1.0.1-20160724.190533-1.jar)
 
-###How to use as dependency in gradle###
-####Released version####
+### How to use as dependency in gradle ###
+#### Released version ####
 ```javascript
 repositories {
     mavenCentral()
@@ -27,7 +27,7 @@ dependencies {
 }
 ```    
 
-####Snapshot version####
+#### Snapshot version ####
 ```javascript
 repositories {
     maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
@@ -39,7 +39,7 @@ dependencies {
 }
 ```
 
-###Maven###
+### Maven ###
 ```javascript
 <dependency>
   <groupId>com.github.itsabhiaryan</groupId>
@@ -56,7 +56,7 @@ This utility is also deployed in maven central repository.
 
 [![](https://img.shields.io/badge/maven--central-0.0.1-blue.svg)](https://oss.sonatype.org/content/repositories/releases/com/github/itsabhiaryan/tools/1.1/tools-1.1.jar)
 
-###How to use as dependency in gradle###
+### How to use as dependency in gradle ###
 ```javascript
 repositories {
     mavenCentral()
